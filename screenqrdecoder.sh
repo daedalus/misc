@@ -1,8 +1,9 @@
 #!/bin/bash
 # Author Dario Clavijo 2016
 
-TMP=$(mktemp).jpg
+TMP=$(mktemp --suffix .qrdecode.jpg)
 gnome-screenshot -a --file=$TMP
 DECODED=$(zbarimg $TMP)
-echo $DECODED
 echo $DECODED >> $HOME/qrdecoded
+rm $TMP
+
