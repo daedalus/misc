@@ -21,16 +21,16 @@ def test(msg_data):
 
         print "Compressed data(hex): " + msg_data.encode('hex')
 
-        msg_data = struct.pack('>4si%ds' % len(msg_data)  ,zlib_magic,len(msg_data),msg_data)
+        msg_data = struct.pack('>4si{0:d}s'.format(len(msg_data))  ,zlib_magic,len(msg_data),msg_data)
         #msg_data = "ZLIB%s%s" % (ser_uint(len(msg_data)),msg_data)
 
         print "Packed data: " + msg_data.encode('hex')
 
         if msg_data[:4] == zlib_magic:
                 msg_len = deser_uint(msg_data[4:8])
-                print "msg_len: %s" % msg_len
+                print "msg_len: {0!s}".format(msg_len)
                 
-                a,b,c = struct.unpack('>4si%ds' % msg_len,msg_data)
+                a,b,c = struct.unpack('>4si{0:d}s'.format(msg_len),msg_data)
                 print "Pack:",a,b,c.encode('hex')
                 new_data = zlib.decompress(c)
                 print "Decompressed data: " + new_data
