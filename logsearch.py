@@ -22,7 +22,7 @@ def search(text,pos):
 	if accum.isdigit():
 		return int(accum)
 
-print search(test,0)
+print search('123456789--0',0)
 
 
 count = 0
