@@ -8,6 +8,6 @@ lines=$(zbarimg /tmp/qrcodeimg -q | grep -e QR | sed -e 's/QR-Code://g')
 for line in $lines;
 do 
 	echo "$line"; 
-	bin/i $line
+	bitcoin-cli importprivkey $1 "" false
 	echo $line >> tmp/scanned
 done
