@@ -10,6 +10,21 @@ def seek(A,key,imin,imax):
 			return v
 
 
+def search(text,pos):
+	current_char = text[pos]
+	accum=''
+	while (current_char.isdigit() and pos <= len(text)-1):
+		current_char = text[pos]
+		if current_char.isdigit():
+			accum = accum + current_char
+		pos+=1
+				
+	if accum.isdigit():
+		return int(accum)
+
+print search('123456789--0',0)
+
+
 count = 0
 
 # logarithm search
