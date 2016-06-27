@@ -11,9 +11,9 @@ ror = lambda val, r_bits, max_bits: \
  
 max_bits = 16  # For fun, try 2, 17 or other arbitrary (positive!) values
  
-value = 0b0000001000000000
-i = 1
-max_bits = 16
+value = 1
+i = 2
+max_bits = 256
 print get_bin(value,max_bits)
 print get_bin(rol(value, i, max_bits),max_bits)
 print get_bin(ror(value, i, max_bits),max_bits)
