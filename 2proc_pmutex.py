@@ -1,3 +1,4 @@
+# Author Darío Clavijo
 import random
 import time
 import sys
