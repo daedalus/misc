@@ -3,7 +3,6 @@ import random
 import time
 import sys
 import threading
-import time
 
 interested = []
 interested.append(False)
