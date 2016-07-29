@@ -8,13 +8,14 @@ import sys
 
 USER='test'
 PASS='test'
+timeout=3
 
 run=True
 
 def upload(ip,filename):
 	print "put",filename,ip
 	if run:
-		ftp = FTP(ip,USER,PASS)
+		ftp = FTP(ip,USER,PASS,timeout=timeout)
 		#tp.login()
 		ftp.storlines('STOR %s' % filename, open(filename, 'r'))
 
