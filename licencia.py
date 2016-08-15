@@ -43,31 +43,31 @@ def init_holidays(year):
 
 	# Feriados en Uruguay
 	holidays = [ # feriados no laborables
-		date(year=year, month=1, day=1),
-		date(year=year, month=5, day=1),
-		date(year=year, month=7, day=18),
-		date(year=year, month=8, day=25),
-		date(year=year, month=12, day=25),
+		date(year=year, month=1, day=1), 	# dia del transportista
+		date(year=year, month=5, day=1), 	# dia de los trabajadores
+		date(year=year, month=7, day=18),	# dia de la independencia
+		date(year=year, month=8, day=25), 	# dia de la declaratoria de la independencia
+		date(year=year, month=12, day=25), 	# vino papa noel y se fue...
 
 		# semana santa
-		semana_santa[0],
-		semana_santa[1],
-		semana_santa[2],
-		semana_santa[3],
-		semana_santa[4],
+		semana_santa[0], 			# lunes 
+		semana_santa[1], 			# martes
+		semana_santa[2], 			# miercoles
+		semana_santa[3], 			# jueves
+		semana_santa[4], 			# viernes de la muerte, no se puede comer carne pero yo la como igual.
 
-		carnaval[0],
-		carnaval[1],
+		carnaval[0], 				# dia de las morenas carnosas bailando
+		carnaval[1], 				# dia de las morenas carnosas bailando
 	
 		# feriados laborables
 
-	date(year=year, month=6, day=19),
-	date(year=year, month=5, day=18),
-	date(year=year, month=4, day=19),
-	date(year=year, month=11, day=2),
-	date(year=year, month=10, day=12),
-	date(year=year, month=1, day=6)
-	]
+		date(year=year, month=6, day=19), 	# el dia en que artigas se emborracho (porque era su cumplenios)
+		date(year=year, month=5, day=18), 	# batalla de las piedras 
+		date(year=year, month=4, day=19), 	# desembarco de los 33 (eran 34)
+		date(year=year, month=11, day=2),	# dia de los muertos
+		date(year=year, month=10, day=12),	# los españoles descubrieron que no estaban solos
+		date(year=year, month=1, day=6)		# dia mas regalos (de reyes)
+		]
 	return holidays
 
 def print_holidays():
