@@ -26,25 +26,6 @@ def lic(dstart,days,franqueo,holydays):
 
 	return (r,d)
 
-def display_res(dstart,days,franqueo,holydays,r,d):
-	print "+---------------------------------------------------------------------------------------------------+"
-        print "|Sin contar feriados										   |"
-        print "|Empieza:",dstart,", Dias laborales:",days,", Termina:",r[0], " Dias Totales: ", (d[0])	   
-        print "|Empieza:",dstart,", Dias laborales:",days+franqueo, ", Termina:",r[1], ", Dias totales:", (d[1])
-	print "|												   |"
-
-        print "|Contando feriados										   |"
-        print "|Empieza:",dstart,", Dias laborales:",days,", Termina:",r[2]," Dias Totales: ", (d[2])
-        print "|Empieza:",dstart,", Dias laborales:",days+franqueo, ", Termina:",r[3]," Dias Totales: ", (d[3])
-	
-
-#dstart = date(year=2016,month=9,day=20) # fecha de inicio
-#holydays = [date(year=2016,month=9,day=12)] # feriado laborable en uruguay
-days = 28 # dias acumulados
-franqueo = 3 # horas de franqueo/8
-
-curyear = date.today().year
-
 def init_holidays(year):
 	pascua = easter(curyear) # pascuas
 
@@ -92,6 +73,17 @@ def init_holidays(year):
 def print_holidays():
 	for h in holidays:
 		print h
+
+def display_res(dstart,days,franqueo,holydays,r,d):
+	print "+---------------------------------------------------------------------------------------------------+"
+        print "|Sin contar feriados										   |"
+        print "|Empieza:",dstart,", Dias laborales:",days,", Termina:",r[0], " Dias Totales: ", (d[0])	   
+        print "|Empieza:",dstart,", Dias laborales:",days+franqueo, ", Termina:",r[1], ", Dias totales:", (d[1])
+	print "|												   |"
+
+        print "|Contando feriados										   |"
+        print "|Empieza:",dstart,", Dias laborales:",days,", Termina:",r[2]," Dias Totales: ", (d[2])
+        print "|Empieza:",dstart,", Dias laborales:",days+franqueo, ", Termina:",r[3]," Dias Totales: ", (d[3])
 
 def calculate_best_candidate(start_date,days,franqueo):
 
