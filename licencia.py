@@ -115,6 +115,9 @@ def calculate_best_candidate(start_date,days,franqueo):
 	for dstart,r,d in best:
 		#print dstart,r[3],d[3]
 		display_res(dstart,days,franqueo,hs,r,d)
+	print "+---------------------------------------------------------------------------------------------------+"
+
+
 
 if len(sys.argv) > 1:
 	calculate_best_candidate(sys.argv[1],int(sys.argv[2]),int(sys.argv[3]))
