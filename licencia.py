@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# Author Dario Clavijo 2016
+# Licence: GPLv3
+
 from holidays import *
 from workdays import *
 from datetime import date
