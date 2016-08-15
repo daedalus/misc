@@ -3,10 +3,10 @@ from datetime import date
 
 # calculamos mi licencia sin contar sabados ni domingos ni el 12-10-2016
 def lic():
-        dstart = date(year=2016,month=9,day=20)
-        d12 = date(year=2016,month=9,day=12)
-        days = 28
-        franqueo = 3
+        dstart = date(year=2016,month=9,day=20) # fecha de inicio
+        d12 = date(year=2016,month=9,day=12) # feriado laborable en uruguay
+        days = 28 # dias acumulados
+        franqueo = 3 # horas de franqueo/8
 
         r1 = workday(dstart,days)
         r2 = workday(dstart,days + franqueo)
