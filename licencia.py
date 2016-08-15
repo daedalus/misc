@@ -124,4 +124,10 @@ def calculate_best_candidate(start_date,days,franqueo):
 		#print dstart,r[3],d[3]
 		display_res(dstart,days,franqueo,hs,r,d)
 
-calculate_best_candidate(sys.argv[1],int(sys.argv[2]),int(sys.argv[3]))
+if len(sys.argv) > 1:
+	calculate_best_candidate(sys.argv[1],int(sys.argv[2]),int(sys.argv[3]))
+else:
+	print "uso ./licencia.py dia_del_inicio_de_licencia dias_de_licencia horas_de_franqueo"
+	print "ejemplo: ./licencia.py '01-01-2016' 20 0"
+	print
+
