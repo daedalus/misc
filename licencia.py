@@ -27,7 +27,7 @@ def lic(dstart,days,franqueo,holydays):
 	return (r,d)
 
 def init_holidays(year):
-	pascua = easter(curyear) # pascuas
+	pascua = easter(year) # pascuas
 
 	semana_santa = [0,0,0,0,0]
 
@@ -43,11 +43,11 @@ def init_holidays(year):
 
 	# Feriados en Uruguay
 	holidays = [ # feriados no laborables
-		date(year=curyear, month=1, day=1),
-		date(year=curyear, month=5, day=1),
-		date(year=curyear, month=7, day=18),
-		date(year=curyear, month=8, day=25),
-		date(year=curyear, month=12, day=25),
+		date(year=year, month=1, day=1),
+		date(year=year, month=5, day=1),
+		date(year=year, month=7, day=18),
+		date(year=year, month=8, day=25),
+		date(year=year, month=12, day=25),
 
 		# semana santa
 		semana_santa[0],
@@ -61,12 +61,12 @@ def init_holidays(year):
 	
 		# feriados laborables
 
-	date(year=curyear, month=6, day=19),
-	date(year=curyear, month=5, day=18),
-	date(year=curyear, month=4, day=19),
-	date(year=curyear, month=11, day=2),
-	date(year=curyear, month=10, day=12),
-	date(year=curyear, month=1, day=6)
+	date(year=year, month=6, day=19),
+	date(year=year, month=5, day=18),
+	date(year=year, month=4, day=19),
+	date(year=year, month=11, day=2),
+	date(year=year, month=10, day=12),
+	date(year=year, month=1, day=6)
 	]
 	return holidays
 
