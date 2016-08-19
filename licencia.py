@@ -65,7 +65,7 @@ def init_holidays(year):
 		date(year=year, month=5, day=18), 	# batalla de las piedras 
 		date(year=year, month=4, day=19), 	# desembarco de los 33 (eran 34)
 		date(year=year, month=11, day=2),	# dia de los muertos
-		date(year=year, month=10, day=12),	# los españoles descubrieron que no estaban solos
+		date(year=year, month=10, day=12),	# los espanioles descubrieron que no estaban solos
 		date(year=year, month=1, day=6)		# dia mas regalos (de reyes)
 		]
 	return holidays
