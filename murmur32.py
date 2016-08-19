@@ -4,7 +4,7 @@ rotl = lambda val, r_bits, max_bits: \
     (val << r_bits%max_bits) & (2**max_bits-1) | \
     ((val & (2**max_bits-1)) >> (max_bits-(r_bits%max_bits)))
 
-def Murmur3_32(key, len, seed)
+def Murmur3_32(key, len, seed):
     # Note: In this version, all integer arithmetic is performed with unsigned 32 bit integers.
     # In the case of overflow, the result is constrained by the application of modulo {\displaystyle 2^{32}} 2^{32} arithmetic.
     
