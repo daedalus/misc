@@ -24,15 +24,15 @@ def Murmur3_32(key, len, seed)
 	if len(fourbytechunk) == 4
         	k = int(fourbytechunk.encode('hex'),16)
 
-        	k = k × c1
+        	k = k * c1
         	#k = (k ROL r1)
 		k = ROTL(k,r1i,32)
-        	k = k × c2
+        	k = k * c2
 
         	hash = hash ^ k
         	#hash = (hash ROL r2)
 		hash = ROTL(hash,r2,32)
-        	hash = hash × m + n
+        	hash = hash * m + n
 
     	else:
 		remainingBytes = int.from_bytes(fourbytechunk.to_bytes(len(fourbytechunk), byteorder='little'), byteorder='big', signed=False)
@@ -44,16 +44,16 @@ def Murmur3_32(key, len, seed)
         	#       multiplication, and notably, that such high digits are likely to be discarded
 	        #       by the modulo arithmetic under overflow.  We don't want that.
         
-        	remainingBytes = remainingBytes × c1
+        	remainingBytes = remainingBytes * c1
  	       	remainingBytes = ROTL(remainingBytes,r1,32)
-        	remainingBytes = remainingBytes × c2
+        	remainingBytes = remainingBytes * c2
 
         	hash = hash ^ remainingBytes
  
     	hash = hash ^ len
 
     hash = hash ^ (hash >> 16)
-    hash = hash × 0x85ebca6b
+    hash = hash * 0x85ebca6b
     hash = hash ^ (hash >> 13)
-    hash = hash × 0xc2b2ae35
+    hash = hash * 0xc2b2ae35
     hash = hash ^ (hash >> 16)
