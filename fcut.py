@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # Author Dario Clavijo 2016
-# given a file and a csv list composed of 
-# offset,length we can copy the segments to other file
-# or just print them in hex format
+# given a file and a csv list composed of offset,length 
+# we can copy the segments to other file 
+# or just print them in hex format for example 
+# we can take the binwalk csv output in fixed mode and
+# dump all the findings to a file
 import sys
 
 def recovery(device,offset_list,mode,fp_dump=None):
