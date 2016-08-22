@@ -10,4 +10,4 @@ def rot13(test):
 		d +=  r[p.find(l)]
 	return d
 
-print rot13("Dario Clavijo")
+print rot13(rot13("Dario Clavijo"))
