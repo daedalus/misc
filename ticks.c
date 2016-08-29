@@ -63,6 +63,27 @@ int test_sub(){
 
 }
 
+int test_mul(){
+        clock_t start, end;
+        int cpu_time_used;
+
+	unsigned int j=MAX_ITER;
+        start = clock();
+        /* Do the work. */
+
+	for(int i=0;i<=MAX_ITER;i++){
+		j = (i * 65535);
+	}
+        end = clock();
+        cpu_time_used = ((double) (end - start));
+
+        printf("mul clocks: %d\n",cpu_time_used);
+
+	return cpu_time_used;
+
+}
+
+
 
 int main(){
 	printf("clocks per sec: %d\n",CLOCKS_PER_SEC);
@@ -71,5 +92,6 @@ int main(){
 
 	int t1 = test_sum();
 	int t2 = test_sub();
-	printf("diff: %d\n",(t1-t2));
+	int t3 = test_mul();
+	//printf("diff: %d\n",(t1-t2));
 }
