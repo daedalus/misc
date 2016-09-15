@@ -15,7 +15,7 @@ function bonne {
 
 	date=$(date +"%H%M%S-%d%m%Y")
 
-	HTML_OUTPUT_FILE=/var/www/html/bonnie/bonnie_"$SIZE"_"$HOSTNAME"_"$DEVICE"_$DEVNAME_$date.html
+	HTML_OUTPUT_FILE=/var/www/html/bonnie/bonnie_"$SIZE"_"$HOSTNAME"_"$DEVICE"_"$DEVNAME"_$date.html
 
 	OPTS="-f -b -r 0 -q"
 
