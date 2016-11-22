@@ -21,7 +21,7 @@ for id in `cat /tmp/listid`;do
 done
 
 for id in `cat /tmp/listid`;do
-        ###### suspending vms##########
+        ###### Powering on vms##########
         echo "Powering on machines: "
         vim-cmd vmsvc/power.on $id
 done
