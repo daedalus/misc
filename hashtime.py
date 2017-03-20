@@ -1,25 +1,36 @@
 #!/usr/bin/env python
-import timeit
+import sha3
 import hashlib
 import time
 
-print "Algo\tSpeed"
+print "Algo\tSpeed"	
 
-for h in hashlib.algorithms_available:
-        size = 100
-        
-        def test(h):
-                data=open('/dev/urandom','r').read(1024*1024*size)
-                algo = hashlib.new(h);
-                algo.update(data);
-                algo.hexdigest()
+a = list(hashlib.algorithms_available)
+a.append('sha3_256')
+a.append('sha3_512')
 
-        def measure(h):
-                t1 = time.time()
-                test(h)
-                t2 = time.time()
-                dt = t2-t1
-                return dt
+for h in a:
+	size = 100
+	def test(h):
+		data=open('/dev/urandom','r').read(1024*1024*size)
 
-        dt = measure(h)
-        print "%s\t%s MB/s" % (h,round(size/dt,2))
+		if h == 'sha3_256':
+			algo = hashlib.sha3_256()
+		elif h == 'sha3_512':
+			algo = hashlib.sha3_512()
+		else:
+			algo = hashlib.new(h); 
+			algo.update(data); 
+			algo.hexdigest()
+
+	def measure(h):
+		t1 = time.time() 
+		test(h)
+		t2 = time.time() 
+		dt = t2-t1
+
+		return dt	
+
+
+	dt = measure(h)
+	print "%s\t%s MB/s" % (h,round(size/dt,2))
