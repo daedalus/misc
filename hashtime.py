@@ -21,8 +21,8 @@ for h in a:
 			algo = hashlib.sha3_512()
 		else:
 			algo = hashlib.new(h); 
-			algo.update(data); 
-			algo.hexdigest()
+		algo.update(data); 
+		algo.hexdigest()
 
 	def measure(h):
 		t1 = time.time() 
