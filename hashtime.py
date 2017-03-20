@@ -12,9 +12,9 @@ a.append('sha3_512')
 
 for h in a:
 	size = 100
+	data=open('/dev/urandom','r').read(1024*1024*size)
+	
 	def test(h):
-		data=open('/dev/urandom','r').read(1024*1024*size)
-
 		if h == 'sha3_256':
 			algo = hashlib.sha3_256()
 		elif h == 'sha3_512':
