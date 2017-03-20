@@ -29,7 +29,6 @@ for h in a:
 		test(h)
 		t2 = time.time() 
 		dt = t2-t1
-
 		return dt	
 
 	dt = measure(h)
