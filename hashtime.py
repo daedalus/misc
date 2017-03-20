@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Autor Dario Clavijo 2017
 import sha3
 import hashlib
 import time
@@ -30,7 +31,6 @@ for h in a:
 		dt = t2-t1
 
 		return dt	
-
 
 	dt = measure(h)
 	print "%s\t%s MB/s" % (h,round(size/dt,2))
