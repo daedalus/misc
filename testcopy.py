@@ -25,9 +25,9 @@ def test(f1,f2):
                 fp.write(data[i:i+SIZE])
         fp.close()
         del fp
-        del SIZE
+        
 
     _save(_load(f1),f2)
-
+    del SIZE
 
 test(sys.argv[1],sys.argv[2])
