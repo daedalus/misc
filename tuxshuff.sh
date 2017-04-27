@@ -1,5 +1,5 @@
 #!/bin/bash
-# Tux AES ECB MODE LEAK INFO FLAW
+# Tux shufle bits POC
 # Author Dario Clavijo 2016
 
 set -x
