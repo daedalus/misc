@@ -1,5 +1,6 @@
-import bitshufle
-inport fileinput
+import bitshuffle
+import fileinput
+import numpy
 
 def buff_shuffle(buff):
 	print  len(buff)
@@ -8,7 +9,7 @@ def buff_shuffle(buff):
         return buff
 
 data = ""
-for line in fileinput.input()
+for line in fileinput.input():
 	data += line
 
 print buff_shuffle(data)
