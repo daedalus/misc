@@ -1,3 +1,10 @@
+# pythonic bitshuffle like but slow
+# it rearanges most significant bits in a byte like 8x8 or 16x16 by transposing the matrix given.
+# It speedsup compression so it can be uses as a step before compressing.
+# The only dependence is numpy.
+# Author Dario Clavijo 2017
+# License GPLv3
+
 import numpy
 
 def bintobit(tmp):
