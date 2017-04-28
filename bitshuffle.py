@@ -1,5 +1,4 @@
 import numpy
-import binascii 
 
 def bintobit(tmp):
 	tmp = numpy.frombuffer(tmp,dtype=numpy.uint8)
