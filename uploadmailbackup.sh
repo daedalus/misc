@@ -10,9 +10,9 @@ RSA_PUB=1C8E0F39
 
 MAILDIR=/home/$USER/.mail/
 TMP_DISK=vdb1
-DST_DISK=nfs_op
+DST_DISK=nfs
 IMG=/media/$TMP_DISK/$USER/backup/mail.img
-DST=/media/$DST_DISK/Respaldos/$USER/backup/mail_backup.gpg
+DST=/media/$DST_DISK/$USER/backup/mail_backup.gpg
 
 # mounting the image
 mount $IMG $MAILDIR
