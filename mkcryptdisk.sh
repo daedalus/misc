@@ -15,5 +15,5 @@ mount /dev/mapper/$DISK /media/$DISK
 
 BLKID=$(blkid /dev/$DISK -value | head -n 1)
 
-echo "$DISK $BLKID $KEYFILE  luks" > /etc/crypttab
+echo "$DISK UUID=$BLKID $KEYFILE  luks" > /etc/crypttab
 echo "/dev/mapper/$DISK /media$DISK btrfs defaults 0 0" > /etc/fstab
