@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Author Dario Clavijo 2017
 # GPLv3
+# source https://en.wikipedia.org/wiki/Run-length_limited
 
 # static tables
 RLL={FM01:{0b0:0b10,0b1:0b11}, #FM(0,1) Manchester coding
