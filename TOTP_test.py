@@ -2,6 +2,8 @@
 # Author Dario Clavijo 2017
 # GPLv3
 
+# This programs uses the google authenticator sqlite3 database
+
 import pyotp
 import sqlite3
 import sys
