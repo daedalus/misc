@@ -8,4 +8,5 @@ set -x
 FILENAME=$1
 START=$(grep --byte-offset --only-matching --text "PNG" $FILENAME | sed -e "s/:/ /g" | awk '{ print $1 }')
 END=$(tshark -nr $FILENAME frame contains PNG | awk '{ print $7 }')
-python ./file_cut_simple.py $FILENAME $(echo "$START - 1"| bc) $END > flag.png
+#python ./file_cut_simple.py $FILENAME $(echo "$START - 1"| bc) $END > flag.png
+dd if=$FILENAME bs=1 skip=$(echo "$START - 1"| bc) count=$END of=flag.png
