@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# autor Dario Clavijo 2017
+
 import subprocess
 
 def ifUpDown(iface):
