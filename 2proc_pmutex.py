@@ -23,7 +23,7 @@ def enter_region(process):
 		#	print "process wait",process
 		continue
 	print "entered_critical: %d ticks %d" % (process,k)
-	
+
 def leave_region(process):
 	global interested
 	print "leave_region: %d" % process
@@ -41,4 +41,4 @@ for n in range(0,2):
 	t.start()
 	ts.append(t)
 
-	
+

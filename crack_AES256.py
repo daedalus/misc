@@ -32,7 +32,7 @@ def pw_decode(s, password):
 			raise Exception('Invalid password')
 		return d
 	else:
-		return s 
+		return s
 
 def try_pw(encoded_seed, pw_cand):
 	seed = ''
@@ -89,7 +89,7 @@ choice = 0
 #		5) Numbers + Lowercase Letters
 #		6) Numbers + Capital Letters + Lowercase Letters
 #		7) Capital Letters + Lowercase Letters
-#		: ''') 
+#		: ''')
 #
 
 choice = 3
@@ -154,7 +154,7 @@ def test():
 	encoded_seed = 'Ww9jsiumblVPSM5owcLS6wODqxh0YDLIg/g+mNv+nuNP+f7yyhqOomTlK9tDv8xV0kYt/nUDeTZNtUOr3Zfp2w=='
 	#encoded_seed = 'QJA7vVqVDsUM1CaKVJXVSvO0e8hkQUsQbE5YqfguJX3Fs+1WP5XDSAjtxQU5L2fQiS7p5+zJ58B2lftmiZaa5g=='
 	#encoded_seed = 'VsIJxlznWkfRauhF6sGvjdZxt3qtWDdVQjbE+KFtKXjarc7IfcJxbWq9LACWVO7t8Rqwp+/OvbJHsxzwZ6Ys8Q=='
-		
+
 
 
 	cnt = 0
@@ -163,9 +163,9 @@ def test():
 	MIN = 1
 	MAX = 14
 	for i in range(MIN,MAX+1):
-		for s in xselections(bigList,i): 
+		for s in xselections(bigList,i):
 			t = ''.join(s)
-			pw_cand1 = t 
+			pw_cand1 = t
 			cnt += 1
 			if (cnt % 1000 == 0):
 				print "trying:",pw_cand1
@@ -183,7 +183,7 @@ def test():
 
 def test1():
 	encoded_seed = 'Ww9jsiumblVPSM5owcLS6wODqxh0YDLIg/g+mNv+nuNP+f7yyhqOomTlK9tDv8xV0kYt/nUDeTZNtUOr3Zfp2w=='
-	seed = try_pw(encoded_seed,'test') 
+	seed = try_pw(encoded_seed,'test')
 	if chk_seed(seed):
 		print 'ok'
 	        print seed

@@ -16,7 +16,7 @@ def human_readable_dump():
 					for string in Entry.iter('String'):
 						print "\t\t" + "-" * 80
 						print "\t\t" + string['Key'] + ":" + string['Value']
-								
+		
 			except:
 				pass
 		print "="*80

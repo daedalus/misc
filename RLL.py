@@ -73,7 +73,7 @@ def encode(func,bitstream):
 	#WIP
 	return bitstream
 
-def decode(func,bitstream):	
+def decode(func,bitstream):
 	bit_table = RLL[func]
 	#WIP
 	return bitstream

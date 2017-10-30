@@ -62,12 +62,12 @@ def _get_next_item(s):
         start_content = s.find("<pre>",start_line)
         end_content = s.find("</pre>",start_content)
         content_raw = str(s[start_content+ltag:end_content-1])
-     
+
 	#print start_line,start_content,end_content
 	#del start_line
         #del start_content
-        
-	if start_line == -1:	
+  
+	if start_line == -1:
 		content_raw = "no_links"
 
 	return content_raw, end_content

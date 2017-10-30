@@ -16,9 +16,9 @@ def lic(dstart,days,franqueo,holydays):
         r[1] = workday(dstart,days + franqueo)
         r[2] = workday(dstart,days,holydays)
         r[3] = workday(dstart,days + franqueo,holydays)
-	
+
 	d = [0,0,0,0]
-	
+
 	d[0] = (r[0] - dstart).days
 	d[1] = (r[1] - dstart).days
 	d[2] = (r[2] - dstart).days
@@ -50,7 +50,7 @@ def init_holidays(year):
 		date(year=year, month=12, day=25), 	# vino papa noel y se fue...
 
 		# semana santa
-		semana_santa[0], 			# lunes 
+		semana_santa[0], 			# lunes
 		semana_santa[1], 			# martes
 		semana_santa[2], 			# miercoles
 		semana_santa[3], 			# jueves
@@ -58,11 +58,11 @@ def init_holidays(year):
 
 		carnaval[0], 				# dia de las morenas carnosas bailando
 		carnaval[1], 				# dia de las morenas carnosas bailando
-	
+
 		# feriados laborables
 
 		date(year=year, month=6, day=19), 	# el dia en que artigas se emborracho (porque era su cumplenios)
-		date(year=year, month=5, day=18), 	# batalla de las piedras 
+		date(year=year, month=5, day=18), 	# batalla de las piedras
 		date(year=year, month=4, day=19), 	# desembarco de los 33 (eran 34)
 		date(year=year, month=11, day=2),	# dia de los muertos
 		date(year=year, month=10, day=12),	# los espanioles descubrieron que no estaban solos
@@ -77,7 +77,7 @@ def print_holidays():
 def display_res(dstart,days,franqueo,holydays,r,d):
 	print "+---------------------------------------------------------------------------------------------------+"
         print "|Sin contar feriados										   |"
-        print "|Empieza:",dstart,", Dias laborales:",days,", Termina:",r[0], " Dias Totales: ", (d[0])	   
+        print "|Empieza:",dstart,", Dias laborales:",days,", Termina:",r[0], " Dias Totales: ", (d[0])
         print "|Empieza:",dstart,", Dias laborales:",days+franqueo, ", Termina:",r[1], ", Dias totales:", (d[1])
 	print "|												   |"
 
@@ -110,8 +110,8 @@ def calculate_best_candidate(start_date,days,franqueo):
 		#sorted(best)
 		dstart += timedelta(days=1)
 
-		
-	
+
+
 	for dstart,r,d in best:
 		#print dstart,r[3],d[3]
 		display_res(dstart,days,franqueo,hs,r,d)

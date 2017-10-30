@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Disk IO Meter 
+# Disk IO Meter
 # Dario Clavijo 2017
 
 import os,time,zlib,binascii,random

@@ -18,21 +18,21 @@ def chain_comp(data):
 def testfunc(func,data,i = None):
         u = len(data)
 	fname = str(func).split(' ')[1]
-	if i: 
+	if i:
 
-		t0 = time.time()            
+		t0 = time.time()      
 		d = func.compress(data)
 		t1 = time.time()
 		dt = t1-t0
         	print "%s compression level: %d, bytes: %d, ratio: %2.2f time: %2.8f"  % (fname,i, len(d), 100-len(d)/(float(u))*100,dt)
 	else:
-		t0 = time.time()            
+		t0 = time.time()      
 		d = func.compress(data)
 		t1 = time.time()
 		dt = t1-t0
         	print "%s compression level: 1, bytes: %d, ratio: %2.2f time: %2.8f"  % (fname,len(d), 100-len(d)/(float(u))*100,dt)
 
-	
+
 
 def test(data):
         #for i in range(1,10):
@@ -53,7 +53,7 @@ def test2(data):
         dt = t1-t0
         print "chain compression level: 1, bytes: %d, ratio: %2.2f time: %2.8f"  % (len(d), 100-len(d)/(float(u))*100,dt)
 
-#test(str(bytearray((1024**2)*100))) 
+#test(str(bytearray((1024**2)*100)))
 
 data = ""
 for line in fileinput.input():

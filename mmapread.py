@@ -17,5 +17,5 @@ with open("/proc/%d/maps" % pid, 'r') as maps_file:
 			end = int(end,16)
 			mem_file.seek(start)
 			chunk = mem_file.read(end - start)
-			print hexdump.hexdump(chunk)	
-		
+			print hexdump.hexdump(chunk)
+

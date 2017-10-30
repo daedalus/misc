@@ -20,7 +20,7 @@ def stretch_password(password):
 
 def decrypt(txt,password):
 	return crypt(txt.decode('base64').decode('hex'),password).decode('base64').decode('hex')
-	
+
 def crypt(txt,password):
 	a = int(txt.encode('hex'),16)
 	b = int(stretch_password(password).encode('hex').zfill(64),16)

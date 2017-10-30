@@ -1,6 +1,6 @@
 #! /bin/ash
 # VM SUSPEND TEST
-# 
+#
 
 rm -f /tmp/listid
 touch /tmp/listid

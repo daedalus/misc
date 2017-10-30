@@ -20,7 +20,7 @@ def upload(ip,filename):
 		ftp.storlines('STOR %s' % filename, open(filename, 'r'))
 
 
-filename = sys.argv[1] 
+filename = sys.argv[1]
 
 iprange = sys.argv[2].split(" ")
 

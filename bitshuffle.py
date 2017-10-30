@@ -43,7 +43,7 @@ def bitshuffle(buff,mode):
 if __name__ == "__main__":
 	a = "Dario Clavijo   "
 	print a,len(a)
-	print a.encode('hex')		
+	print a.encode('hex')
 	print bintobit(a)
 
 	a = bitshuffle(a)

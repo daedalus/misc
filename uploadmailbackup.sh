@@ -18,8 +18,8 @@ DST=/media/$DST_DISK/$USER/backup/mail_backup.gpg
 mount -o compress-force=lzo $IMG $MAILDIR
 
 # mail getting stage
-su $USER -c "getmail -n -g $MAILDIR/personal/.getmail/" 
-su $USER -c "getmail -n -g $MAILDIR/work/.getmail/" 
+su $USER -c "getmail -n -g $MAILDIR/personal/.getmail/"
+su $USER -c "getmail -n -g $MAILDIR/work/.getmail/"
 
 sync
 

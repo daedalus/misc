@@ -6,7 +6,7 @@ import hashlib
 BLOCK_SIZE=16
 
 # MODES CFB,CBC XTS
- 
+
 def encrypt(message, passphrase,mode,IV):
     # passphrase MUST be 16, 24 or 32 bytes long, how can I do that ?
     aes = AES.new(passphrase, mode, base64.b64decode(IV))
@@ -40,5 +40,5 @@ def test():
 
 	dec = decrypt(enc,key,mode,IV)
 	print "decrypted message = ",dec
-	
+
 test()

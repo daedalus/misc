@@ -11,6 +11,6 @@ tail -n +5 tux.ppm > tux.data.ppm
 
 cat tux.data.ppm | python shuffledata.py > tux.data.shuff.ppm
 
-cat tux.header.ppm tux.data.shuff.ppm > tux.shuff.ppm  
+cat tux.header.ppm tux.data.shuff.ppm > tux.shuff.ppm
 
 rm tux.ppm tux.header.ppm tux.data.shuff.ppm

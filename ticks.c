@@ -17,7 +17,7 @@ void test_clock(){
 
 	end = clock();
 	cpu_time_used = ((double) (end - start));
-	
+
 	printf("Clocks: %d\n",cpu_time_used);
 }
 

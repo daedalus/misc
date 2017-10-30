@@ -45,10 +45,10 @@ def test1(string):
 	print binascii.hexlify(sha256(passphrase)).zfill(64)
 
 	return encrypt(string,passphrase)
-	
+
 def test2(payload):
 	passphrase = getpw()
-	print passphrase 
+	print passphrase
 	dec = decrypt(payload,passphrase)
 	#print dec
 	if binascii.hexlify(sha256(dec)) == sha256_payload_check:

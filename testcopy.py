@@ -6,7 +6,7 @@
 import sys
 
 def test(f1,f2):
-    SIZE=1024*128 #128K is the optimal value for read and write buffering 
+    SIZE=1024*128 #128K is the optimal value for read and write buffering
     def _load(filename):
         data = ''
         fp = open(filename,'rb')
@@ -25,7 +25,7 @@ def test(f1,f2):
                 fp.write(data[i:i+SIZE])
         fp.close()
         del fp
-        
+  
 
     _save(_load(f1),f2)
     del SIZE

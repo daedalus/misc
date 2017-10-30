@@ -10,7 +10,7 @@ while (program_counter >= 0):
      	b = memory[program_counter+1]
      	c = memory[program_counter+2]
 
-	
+
 	print "PC:",program_counter,",a:",a,",b:",b,",c:",c
 
      	if (a < 0 or b < 0):
@@ -22,7 +22,7 @@ while (program_counter >= 0):
          	else:
              		program_counter = c
 
-	
+
 	print "memory:",memory
-	
+
 

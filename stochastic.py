@@ -10,7 +10,7 @@ aANDb = [0,0,0,1]
 aORb = [0,1,1,1]
 aXORb = [0,1,1,0]
 
-#def f(p,q):	
+#def f(p,q):
 #	return (p*q) / ((p*q) + (1-p)*(1-q))
 
 def stochastic_average_fAND(p,q):

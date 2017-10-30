@@ -18,7 +18,7 @@ def search(text,pos):
 		if current_char.isdigit():
 			accum = accum + current_char
 		pos+=1
-				
+
 	if accum.isdigit():
 		return int(accum)
 
@@ -37,7 +37,7 @@ def seeklog(A,key,imin,imax):
 		if A[imid] > key:
 			return seeklog(A,key,imin,imid- 1 )
 		elif A[imid] < key:
-			return seeklog(A,key,imid+1,imax)	
+			return seeklog(A,key,imid+1,imax)
 		else:
 			return imid
 

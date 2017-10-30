@@ -12,7 +12,7 @@ double _pow(double a, double b) {
 
 double _fact(double x) {
     double ret = 1;
-    for (int i=1; i<=x; i++) 
+    for (int i=1; i<=x; i++)
         ret *= i;
     return ret;
 }
@@ -23,7 +23,7 @@ double _sin(double x) {
     for (int i=3; i<=100; i+=2) {
         y+=s*(_pow(x,i)/_fact(i));
         s *= -1;
-    }  
+    }
     return y;
 }
 double _cos(double x) {
@@ -32,11 +32,11 @@ double _cos(double x) {
     for (int i=2; i<=100; i+=2) {
         y+=s*(_pow(x,i)/_fact(i));
         s *= -1;
-    }  
+    }
     return y;
 }
 double _tan(double x) {
-     return (_sin(x)/_cos(x));  
+     return (_sin(x)/_cos(x));
 }
 
 int main()

@@ -32,7 +32,7 @@ class Point( object ):
     self.__order = order
     if self.__curve: assert self.__curve.contains_point( x, y )
     if order: assert self * order == INFINITY
- 
+
   def __add__( self, other ):
     if other == INFINITY: return self
     if self == INFINITY: return other
@@ -102,7 +102,7 @@ class Point( object ):
 
     p = self.__curve.p()
     a = self.__curve.a()
-    
+
     # next three lines must be reverted somehow, then I am a multi millionaire :-)
     # as a=0 in this case, I have eliminated it!
     l = ( ( 3 * self.__x * self.__x ) * inverse_mod( 2 * self.__y, p ) ) % p
@@ -120,10 +120,10 @@ class Point( object ):
 
   def curve( self ):
     return self.__curve
-  
+
   def order( self ):
     return self.__order
-    
+
 INFINITY = Point( None, None, None )
 
 def inverse_mod( a, m ):

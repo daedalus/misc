@@ -12,7 +12,7 @@ cryptsetup luksAddKey /dev/$DISK $KEYFILE
 cryptsetup --key-file $KEYFILE luksOpen /dev/$DISK $DISK
 mkfs.btrfs /dev/mapper/$DISK
 mkdir /media/$DISK
-#mount /dev/mapper/$DISK /media/$DISK 
+#mount /dev/mapper/$DISK /media/$DISK
 
 BLKID=$(blkid /dev/$DISK -o value | head -n 1)
 echo "$DISK UUID=$BLKID $KEYFILE  luks" >> /etc/crypttab

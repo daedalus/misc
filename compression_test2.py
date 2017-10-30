@@ -29,7 +29,7 @@ def test(msg_data):
         if msg_data[:4] == zlib_magic:
                 msg_len = deser_uint(msg_data[4:8])
                 print "msg_len: {0!s}".format(msg_len)
-                
+          
                 a,b,c = struct.unpack('>4si{0:d}s'.format(msg_len),msg_data)
                 print "Pack:",a,b,c.encode('hex')
                 new_data = zlib.decompress(c)

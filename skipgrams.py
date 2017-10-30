@@ -40,7 +40,7 @@ def findskipgrams(skip,text,tokens):
 		word0 = words[i-skip]
 		word1 = words[i]
 		word2 = words[i+skip]
-		
+
 		try:
 			skipgrams[(word0,word1)] += 1
 		except:
@@ -49,30 +49,30 @@ def findskipgrams(skip,text,tokens):
 			skipgrams[(word1,word2)] += 1
 		except:
 			skipgrams[(word1,word2)] = 0
-		
+
 
 	return tokens
 
-#csvdata = csv.reader(codecs.open('hacker_news_comments.csv', 'rU', 'utf-16'))	
-csvdata = csv.reader(open('hacker_news_comments2.csv'))	
+#csvdata = csv.reader(codecs.open('hacker_news_comments.csv', 'rU', 'utf-16'))
+csvdata = csv.reader(open('hacker_news_comments2.csv'))
 
 for row in csvdata:
 	story_text = row[3]
 	comment_text = row[6]
 
 	#unigrams = tokenize(story_text,unigrams)
-	#skipgrams = findskipgrams(1,story_text,skipgrams)	
-	
+	#skipgrams = findskipgrams(1,story_text,skipgrams)
+
 	unigrams = tokenize(comment_text,unigrams)
-	skipgrams = findskipgrams(1,comment_text,skipgrams)	
+	skipgrams = findskipgrams(1,comment_text,skipgrams)
 
 
 print "unigrams:",len(unigrams)
 print "skipgrams:",len(skipgrams)
-		
+
 #for unigram in unigrams:
 #	print unigram,P(unigram,unigrams)
 
 
 for skipgram in skipgrams:
-	print skipgram,skipgramP(skipgram,skipgrams,unigrams) 
+	print skipgram,skipgramP(skipgram,skipgrams,unigrams)

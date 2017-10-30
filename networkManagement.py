@@ -7,10 +7,10 @@ def ifUpDown(iface):
 	subprocess.call(['ifconfig',iface,'down'])
 	subprocess.call(['ifconfig',iface,'up'])
 
-def ifUp(iface):	
+def ifUp(iface):
 	subprocess.call(['ifconfig',iface,'up'])
 
-def ifDown(iface):	
+def ifDown(iface):
 	subprocess.call(['ifconfig',iface,'down'])
 
 def setMonitorMode(iface):

@@ -123,7 +123,7 @@ switches = [
 storages = [
 	addstg('stg1'),
 	addstg('stg2'),
-	]	
+	]
 
 # arreglo de hosts
 hosts = [
