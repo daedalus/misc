@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Author Dario Clavijo 2018
+
 import shodan
 import socket
 
