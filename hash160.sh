@@ -13,6 +13,6 @@ sort -u $1 | xxd -r -p >> $BIN
 xxd -c 20 -ps $BIN > $TXT
 sort -u $TXT | xxd -r -p > $BIN
 
-code/BTC/brainflayer/hex2blf $TXT $BLF
+$HOME/code/BTC/brainflayer/hex2blf $TXT $BLF
 
 rm $TXT
