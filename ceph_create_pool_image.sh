@@ -31,7 +31,7 @@ rbd feature disable $POOL/$IMG object-map
 # create the deploy.sh for the client.
 echo "#!/bin/bash" > deploy_$USER.sh
 echo "echo deploying ceph..." >> deploy_$USER.sh
-echo "sudo apt-get install ceph-common" >> deploy_$USER.sh
+echo "sudo apt-get install ceph-common -y" >> deploy_$USER.sh
 echo "sudo modprobe rbd" >> deploy_$USER.sh
 echo "sudo echo '$MONITOR name=$USER,secret=$KEY $POOL $IMG' | sudo tee /sys/bus/rbd/add" >> deploy_$USER.sh
 echo "sudo $FS /dev/$LDEV" >> deploy_$USER.sh
