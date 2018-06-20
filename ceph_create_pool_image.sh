@@ -21,7 +21,7 @@ rbd create --size $SIZE $POOL/$IMG
 
 # define user permissions
 ceph auth get-or-create client.$USER mon "allow r" osd "allow class-read object_prefix rbd_children, allow rwx pool=$POOL"
-KEY=$(ceph auth get-or-create client.$USER)
+KEY=$(ceph auth get-or-create client.$USER | tail -n 1 | awk '{ print $3 }')
 
 # disable incompatible features
 rbd feature disable $POOL/$IMG fast-diff
