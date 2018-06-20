@@ -37,3 +37,4 @@ echo "sudo echo '$MONITOR name=$USER,secret=$KEY $POOL $IMG' | sudo tee /sys/bus
 echo "sudo $FS /dev/$LDEV" >> deploy_$USER.sh
 echo "sudo mkdir /media/$LDEV" >> deploy_$USER.sh
 echo "sudo mount /dev/$LDEV /media/$LDEV" >> deploy_$USER.sh
+chmod u+x deploy_$USER.sh
