@@ -7,8 +7,8 @@ IMG=$2
 SIZE=$3
 PAGES=$4
 USER=$5
+LDEV=$6 # example rbd0
 FS="mkfs.ext4 -j"
-LDEV=rbd0
 MONITOR="172.16.1.1 172.16.2.2"
 
 ceph osd pool create $POOL $PAGES
@@ -22,10 +22,11 @@ rbd feature disable $POOL/$IMG fast-diff
 rbd feature disable $POOL/$IMG deep-flatten
 rbd feature disable $POOL/$IMG object-map
 
-echo "#!/bin/bash" > client.sh
-echo "sudo apt-get install ceph-common" >> client.sh
-echo "sudo modprobe rbd"
-echo "sudo echo '$MONITOR name=$USER,secret=$KEY $POOL $IMG' | sudo tee /sys/bus/rbd/add" >> client.sh
-echo "sudo $FS /dev/$LDEV" >> client.sh
-echo "sudo mkdir /media/$LDEV" >> client.sh
-echo "sudo mount /dev/$LDEV /media/$LDEV" >> client.sh
+echo "#!/bin/bash" > deploy_$USER.sh
+echo "echo deploying ceph..." >> deploy_$USER.sh
+echo "sudo apt-get install ceph-common" >> deploy_$USER.sh
+echo "sudo modprobe rbd" >> deploy_$USER.sh
+echo "sudo echo '$MONITOR name=$USER,secret=$KEY $POOL $IMG' | sudo tee /sys/bus/rbd/add" >> deploy_$USER.sh
+echo "sudo $FS /dev/$LDEV" >> deploy_$USER.sh
+echo "sudo mkdir /media/$LDEV" >> deploy_$USER.sh
+echo "sudo mount /dev/$LDEV /media/$LDEV" >> deploy_$USER.sh
