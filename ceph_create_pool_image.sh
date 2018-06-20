@@ -11,7 +11,7 @@ SIZE=$3
 PAGES=$4
 USER=$5
 LDEV=$6 # example rbd0
-FS="mkfs.ext4 -j"
+FS=$7 # example "mkfs.ext4 -j"
 MONITOR="172.16.1.1 172.16.2.2"
 
 # define pool,image and rbd mapping
