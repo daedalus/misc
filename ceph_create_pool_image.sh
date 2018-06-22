@@ -14,6 +14,9 @@ LDEV=$6 # example rbd0
 FS=$7 # example "mkfs.ext4 -j"
 MONITOR="172.16.1.1 172.16.2.2"
 
+ceph auth del client.$USER
+ceph osd pool delete $POOL $IMG --yes-i-really-really-mean-it
+
 # define pool,image and rbd mapping
 ceph osd pool create $POOL $PAGES
 rbd pool init $POOL
