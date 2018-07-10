@@ -7,8 +7,8 @@ RSYNC_OPTS="--list-only --exclude-from=/tmp/rsync_exclude"
 
 echo "*-delta.vmdk" > /tmp/rsync_exclude
 echo "*.vmsn" >> /tmp/rsync_exclude
-echo "*.lck >> /tmp/rsync_exclude"
-echo "*.log >> /tmp/rsync_exclude"
+echo "*.lck" >> /tmp/rsync_exclude
+echo "*.log" >> /tmp/rsync_exclude
 
 # instalamos el binario de rync estatico
 wget https://damiendebin.net/files/esxi-static-rsync-3-1-0.tar.gz -O /tmp/esxi-static-rsync.tar.gz 
