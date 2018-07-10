@@ -23,7 +23,7 @@ do
     POWERSTATE=$(vim-cmd vmsvc/get.summary $VMID | grep -e powerState | awk '{ print $3 }' | sed -e 's/[",]//g')
     echo "powerstate: $POWERSTATE"
 
-    if ["$POWERSTATE" == "poweredOn"]
+    if [ "$POWERSTATE" == "poweredOn" ]
     then
         VMPATHNAME=$(vim-cmd vmsvc/get.summary $VMID | grep -e vmPathName)
 	    DATASTORE=$(echo $VMPATHNAME | awk '{ print $3 }' | sed 's/[^a-zA-Z0-9]//g')
