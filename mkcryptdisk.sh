@@ -7,7 +7,6 @@ DISK=$1
 KEYFILE=$2
 
 cryptsetup luksClose $DISK
-cryptsetup luksFormat -y -v /dev/$DISK
 cryptsetup -y --verbose --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --use-random luksFormat $DISK
 cryptsetup luksAddKey /dev/$DISK $KEYFILE
 cryptsetup --key-file $KEYFILE luksOpen /dev/$DISK $DISK
