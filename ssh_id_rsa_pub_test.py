@@ -6,7 +6,7 @@ import sys
 if len(sys.argv) > 1:
     fp = open(sys.argv[1])    
 else:
-    fp = open(".ssh/id_rsa.pub")
+    fp = open("~/.ssh/id_rsa.pub")
 
 for line in fp:
     line = line.rstrip()
@@ -25,9 +25,7 @@ for line in fp:
                 pos = len(bindata)
                 data = None
             return pos,data
-
-        #for i in range(0,len(bindata):
-            #pos,datagetdata(i) 
+        
         start = 0
         end = 4
         pos = 0
@@ -40,6 +38,7 @@ for line in fp:
                 c.append(data)
             start+=pos+4
             end=start+4
+
         print "="*128
         print "Key type:",c[0]
         print "Public exponent:",int(c[1].encode('hex'),16)
