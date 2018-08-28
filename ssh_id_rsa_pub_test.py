@@ -43,4 +43,5 @@ for line in fp:
         print "="*128
         print "Key type:",c[0]
         print "Public exponent:",int(c[1].encode('hex'),16)
+        print "Modulus bits:",(len(c[2])-1)*8
         print "Modulus:",int(c[2].encode('hex'),16)
