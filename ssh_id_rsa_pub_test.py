@@ -2,11 +2,12 @@
 # Author Dario Clavijo 2018
 # ssh id_rsa.pub field decoder
 import sys
+import os
 
 if len(sys.argv) > 1:
     fp = open(sys.argv[1])    
 else:
-    fp = open("~/.ssh/id_rsa.pub")
+    fp = open(os.getenv("HOME") + "/.ssh/id_rsa.pub")
 
 for line in fp:
     line = line.rstrip()
