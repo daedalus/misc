@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 # Author Dario Clavijo 2018
 # ssh id_rsa.pub field decoder
+import sys
 
-fp = open(".ssh/id_rsa.pub")
+if len(sys.argv) > 1:
+    fp = open(sys.argv[1])    
+else:
+    fp = open(".ssh/id_rsa.pub")
+
 for line in fp:
     line = line.rstrip()
     a = line.split(' ')
