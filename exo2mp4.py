@@ -11,6 +11,8 @@ target = sys.argv[2]
 
 files = [f for f in listdir(_dir) if isfile(join(_dir, f))]
 
+#print files
+
 parts = []
 for filepart in files:
     if filepart.find(target) > -1:
