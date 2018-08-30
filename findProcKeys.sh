@@ -1,8 +1,6 @@
 #!/bin/bash
 # Author Dario Clavijo 2018
 
-set -x
-
 function _ReadProcMemByPid {
     python readprocmem.py $1 /tmp/
     for f in /tmp/*.dump; do
@@ -44,6 +42,12 @@ if [ "$1" = "-p" ]; then
     _ReadProcMemByPid $2
 elif [ "$1" = "-n" ]; then
     _ProcsByName $2
-else 
+elif [ "$1" = "-a" ]; then 
     _AllProcs  
+else
+    #set +x
+    echo """usage: $0 [opt] [arg]
+    -p PID            Single process
+    -n ProcessName    All process by name
+    -a                Allprocess"""
 fi
