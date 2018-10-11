@@ -15,8 +15,8 @@ if [ $? -eq 0 ]; then
 	#rmmod uds
 	insmod uds/uds.ko
 	insmod vdo/kvdo.ko
-	cp uds/uds.ko /lib/modules/4.18.0-2-amd64/kernel/drivers/misc/
-	cp vdo/kvdo.ko /lib/modules/4.18.0-2-amd64/kernel/drivers/misc/
+	cp uds/uds.ko /lib/modules/$VERSION/kernel/drivers/misc/
+	cp vdo/kvdo.ko /lib/modules/$VERSION/kernel/drivers/misc/
 	depmod -a
 	modprobe kvdo
 	if [ $? -eq 0 ]; then
