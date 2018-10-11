@@ -5,8 +5,12 @@ VERSION=$(uname -r)
 KVDO=$1
 apt-get install linux-headers-$VERSION build-essential -y
 git clone https://github.com/dm-vdo/kvdo $KVDO
-cd $KVDO
-git pull
+if [ $? -ne 0 ]; then
+	cd $KVDO
+	git pull
+else
+	cd $KVDO
+fi
 make -C /usr/src/linux-headers-$VERSION/ M=$(pwd) -j 16
 if [ $? -eq 0 ]; then
 	modprobe -r kvdo
