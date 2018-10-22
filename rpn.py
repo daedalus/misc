@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# A simple reverse polish notation calculator
 # Author Dario Clavijo 2018
 
 r = 0
