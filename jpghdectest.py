@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Author Dario Clavijo 2018
 
+#http://www.file-recovery.com/jpg-signature-format.htm
 #typedef struct _JFIFHeader
 #{
 #  BYTE SOI[2];          /* 00h  Start of Image Marker     */
@@ -15,6 +16,7 @@
 #  BYTE YThumbnail;      /* 0Fh  Vertical Pixel Count      */
 #} JFIFHEAD;
 
+#https://en.wikipedia.org/wiki/JPEG#JPEG_files
 #'Short name'  'Bytes'   'Payload' 'Name'
 #'SOI',0xFF,0xD8,'none', 'Start Of Image'  
 #'SOF0',0xFF, 0xC0,'variable size','Start Of Frame (baseline DCT)   Indicates that this is a baseline DCT-based JPEG, and specifies the width, height, number of components, and component subsampling (e.g., 4:2:0).'
