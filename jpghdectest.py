@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Author Dario Clavijo 2018
+
 #typedef struct _JFIFHeader
 #{
 #  BYTE SOI[2];          /* 00h  Start of Image Marker     */
