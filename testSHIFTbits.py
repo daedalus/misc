@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Author Dario Clavijo 2018
+
 def SRA(val, n):
     s = val & 0x80000000
     for i in range(0,n):
