@@ -8,13 +8,6 @@ def SRA(val, n):
         val |= s
     return val
 
-def SLA(val, n):
-    s = val & 0x80000000
-    for i in range(0,n):
-        val <<= 1
-        val |= s
-    return val & 0xffffffff
-
 def SLL(val,n):
     s = val & 0x80000000
     for i in range(0,n):
@@ -36,9 +29,7 @@ def test(a,n):
 	print "BIT:", bitrepr32(a)
 	print "SRA:", bitrepr32(SRA(a,n)),n
 	print "SRL:", bitrepr32(SRL(a,n)),n
-	print "SLA:", bitrepr32(SLA(a,n)),n
 	print "SLL:", bitrepr32(SLL(a,n)),n
-
 
 n = 5
 a = 0b11111111111111110000000000000000
