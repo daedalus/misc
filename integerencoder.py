@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Author Dario Clavijo 2018
+
 import struct
 def uint32tobytes(value,big_endian=True):
 	if big_endian:
