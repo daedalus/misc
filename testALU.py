@@ -38,6 +38,11 @@ def bytestoint32(value,big_endian=True):
         else:
                 return struct.unpack("<i", value)[0]
 
+
+def display_regs(regs):
+	for i in range(0,len(regs)):
+	    print "reg:",i,"\t",hexrepr32(regs[i]),"\t",bitrepr32(regs[i])
+
 regs = [0,0,0,0]
 mask = 0x80000000
 
@@ -69,9 +74,7 @@ print "OF:",OF
 if not OF:
     regs[rd] = int32tobytes(temp)
 
-for i in range(0,4):
-    print "reg:",i,"\t",hexrepr32(regs[i]),"\t",bitrepr32(regs[i])
-
+display_regs(regs)
 
 if not OF:
 	print "regs[rd]:",bytestoint32(regs[rd])
@@ -94,9 +97,7 @@ print "OF:",OF
 if not OF:
     regs[rd] = int32tobytes(temp)
 
-for i in range(0,4):
-    print "reg:",i,"\t",hexrepr32(regs[i]),"\t",bitrepr32(regs[i])
-
+display_regs(regs)
 
 if not OF:
         print "regs[rd]:",bytestoint32(regs[rd])
@@ -171,3 +172,11 @@ HI = uint32tobytes(((temp & 0xFFFFFFFF00000000) >> 32))
 
 print "LO:",hexrepr32(LO),bitrepr32(LO)
 print "HI:",hexrepr32(HI),bitrepr32(HI)
+
+#-----------------------------------------------------------------------------
+# AND
+
+temp = bytestouint32(regs[rs]) & bytestouint32(regs[rt])
+regs[rd] = uint32tobytes(temp)
+
+display_regs(regs)
