@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# Author Dario Clavijo 2018
+# GPLv3
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
+
+from sklearn.decomposition import TruncatedSVD
+from sklearn.random_projection import sparse_random_matrix
 import pandas as pd
 
 mydocuments = [
@@ -10,12 +19,6 @@ mydocuments = [
 "toire wa doko desu ka",
 "gde moya sobaka"
 ]
-
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import CountVectorizer
-
-from sklearn.decomposition import TruncatedSVD
-from sklearn.random_projection import sparse_random_matrix
 
 def vectorice(documents):
 	count_vect = CountVectorizer()
