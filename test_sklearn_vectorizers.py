@@ -27,7 +27,7 @@ def vectorice(documents):
 	pdd = pd.DataFrame(X_train_counts.toarray(),columns=count_vect.get_feature_names())
 	return pdd
 
-def TfidVec(documents):
+def TfidfVec(documents):
 	vectorizer = TfidfVectorizer()
 	trsfm=vectorizer.fit_transform(documents)
 	pdd = pd.DataFrame(trsfm.toarray(),columns=vectorizer.get_feature_names())
@@ -61,7 +61,7 @@ def test(documents):
 	print "=" * 76
  	print "Tfidf Vectorize:"	
 	print "-" * 76
-	X = TfidVec(documents)
+	X = TfidfVec(documents)
 	print X
 	print "-" * 76
         print "SVD recuction:"
