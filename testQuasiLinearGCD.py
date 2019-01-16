@@ -71,26 +71,26 @@ def batchGCDcompute(k,verbose=False):
     return s
 
 def test0(n,verbose=False):
-    a = 113257592704268871468251608331599268987586668983037892662393533567233998824693
-    b = 58243340170108004196473690380684093596548916771782361843168584750033311384553
+    p = 113257592704268871468251608331599268987586668983037892662393533567233998824693
+    q = 58243340170108004196473690380684093596548916771782361843168584750033311384553
     if verbose:
         print "inputs:"
-        print hex(a),hex(b),hex(a*b)
+        print hex(p),hex(q),hex(p*q)
     # we chose some arbitrary parameters with common factors to test.
-    k = [a*a,b*b,a*b*a,a*b*b] * n 
+    k = [p*p,q*q,p*q*p,p*q*q] * n 
     if verbose:
         print "pubs:"
     pubs = []
-    for p in k:
-        pubs.append(mpz(p))
+    for pub in k:
+        pubs.append(mpz(pub))
         if verbose:
-            print hex(p)
+            print hex(pub)
     if verbose:
         print "s:"
-    s = batchGCDcompute(pubs)
+    factors = batchGCDcompute(pubs)
     if verbose:
-        for p in s:
-            print hex(s)
+        for factor in factors:
+            print hex(factor)
 
 # Measure function execution time.
 def measure(func,n):
