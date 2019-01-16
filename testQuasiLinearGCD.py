@@ -70,15 +70,14 @@ def batchGCDcompute(k,verbose=False):
         s.append(tmp1)
     return s
 
-a = 113257592704268871468251608331599268987586668983037892662393533567233998824693
-b = 58243340170108004196473690380684093596548916771782361843168584750033311384553
-ab = a*b
-print "inputs:"
-print hex(a),hex(b),hex(ab)
-
 def test0(n,verbose=False):
-    # we chose some arbitrary parameters with comon factors to test.
-    k = [a*a,b*b,ab*a,ab*b] * n 
+    a = 113257592704268871468251608331599268987586668983037892662393533567233998824693
+    b = 58243340170108004196473690380684093596548916771782361843168584750033311384553
+    if verbose:
+        print "inputs:"
+        print hex(a),hex(b),hex(a*b)
+    # we chose some arbitrary parameters with common factors to test.
+    k = [a*a,b*b,a*b*a,a*b*b] * n 
     if verbose:
         print "pubs:"
     pubs = []
@@ -93,7 +92,7 @@ def test0(n,verbose=False):
         for p in s:
             print hex(s)
 
-
+# Measure function execution time.
 def measure(func,n):
     t0 = time.time()
     func(n)
