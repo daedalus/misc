@@ -31,44 +31,43 @@ def batchGCDcompute(k,verbose=False):
         return tmp
 
     r = []
-    s = []
     j = []
-
     n = len(k)
 
+    if verbose:
+	print "n:",n
+
     # we make pairs
-    for i in xrange(0,n-1,2):
-        j.append(k[i] + k[i+1])
+    for i in xrange(0,n,2):
+        j.append(k[i] * k[i+1])
+ 
+    if verbose:
+        print "j",j
 
     # precomputing the sequence multiply
     tmp0 = SeqMult(j)
     if verbose:
-        print tmp0
-
-    if verbose:
-        print "j",j
+        print "SeqMult",hex(tmp0)
 
     # The function SecMult1 will waste resources doing the same multiplications at left and right of the array
     # precomputing the sequence muliply and dividing by the term we want to exlude shields the same result.
     for i in xrange(0,len(j)):
         #a = GCD(j[i],SeqMult1(j,i))
         b = GCD(j[i],tmp0/j[i]) 
-        #if verbose:
-            #print "a,b",a,b
         r.append(b)
 
-    #sys.exit(0)
-
     if verbose:
-        print "r",r
-
+	for rr in r:
+        	print "r",hex(rr)
+    
+    factors = []
     for i in xrange(0,len(j)):
         if i % 2 != 0:
-            tmp1 = GCD(k[i],r[(i+1)/2] * k[i+1])
+            factor = GCD(k[i],r[(i+1)/2] * k[i+1])
         else:
-            tmp1 = GCD(k[i],r[i/2] * k[i-1])
-        s.append(tmp1)
-    return s
+            factor = GCD(k[i],r[i/2] * k[i-1])
+        factors.append(factor)
+    return factors
 
 def test0(n,verbose=False):
     p = 113257592704268871468251608331599268987586668983037892662393533567233998824693
@@ -77,18 +76,16 @@ def test0(n,verbose=False):
         print "inputs:"
         print hex(p),hex(q),hex(p*q)
     # we chose some arbitrary parameters with common factors to test.
-    k = [p*p,q*q,p*q*p,p*q*q] * n 
+    k = [1,q*q,p*p,p*q,1,p*p,q*q,p*q] * n
     if verbose:
         print "pubs:"
     pubs = []
     for pub in k:
         pubs.append(mpz(pub))
         if verbose:
-            print hex(pub)
+    factors = batchGCDcompute(pubs,verbose)
     if verbose:
-        print "s:"
-    factors = batchGCDcompute(pubs)
-    if verbose:
+        print "factors:"
         for factor in factors:
             print hex(factor)
 
@@ -114,3 +111,4 @@ batchperftest()
 print "naive gcd"
 GCD = naiveGCD
 batchperftest()
+#test0(1,verbose=True)
