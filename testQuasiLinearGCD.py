@@ -83,6 +83,7 @@ def test0(n,verbose=False):
     for pub in k:
         pubs.append(mpz(pub))
         if verbose:
+	    print pub
     factors = batchGCDcompute(pubs,verbose)
     if verbose:
         print "factors:"
