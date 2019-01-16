@@ -15,7 +15,7 @@ def naiveGCD(x,y):
 
 def batchGCDcompute(k,verbose=False):
 
-    # Sequence multiply usually notated by big greek letter PI.
+    # Sequence multiply usually notated by big greek letter PI(Unicode position U+220F)
     def SeqMult(x):
         tmp = 1
         for i in xrange(0,len(x)):
