@@ -76,7 +76,7 @@ def test0(n,verbose=False):
         print "inputs:"
         print hex(p),hex(q),hex(p*q)
     # we chose some arbitrary parameters with common factors to test.
-    k = [1,q*q,p*p,p*q,1,p*p,q*q,p*q] * n
+    k = [q*q,p*p,((p+1)*q),(p*(q+1))] * n
     if verbose:
         print "pubs:"
     pubs = []
@@ -112,4 +112,3 @@ batchperftest()
 print "naive gcd"
 GCD = naiveGCD
 batchperftest()
-#test0(1,verbose=True)
