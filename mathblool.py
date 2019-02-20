@@ -6,6 +6,7 @@
 def AND(a,b):
 	print "AND",a,b
 	return a*b
+
 def XOR(a,b):
 	print "XOR",a,b
 	return abs(a-b)
@@ -25,7 +26,6 @@ def NOR(a,b):
 def NAND(a,b):
 	print "NAND",a,b
 	return 1-(a*b)
-
 
 print "----------"
 print NOT(0)
