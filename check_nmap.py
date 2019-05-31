@@ -36,7 +36,6 @@ host = sys.argv[1]
 
 def getold_nm(host):
 	try:
-		#old_nm = file2json("."+host+".cache_"+str(version))
 		old_nm = file2json(".check_nmap.py."+host+".cache")
 	except:
 		old_nm = None
@@ -68,8 +67,6 @@ def proc_results(nm,old_nm,host,ports):
 	#print ports
 	if len(ports) > 0:
 		for port in ports:
-		#for port in old_nm['tcp']:
-			#print port
 			a,b = getstate(nm,old_nm,host,port)
 			if a != b:
 				output += "tcp port: %s, old_state: %s,  state: %s\n" % (port,a,b)
