@@ -15,10 +15,10 @@ clmac = '98:de:d0:1a:97:c2'
 PSK = '786 5555'
 SSID = 'unknown'
 
-print "SSID: ",SSID
-print "PSK:",PSK
-print "AP mac:",apmac
-print "Cl mac:",clmac
+print "SSID: [%s]" % SSID
+print "PSK: [%s]" % PSK
+print "AP mac: %s" % apmac
+print "Cl mac: %s" % clmac
 print "HASH: %s*%s*%s*%s" % (REQ,apmac.replace(":",""),clmac.replace(":",""),binascii.hexlify(SSID))
 
 pmkid,pmk =  PMKID(apmac,clmac,PSK,SSID)
