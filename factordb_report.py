@@ -24,7 +24,7 @@ def send2db(payload):
 limit=10
 data=[]
 #fp=open(sys.argv[1])
-for line in fileinput.input:
+for line in fileinput.input():
 	data.append(line.rstrip())
 
 
