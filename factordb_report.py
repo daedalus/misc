@@ -9,17 +9,33 @@ import re
 def send2db(payload):
   #payload = {'report': str(composite) + '=' + str(factors)}
   data = {'report':payload}
+
+  #print(payload)
+
   url = 'http://factordb.com/report.php'
   webpage = requests.post(url ,data=data, cookies={'fdbuser': fdbuser}, headers={'User-Agent': 'Mozilla/5.0'}).text
-  print("Factodb: " + re.findall("Found [0-9] factors and [0-9] ECM",webpage)[0])
+  r = re.findall("Found [0-9]+ factors and [0-9]+ ECM",webpage)
+  print("Factodb: " + str(r))
+  if r == []:
+    print(webpage)
+  return(r != None)
 
-
-limit=100
+limit=10
 data=[]
 fp=open(sys.argv[1])
 for line in fp:
 	data.append(line.rstrip())
 
-for x in range(0,len(data),limit):
-	payload = data[x:x+limit]
-	send2db(payload)
+
+def submit(data,limit):
+	ret = []
+	for x in range(0,len(data),limit):
+        	print(x)
+		payload = "\n".join(data[x:x+limit])
+		if send2db(payload) == False:
+        		ret += data[x:x+limit]
+	return ret
+
+ret = submit(data,limit)
+ret = submit(ret,limit/10)
+
