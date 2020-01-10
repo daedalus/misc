@@ -5,6 +5,7 @@ fdbuser = '4b5ad6b9623b43a868bb6d15210bb323'
 import sys
 import requests
 import re
+import fileinput
 
 def send2db(payload):
   #payload = {'report': str(composite) + '=' + str(factors)}
@@ -22,8 +23,8 @@ def send2db(payload):
 
 limit=10
 data=[]
-fp=open(sys.argv[1])
-for line in fp:
+#fp=open(sys.argv[1])
+for line in fileinput.input:
 	data.append(line.rstrip())
 
 
