@@ -13,7 +13,7 @@ def load_ops(fp):
 	for line in fp:
         	line = line.rstrip()
 		if line != "":
-			ops += line.split(" ")
+			ops += line.replace("  "," ").replace("  "," ").split(" ")
 	return ops
 
 def proc(ops):
