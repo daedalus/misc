@@ -110,9 +110,13 @@ def proc(ops):
                 	stack.append(r)
 			if debug:
                 		print r
+	return stack
 
 ops = load_ops(fileinput.input())
+if debug:
+	print (ops)
 stack = proc(ops)
+
 if len(stack) > 1:
 	print stack
 else:
