@@ -90,19 +90,21 @@ def proc(ops):
         	        stack.append(r)
 			if debug:
         	        	print r
-        	if op == ">>": 
-        	        a = int(stack[-2])
-        	        b = int(stack[-3])
+        	if op == ">>":
+                        print stack 
+        	        a = int(stack[-3])
+        	        b = int(stack[-2])
         	        stack.pop()
         	        stack.pop()
         	        stack.pop()
         	        r = a >> b
+                        print r,a,b
                 	stack.append(r)
 			if debug:
                 		print r
         	if op == "<<": 
-        	        a = int(stack[-2])
-        	        b = int(stack[-3])
+        	        a = int(stack[-3])
+        	        b = int(stack[-2])
         	        stack.pop()
         	        stack.pop()
         	        stack.pop()
