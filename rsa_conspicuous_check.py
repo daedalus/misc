@@ -64,5 +64,10 @@ print("phi:",phi)
 print("d:",d)
 
 r,txt = rsa_conspicuous_check(N,p,q,d,e)
-print(txt)
+if r == 0:
+  print("RSA key has no conspicuousness")
+else:
+  print("RSA key has Conspicuousness:")
+  print(txt)
+
 sys.exit(-1)
