@@ -16,7 +16,7 @@ for line in fileinput.input():
       pem = ssl.get_server_certificate((hostname, port))
       if pem != None:
         print(pem)
-        fp = open("tmp/KEYSDUMP/sslkeyget/%s_%d.pem" % (hostname, port),"w")
+        fp = open("output/%s_%d.pem" % (hostname, port),"w")
         fp.write(pem+"\n")
         fp.close()
     except:
