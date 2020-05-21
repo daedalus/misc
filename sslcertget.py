@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+# Author Dario Clavijo 2020
+# Get ssl certificates from most common ports
+
+import sys
+import ssl
+ssl.DEFAULT_CIPHERS = 'ALL'
+ports = [25,261,443,448,465,563,587,614,636,686,989,990,993,994,995,3389]
+
+import fileinput
+for line in fileinput.input():
+  hostname = line.rstrip()
+  for port in ports:
+    print (hostname+":"+str(port))
+    try:
+      pem = ssl.get_server_certificate((hostname, port))
+      if pem != None:
+        print(pem)
+        fp = open("tmp/KEYSDUMP/sslkeyget/%s_%d.pem" % (hostname, port),"w")
+        fp.write(pem+"\n")
+        fp.close()
+    except:
+      print(hostname+" error")
+
