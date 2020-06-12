@@ -27,6 +27,8 @@ fi
 
 mkdir '/content/drive/My Drive/BTC/'
 
+EXTRA_OPTS=-b 36 -t 512 -p 2600
+
 pwd
 cd /content
 #rm -rf BitCrack
@@ -36,5 +38,5 @@ cd BitCrack
 #mv /tmp/Makefile .
 #grep Makefile -e COMPUTE_CAP
 make BUILD_CUDA=1 COMPUTE_CAP=$COMPUTE_CAP -j 4
-bin/cuBitCrack --compression "$COMPRESSION" --keyspace "$RANGE" --continue "$CONTINUE" --out "$OUT" --in "$INPUT"
+bin/cuBitCrack --compression "$COMPRESSION" --keyspace "$RANGE" --continue "$CONTINUE" --out "$OUT" --in "$INPUT" $EXTRA_OPTS
 cd /content 
