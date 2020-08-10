@@ -11,24 +11,25 @@ import random
 GCD=gmpy2.gcd
 
 def factor(N,g,P):
-  gtmp = 1
+  gtmp = 2
   sol = []
   if g < N:
     for i in range(0,P):
       gtmp = gtmp * g
-      #print(i,gtmp)
-      b0,b1=gtmp+1,gtmp-1
-      x1 = GCD(N,b0)
-      x2 = GCD(N,b1)
-      if x1 > 1 and x1 < N:
-        sol.append([x1,N//x1])
-        print("sol",[x1,N//x1])
-        break
-      if x1 > 2 and x2 < N:
-        sol.append([x2,N//x2])
-        print("sol",[x2,N//x2])
-        break
-    print("iter:",i)
+      if gtmp % N == 1:
+        #print(i,gtmp)
+        gtmp2 = gtmp//2
+        x1 = GCD(N,gtmp2+1)
+        x2 = GCD(N,gtmp2-1)
+        if x1 > 1 and x1 < N:
+          sol.append([x1,N//x1])
+          print("sol",[x1,N//x1])
+          break
+        if x1 > 2 and x2 < N:
+          sol.append([x2,N//x2])
+          print("sol",[x2,N//x2])
+          break
+      print("iter:",i)
   else:
     print("g should be < N")
   return sol
