@@ -11,14 +11,14 @@ import random
 GCD=gmpy2.gcd
 
 def factor(N,g,P):
-  gtmp = 2
+  gtmp = 1
   sol = []
   if g < N:
     for i in range(0,P):
       gtmp = gtmp * g
       if gtmp % N == 1:
         #print(i,gtmp)
-        gtmp2 = gtmp//2
+        gtmp2 = g ** (i//2)
         x1 = GCD(N,gtmp2+1)
         x2 = GCD(N,gtmp2-1)
         if x1 > 1 and x1 < N:
