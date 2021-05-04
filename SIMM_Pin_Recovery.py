@@ -16,7 +16,7 @@ def crack_pin(n,l,waittime=None,reset=False):
   ns = n
   ti = time.time()
   r=readers()
-  print("Reader:",r)
+  print("[+] Reader:",r)
   connection = r[0].createConnection()
   connection.connect()
 
@@ -24,14 +24,14 @@ def crack_pin(n,l,waittime=None,reset=False):
   c = True
   s = "X%dd" % l
   s = s.replace("X","%0")
-  print("pin:",n,"max:",L,"wait:",waittime,"reset:",reset)
+  print("[+] startpin: %d, max: %d, wait: %s, reset: %s" % (n,L,str(waittime),str(reset)))
 
   def runtime():
     td = time.time() - ti
     nd = n - ns
     ndtd = nd/td
     htd = humanfriendly.format_timespan(td)
-    print("Runtime: %s,tried: %d, rate: %.4f" % (htd,nd,ndtd)) 
+    print("[+] Runtime: %s, tried pins: %d, rate: %.4f" % (htd,nd,ndtd)) 
 
   while n <= L and c: # keep looping if the c is set
  
@@ -87,7 +87,7 @@ def crack_pin(n,l,waittime=None,reset=False):
       data, sw1, sw2 = connection.transmit(RSET)
 
   runtime() # prints runtime information
-  print("[+] Program end.")
+  print("[-] Program end.")
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="SIMM Pin recovery tool")
