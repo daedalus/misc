@@ -6,12 +6,15 @@ import logging
 import argparse
 import sys
 import time
+import humanfriendly 
 
 from smartcard.System import readers
 #from smartcard.util import toHexString
 
 def crack_pin(n,l,waittime=None,reset=False):
   """ The function just forms a APDU with the pin then sends it to the reader and waits for the status. """  
+  ns = n
+  ti = time.time()
   r=readers()
   print("Reader:",r)
   connection = r[0].createConnection()
@@ -22,6 +25,13 @@ def crack_pin(n,l,waittime=None,reset=False):
   s = "X%dd" % l
   s = s.replace("X","%0")
   print("pin:",n,"max:",L,"wait:",waittime,"reset:",reset)
+
+  def runtime():
+    td = time.time() - ti
+    nd = n - ns
+    ndtd = nd/td
+    htd = humanfriendly.format_timespan(td)
+    print("Runtime: %s,tried: %d, rate: %.4f" % (htd,nd,ndtd)) 
 
   while n <= L and c: # keep looping if the c is set
  
@@ -51,6 +61,7 @@ def crack_pin(n,l,waittime=None,reset=False):
       data, sw1, sw2 = connection.transmit(COMM) # send the command
     except:
       print("[!] Connection error!, last pin checked: %d." % n-1)
+      runtime()
       sys.exit(-1)
     scommand = str(list(map(hex,COMM)))
  
@@ -59,19 +70,24 @@ def crack_pin(n,l,waittime=None,reset=False):
 
     if sw2 == 0x40: # status for card blocked
       print("[!] Card blocked, check PUK!...")
+      runtime()
       sys.exit(-1)
 
     if c == False: # Status for successful attack
       print("[*] The PIN is: " % N)
+      runtime()
       sys.exit(0)
     n += 1
 
-  if waittime != None: 
-    time.sleep(waittime)
+    if waittime != None: 
+      time.sleep(waittime)
 
-  if reset: # reset the chip
-    RSET = [0x3B, 0x9F, 0x96, 0x80, 0x1F, 0xC6, 0x80, 0x31, 0xE0, 0x73, 0xFE, 0x21, 0x1B, 0x64, 0x41, 0x04, 0x81, 0x00, 0x82, 0x90, 0x00, 0x04]
-    data, sw1, sw2 = connection.transmit(RSET)
+    if reset: # reset the chip
+      RSET = [0x3B, 0x9F, 0x96, 0x80, 0x1F, 0xC6, 0x80, 0x31, 0xE0, 0x73, 0xFE, 0x21, 0x1B, 0x64, 0x41, 0x04, 0x81, 0x00, 0x82, 0x90, 0x00, 0x04]
+      data, sw1, sw2 = connection.transmit(RSET)
+
+  runtime() # prints runtime information
+  print("[+] Program end.")
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="SIMM Pin recovery tool")
