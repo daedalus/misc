@@ -87,7 +87,6 @@ def crack_pin(n,l,waittime=None,reset=False):
       data, sw1, sw2 = connection.transmit(RSET)
 
   runtime() # prints runtime information
-  print("[-] Program end.")
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="SIMM Pin recovery tool")
@@ -114,4 +113,4 @@ if __name__ == "__main__":
     l = 4
 
   crack_pin(n,l,waittime=args.wait,reset=args.reset)
-
+  print("[-] Program end.")
