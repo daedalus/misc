@@ -47,7 +47,11 @@ def crack_pin(n,l,waittime=None,reset=False):
 
     COMM = [0xA0, 0x20, 0x00, 0x01, 0x08, A, B, C, D, E, F, G, H] # APDU with command pkt
 
-    data, sw1, sw2 = connection.transmit(COMM) # send the command
+    try:
+      data, sw1, sw2 = connection.transmit(COMM) # send the command
+    except:
+      print("[!] Connection error!, last pin checked: %d." % n-1)
+      sys.exit(-1)
     scommand = str(list(map(hex,COMM)))
  
     sys.stderr.write("Pin: %s, Command: %s, Status: %02x %02x\r" % (N,scommand, sw1, sw2))
