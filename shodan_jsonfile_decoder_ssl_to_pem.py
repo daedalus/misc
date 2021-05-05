@@ -31,9 +31,20 @@ for line in data.split("\n"):
         	h = "%s_%s_%s_%s" % (asn,reg['ip_str'],a,b)
 		h = h.replace("__","")
 		#print h
-		cert = reg['ssl']['chain']
-		bits = reg['ssl']['cipher']['bits']
-		fp = open(sys.argv[2] + h + "_%dbits.pem" % bits,"w")
-		for line in cert:
-			fp.write(line)
-		fp.close()
+
+                try:
+		    cert = reg['ssl']['chain']
+		    bits = reg['ssl']['cipher']['bits']
+                    ok = True
+                except:
+                    ok = False
+                    bis='0'
+                if len(h) > 240:
+                   h = h[0:240]
+                fname = sys.argv[2] + h + "_%dbits.pem" % bits
+                print(fname,ok)
+                if ok:
+		    fp = open(fname,"w")
+		    for line in cert:
+			    fp.write(line)
+		    fp.close()

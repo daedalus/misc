@@ -4,10 +4,10 @@ import bencode
 import sys
 import json
 
-f = open(sys.argv[1],"r") 
+f = open(sys.argv[1], "r")
 raw_data = f.read()
 data = bencode.bdecode(raw_data)
-#for i in data['info']['pieces'].split(" "):
+# for i in data['info']['pieces'].split(" "):
 #    print i.encode("hex")
-#print data
+# print data
 print data

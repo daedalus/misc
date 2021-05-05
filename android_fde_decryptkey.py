@@ -34,33 +34,38 @@ ENCRYPT = 1
 DECRYPT = 0
 
 assert path.isfile(header_file), "Input file '%s' not found." % header_file
-assert path.isfile(encrypted_partition), "Input file '%s' not found." % encrypted_partition
-header = open(header_file, 'rb').read()
+assert path.isfile(encrypted_partition), (
+    "Input file '%s' not found." % encrypted_partition
+)
+header = open(header_file, "rb").read()
 
 # Unpack header
-ftrMagic, \
-majorVersion, \
-minorVersion, \
-ftrSize, \
-flags, \
-keySize, \
-spare1, \
-fsSize1, \
-fsSize2, \
-failedDecrypt, \
-cryptoType = \
-struct.unpack(HEADER_FORMAT, header[0:100])
+(
+    ftrMagic,
+    majorVersion,
+    minorVersion,
+    ftrSize,
+    flags,
+    keySize,
+    spare1,
+    fsSize1,
+    fsSize2,
+    failedDecrypt,
+    cryptoType,
+) = struct.unpack(HEADER_FORMAT, header[0:100])
 
-encrypted_key = header[ftrSize:ftrSize + keySize]
-salt = header[ftrSize + keySize + 32:ftrSize + keySize + 32 + 16]
+encrypted_key = header[ftrSize : ftrSize + keySize]
+salt = header[ftrSize + keySize + 32 : ftrSize + keySize + 32 + 16]
 
-pbkdf2 = EVP.pbkdf2(password, salt, iter=HASH_COUNT, keylen=KEY_LEN_BYTES + IV_LEN_BYTES)
+pbkdf2 = EVP.pbkdf2(
+    password, salt, iter=HASH_COUNT, keylen=KEY_LEN_BYTES + IV_LEN_BYTES
+)
 key = pbkdf2[:KEY_LEN_BYTES]
 iv = pbkdf2[KEY_LEN_BYTES:]
 
 # Decrypt the encryption key
-cipher = EVP.Cipher(alg='aes_128_cbc', key=key, iv=iv, padding=0, op=DECRYPT)
+cipher = EVP.Cipher(alg="aes_128_cbc", key=key, iv=iv, padding=0, op=DECRYPT)
 decrypted_key = cipher.update(encrypted_key)
 decrypted_key = decrypted_key + cipher.final()
 
-print decrypted_key.encode('hex')
+print decrypted_key.encode("hex")

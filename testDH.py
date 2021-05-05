@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 
 # base point (generator)
-G = (0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798,
-    0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8)
+G = (
+    0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798,
+    0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8,
+)
 # field prime
 P = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
 # order
 N = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
 
 # I borrowed this function from from https://bitcoin.stackexchange.com/questions/25024/how-do-you-get-a-bitcoin-public-key-from-a-private-key
-def sk_to_pk(sk,G,P,N):
+def sk_to_pk(sk, G, P, N):
     """
     Derive the public key of a secret key on the secp256k1 curve.
     Args:
@@ -22,9 +24,9 @@ def sk_to_pk(sk,G,P,N):
         ValueError: The secret key is not in the valid range [1,N-1].
     """
     # check if the key is valid
-    if not(0 < sk < N):
+    if not (0 < sk < N):
         msg = "{} is not a valid key (not in range [1, {}])"
-        raise ValueError(msg.format(hex(sk), hex(N-1)))
+        raise ValueError(msg.format(hex(sk), hex(N - 1)))
 
     # addition operation on the elliptic curve
     # see: https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Point_addition
@@ -39,7 +41,7 @@ def sk_to_pk(sk,G,P,N):
             lam = (3 * px * px) * pow(2 * py, P - 2, P)
         else:
             lam = (qy - py) * pow(qx - px, P - 2, P)
-        rx = lam**2 - px - qx
+        rx = lam ** 2 - px - qx
         ry = lam * (px - rx) - py
         return rx % P, ry % P
 
@@ -57,26 +59,28 @@ def sk_to_pk(sk,G,P,N):
 
     return ret
 
+
 def dhtest():
 
-    PKA=1
-    PKB=2
+    PKA = 1
+    PKB = 2
 
-    print "PKA:",hex(PKA)
-    print "PKB:",hex(PKB)
+    print "PKA:", hex(PKA)
+    print "PKB:", hex(PKB)
 
-    PubA = sk_to_pk(PKA,G,P,N)
-    PubB = sk_to_pk(PKB,G,P,N)
+    PubA = sk_to_pk(PKA, G, P, N)
+    PubB = sk_to_pk(PKB, G, P, N)
 
-    print "PubA:",hex(PubA[0]),hex(PubA[1])
-    print "PubB:",hex(PubB[0]),hex(PubB[1])
+    print "PubA:", hex(PubA[0]), hex(PubA[1])
+    print "PubB:", hex(PubB[0]), hex(PubB[1])
 
-    Q1 = sk_to_pk(PKA,PubB,P,N)
-    Q2 = sk_to_pk(PKB,PubA,P,N)
+    Q1 = sk_to_pk(PKA, PubB, P, N)
+    Q2 = sk_to_pk(PKB, PubA, P, N)
 
-    print "Shared Secret1:",hex(Q1[0]),hex(Q1[1])
-    print "Shared Secret2:",hex(Q2[0]),hex(Q2[1])
+    print "Shared Secret1:", hex(Q1[0]), hex(Q1[1])
+    print "Shared Secret2:", hex(Q2[0]), hex(Q2[1])
 
     print Q1 == Q2
+
 
 dhtest()

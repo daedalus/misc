@@ -10,19 +10,19 @@ import sys
 import os
 import tempfile
 
-#mp = tempfile.mkstemp()[1]
+# mp = tempfile.mkstemp()[1]
 
-#os.system('cat %s | gpg --decrypt > %s' % (sys.argv[1],tmp))
+# os.system('cat %s | gpg --decrypt > %s' % (sys.argv[1],tmp))
 
 conn = sqlite3.connect(sys.argv[1])
 c = conn.cursor()
 
 for row in c.execute("select * from accounts"):
 
-	account = row[1]
-	secret = row[2]
-	issuer = row[6]
+    account = row[1]
+    secret = row[2]
+    issuer = row[6]
 
-	data = "otpauth://totp/%s?secret=%s&issuer=%s" % (account,secret,issuer)
-	img = qrcode.make(data)
-	img.show()
+    data = "otpauth://totp/%s?secret=%s&issuer=%s" % (account, secret, issuer)
+    img = qrcode.make(data)
+    img.show()

@@ -10,19 +10,20 @@ import re
 import paramiko
 
 # execute a remote command by ssh
-def exec_ssh(host,user,passwd,command):
-	ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(hostname=host, username=user, password=passwd)
-        stdin, stdout, stderr = ssh.exec_command(command)
-	return stdout.readlines()
+def exec_ssh(host, user, passwd, command):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(hostname=host, username=user, password=passwd)
+    stdin, stdout, stderr = ssh.exec_command(command)
+    return stdout.readlines()
+
 
 for line in fileinput.input():
-	line = line.rstrip()
-	try:
-		ret = line,exec_ssh(line,'USER','PASS','version')
-		for version in ret[1]:
-			if re.search('Fabric', version):
-        			print ret[0],version.rstrip()
-	except:
-		print line,'failed'
+    line = line.rstrip()
+    try:
+        ret = line, exec_ssh(line, "USER", "PASS", "version")
+        for version in ret[1]:
+            if re.search("Fabric", version):
+                print ret[0], version.rstrip()
+    except:
+        print line, "failed"

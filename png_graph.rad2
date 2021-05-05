@@ -1,7 +1,7 @@
 # Radare graph to png
 # Author Dario Clavijo 2021
 
-aa
+aaaa
 agfd main > /tmp/graph.dot
 !!dot -Tpng -o graph.png /tmp/graph.dot
 !!rm /tmp/graph.dot

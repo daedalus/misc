@@ -11,18 +11,18 @@ p = """<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 </body></html>"""
 
 
-
-
 def hexify(i):
-        return hex(i).replace('0x','').replace('L','').zfill(64)
+    return hex(i).replace("0x", "").replace("L", "").zfill(64)
+
 
 t = p[:32]
 random.seed(t)
 
 
 def iter():
-	while True:
-		b = random.getrandbits(256)
-		print hexify(b)
+    while True:
+        b = random.getrandbits(256)
+        print hexify(b)
+
 
 iter()
