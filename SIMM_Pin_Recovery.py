@@ -108,9 +108,7 @@ class Attack():
         self.stoping = True
 
       if self.Found: # Status for successful attack
-        print("[*] The PIN is: [ %s ]!!!" % N)
-        #self.runtime()
-        #sys.exit(0)
+        print("\n\n[*] The PIN is: [ %d ]!!!" % n)
         self.stoping = True
 
       if self.wait != None: 
