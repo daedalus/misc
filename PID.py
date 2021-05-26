@@ -1,6 +1,9 @@
-def pid(setpoint, measured_value, l=10, Kp,Ki,Kd):
-    previous_error = 0
-    integral = 0
+previous_error = 0
+integral = 0
+
+def pid(setpoint, measured_value, l=10, Kp, Ki, Kd):
+    global previous_error
+    global integral
     dt = 0.1
 
     i = 0
