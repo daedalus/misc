@@ -1,8 +1,9 @@
-def pid(setpoint, measured_value, l=10):
+def pid(setpoint, measured_value, l=10, Kp,Ki,Kd):
     previous_error = 0
     integral = 0
     dt = 0.1
 
+    i = 0
     while i < l:
         error = setpoint − measured_value
         proportional = error
