@@ -5,9 +5,8 @@
 from struct import unpack,pack
 
 
-def ADD32(a,b):
-  return (a + b) % (1 << 32)
-
+def ADD32(a, b):
+  return (a + b) & 0xFFFFFFFF
 
 def ROTR(x, y):
   return ((x >> y) | (x << (32 - y))) & 0xFFFFFFFF
@@ -36,7 +35,7 @@ def sha256(message):
   L = len(message)
   K = 0
 
-  while (L + 1 + K + 8) % 64 != 0:
+  while (L + 1 + K + 8) & 63 != 0:
     K += 1
 
   tmp += b'\x80' + b'\x00' * K
