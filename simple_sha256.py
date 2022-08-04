@@ -5,6 +5,7 @@
 from struct import unpack,pack
 
 
+# We are using the propery that op 'mod 2^n' equals to '& (n-1)'
 def ADD32(a, b):
   return (a + b) & 0xFFFFFFFF
 
