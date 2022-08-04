@@ -2,10 +2,11 @@
 # Author Dario Clavijo 2022
 # GPLv3
 # Based on wikipedia article https://en.wikipedia.org/wiki/SHA-2
-from struct import unpack,pack
-
-
+# This implementation only uses the ALU operations: AND OR NEG SUB XOR SHIFT
 # We are using the propery that op 'mod 2^n' equals to '& (n-1)'
+from struct import unpack, pack
+
+
 def ADD32(a, b):
   return (a + b) & 0xFFFFFFFF
 
