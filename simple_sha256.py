@@ -39,10 +39,10 @@ def sha256(message):
   while (L + 1 + K + 8) & 63 != 0:
     K += 1
 
-  tmp += b'\x80' + b'\x00' * K
-  tmp += pack("!Q", L * 8)
+  tmp += b'\x80' + bytes(K)
+  tmp += pack("!Q", L << 3)
 
-  W = [0] * 64
+  W = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   # Process the message in successive 512-bit chunks:
   for chunk_index in range(0, len(tmp), 64):
