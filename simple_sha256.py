@@ -10,7 +10,7 @@ from struct import unpack, pack
 def ADD32(a, b):
   return (a + b) & 0xFFFFFFFF
 
-def ROTR(x, y):
+def ROTR32(x, y):
   return ((x >> y) | (x << (32 - y))) & 0xFFFFFFFF
 
 
@@ -51,8 +51,8 @@ def sha256(message):
     #print(W)
     # Extend the first 16 words into the remaining 48 words w[16..63] of the message schedule array:
     for i in range(16, 64):
-      s0 = ROTR(W[i - 15],  7) ^ ROTR(W[i - 15], 18) ^ (W[i - 15] >>  3)
-      s1 = ROTR(W[i -  2], 17) ^ ROTR(W[i -  2], 19) ^ (W[i -  2] >> 10)
+      s0 = ROTR32(W[i - 15],  7) ^ ROTR32(W[i - 15], 18) ^ (W[i - 15] >>  3)
+      s1 = ROTR32(W[i -  2], 17) ^ ROTR32(W[i -  2], 19) ^ (W[i -  2] >> 10)
       W[i] = (W[i - 16] + s0 + W[i - 7] + s1) & 0xFFFFFFFF
 
     # Initialize working variables to current hash value:
@@ -60,8 +60,8 @@ def sha256(message):
   
     # Compression function main loop:
     for i in range(64):
-      S0 = ROTR(a, 2) ^ ROTR(a, 13) ^ ROTR(a, 22)
-      S1 = ROTR(e, 6) ^ ROTR(e, 11) ^ ROTR(e, 25)
+      S0 = ROTR32(a, 2) ^ ROTR32(a, 13) ^ ROTR32(a, 22)
+      S1 = ROTR32(e, 6) ^ ROTR32(e, 11) ^ ROTR32(e, 25)
       ch = (e & f) ^ ((~e) & g)
       maj = (a & b) ^ (a & c) ^ (b & c)
       temp1 = (h + S1 + ch + k[i] + W[i]) & 0xFFFFFFFF
