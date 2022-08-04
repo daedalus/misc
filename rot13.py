@@ -3,13 +3,10 @@
 # simple ROT13 algo or Caesar Cipher
 
 
-def rot13(test):
+def rot13(message):
     p = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
     r = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM "
-    d = ""
-    for l in test:
-        d += r[p.find(l)]
-    return d
+    return "".join([r[p.find(c)] for c in message])
 
 
 print rot13(rot13("Dario Clavijo"))
