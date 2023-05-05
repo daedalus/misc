@@ -11,18 +11,6 @@ import urllib3
 urllib3.disable_warnings()
 passbolt = passboltapi.PassboltAPI(config_path="config.ini", new_keys=True)
 
-def dec_resource_secret(id_):
-  """
-  decrypts and extracts a password from a resource
-  input: resource_id
-  output: plaintext_password
-  """
-  try:
-    secret_gpg = passbolt.get(url="/secrets/resource/%s.json" % id_)['body']['data']
-    return json.loads(passbolt.decrypt(secret_gpg))['password']
-  except:
-    return None
-
 
 def load_dict(passbolt):
   """
@@ -32,7 +20,7 @@ def load_dict(passbolt):
   sys.stderr.write("Gathering resources from passbolt...\n")
   D = {}
   for r in tqdm(passbolt.get(url="/resources.json?api-version=v2")['body']):
-    password = dec_resource_secret(r['id'])
+    password = passbolt.get_password(r['id'])
     if password != None:
       t = (r['id'], r['name'],r['username'],r['uri'],r['description'])
       if password not in D:
@@ -48,14 +36,13 @@ def proc_dict(passbolt, D):
   input: dictionary
   output: broken_plain_password_list
   """
-  sys.stderr.write("Checking passwords hashes against havibeenpwned...\n")
+  sys.stderr.write("Checking passwords hashes against HIBP...\n")
   broken=[]
   for password in tqdm(D):
     rating = pwnedpasswords.check(password, plain_text=True)
     if rating > 0:
       broken.append(password)
   return broken
-
 
 
 def display_broken(broken):
@@ -71,14 +58,13 @@ def display_broken(broken):
     sys.stdout.write("broken password: %s\n" % password)
     for t in D[password]:
       msg = "id:%s, name:%s, username:%s, uri: %s, description: %s\n" % t
-      #sys.stderr.write("-" * 60 + "\n")
-      #sys.stdout.write("-" * 60 + "\n")
       sys.stderr.write(msg)
       sys.stdout.write(msg)
     sys.stderr.flush()
     sys.stdout.flush()
   sys.stderr.write("Total broken: %d\n" % len(broken))
   sys.stderr.flush()
+
 
 if __name__ == "__main__":
   D = load_dict(passbolt)
