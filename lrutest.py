@@ -33,10 +33,9 @@ class LRU:
 
     def get(self, key):
         try:
-            value = self.col[key]
             # self.access[key] = (self.access[key] >> 2) + 1
             self.access[key] += 1
-            return value
+            return self.col[key]
         except:
             return None
 

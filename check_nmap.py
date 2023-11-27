@@ -14,20 +14,18 @@ status = {0: "OK", 1: "WARNING", 2: "CRITICAL", 3: "UNKNOWN"}
 
 
 def loadfile(f):
-    fp = open(f, "r")
-    d = fp.read()
-    fp.close()
+    with open(f, "r") as fp:
+        d = fp.read()
     return d
 
 
 def savefile(f, data):
-    fp = open(f, "w")
-    fp.write(data)
-    fp.close()
+    with open(f, "w") as fp:
+        fp.write(data)
 
 
 def json2file(f, s):
-    json_data = str(json.dumps(s))
+    json_data = json.dumps(s)
     savefile(f, json_data)
 
 
@@ -41,7 +39,7 @@ host = sys.argv[1]
 
 def getold_nm(host):
     try:
-        old_nm = file2json(".check_nmap.py." + host + ".cache")
+        old_nm = file2json(f".check_nmap.py.{host}.cache")
     except:
         old_nm = None
     return old_nm
@@ -79,7 +77,7 @@ def proc_results(nm, old_nm, host, ports):
             if a != b:
                 output += "tcp port: %s, old_state: %s,  state: %s\n" % (port, a, b)
                 num_status = 2
-                output0 += "tcp %s: %s," % (port, b)
+                output0 += f"tcp {port}: {b},"
     else:
         num_status = 3
         output = "Could not get scan results, check your firewall!"

@@ -40,7 +40,7 @@ for line in fp:
 
 tmp = tmp.split(";")
 for sql in tmp:
-    if sql != "" and sql != "\n":
-        sql = sql + ";"
+    if sql not in ["", "\n"]:
+        sql = f"{sql};"
         print(sql)
         query(sql, table_dest)

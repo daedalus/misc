@@ -82,9 +82,6 @@ def test2(data):
 
 # test(str(bytearray((1024**2)*100)))
 
-data = ""
-for line in fileinput.input():
-    data += line
-
+data = "".join(fileinput.input())
 test(data)
 test2(data)

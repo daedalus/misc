@@ -23,6 +23,6 @@ for row in c.execute("select * from accounts"):
     secret = row[2]
     issuer = row[6]
 
-    data = "otpauth://totp/%s?secret=%s&issuer=%s" % (account, secret, issuer)
+    data = f"otpauth://totp/{account}?secret={secret}&issuer={issuer}"
     img = qrcode.make(data)
     img.show()

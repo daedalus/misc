@@ -17,8 +17,7 @@ def test(e, max_l):
         list = []
 
     s2 = time.time()
-    d = s2 - s1
-    return d
+    return s2 - s1
 
 
 max = 0

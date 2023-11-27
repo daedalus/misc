@@ -4,7 +4,7 @@
 
 def SRA(val, n):
     s = val & 0x80000000
-    for i in range(0, n):
+    for _ in range(0, n):
         val >>= 1
         val |= s
     return val
@@ -12,17 +12,15 @@ def SRA(val, n):
 
 def SLL(val, n):
     s = val & 0x80000000
-    for i in range(0, n):
+    for _ in range(0, n):
         val <<= 1
-        # val |= 0
     return val & 0xFFFFFFFF
 
 
 def SRL(val, n):
     s = val & 0x80000000
-    for i in range(0, n):
+    for _ in range(0, n):
         val >>= 1
-        # val |= 0
     return val & 0xFFFFFFFF
 
 

@@ -11,21 +11,19 @@ def test(f1, f2):
 
     def _load(filename):
         data = ""
-        fp = open(filename, "rb")
-        recvbuf = fp.read(1024 * 128)
-        while len(recvbuf) > 0:
-            data += recvbuf
-            recvbuf = fp.read(SIZE)
-        fp.close()
+        with open(filename, "rb") as fp:
+            recvbuf = fp.read(1024 * 128)
+            while len(recvbuf) > 0:
+                data += recvbuf
+                recvbuf = fp.read(SIZE)
         del recvbuf
         del fp
         return data
 
     def _save(data, filename):
-        fp = open(filename, "wb")
-        for i in xrange(0, len(data) - 1, SIZE):
-            fp.write(data[i : i + SIZE])
-        fp.close()
+        with open(filename, "wb") as fp:
+            for i in xrange(0, len(data) - 1, SIZE):
+                fp.write(data[i : i + SIZE])
         del fp
 
     _save(_load(f1), f2)

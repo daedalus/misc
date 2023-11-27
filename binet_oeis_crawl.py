@@ -16,25 +16,25 @@ a b resulting pol
 
 """
 
+
 l = 20
 for i in range(0,l):
-  for j in range(i,l):
-    tmp = []
-    if i != j:
-      for k in range(1,l):
-        try:
-          tmp.append(str(round(binet(i,j,k))))
-        except:
-          pass
-      q = ",".join(tmp)
-      try:
-        res=op.resultEois(q)
-        m = "a: %d, b: %d, Name: A%06d, Desc: %s\n" % (i,j,op.getNumber(res[0]),op.getName(res[0]))
-      except:
-        m = ""
-        pass
-      sys.stderr.write(m)
-      sys.stdout.write(m)
-      sys.stdout.flush()
-      sys.stderr.flush()
+    for j in range(i,l):
+        tmp = []
+        if i != j:
+            for k in range(1,l):
+              try:
+                tmp.append(str(round(binet(i,j,k))))
+              except:
+                pass
+            q = ",".join(tmp)
+            try:
+                res=op.resultEois(q)
+                m = "a: %d, b: %d, Name: A%06d, Desc: %s\n" % (i,j,op.getNumber(res[0]),op.getName(res[0]))
+            except:
+                m = ""
+            sys.stderr.write(m)
+            sys.stdout.write(m)
+            sys.stdout.flush()
+            sys.stderr.flush()
 

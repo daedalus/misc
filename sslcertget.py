@@ -13,13 +13,12 @@ import fileinput
 for line in fileinput.input():
     hostname = line.rstrip()
     for port in ports:
-        print(hostname + ":" + str(port))
+        print(f"{hostname}:{str(port)}")
         try:
             pem = ssl.get_server_certificate((hostname, port))
             if pem != None:
                 print(pem)
-                fp = open("output/%s_%d.pem" % (hostname, port), "w")
-                fp.write(pem + "\n")
-                fp.close()
+                with open("output/%s_%d.pem" % (hostname, port), "w") as fp:
+                    fp.write(pem + "\n")
         except:
-            print(hostname + " error")
+            print(f"{hostname} error")

@@ -4,9 +4,7 @@ import time
 import sys
 import threading
 
-interested = []
-interested.append(False)
-interested.append(False)
+interested = [False, False]
 
 
 def enter_region(process):
@@ -33,7 +31,7 @@ def leave_region(process):
 
 
 def proc(n):
-    t = int(random.randint(0, 1))
+    t = random.randint(0, 1)
     enter_region(n)
     time.sleep(t)
     leave_region(n)

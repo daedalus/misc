@@ -59,13 +59,11 @@ def encrypt(text, exponent, pubkey):
     bits = math.log(pubkey) / math.log(2)
     b = int(bits / 8) + 1
     m0 = int(text.encode("hex").zfill(b), 16)
-    cipher = pow(m0, exponent, pubkey)
-    return cipher
+    return pow(m0, exponent, pubkey)
 
 
 def decrypt(cipher, decryptkey, pubkey):
-    m1 = pow(cipher, decryptkey, pubkey)
-    return m1
+    return pow(cipher, decryptkey, pubkey)
 
 
 def test():

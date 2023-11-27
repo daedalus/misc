@@ -47,7 +47,7 @@ def sha256(message):
 
   # Process the message in successive 512-bit chunks:
   for chunk_index in range(0, len(tmp), 64):
-    W[0: 16] = unpack("!16L" , tmp[chunk_index: chunk_index + 64])
+    W[:16] = unpack("!16L" , tmp[chunk_index: chunk_index + 64])
     #print(W)
     # Extend the first 16 words into the remaining 48 words w[16..63] of the message schedule array:
     for i in range(16, 64):
@@ -57,7 +57,7 @@ def sha256(message):
 
     # Initialize working variables to current hash value:
     a, b, c, d, e, f, g, h = H
-  
+
     # Compression function main loop:
     for i in range(64):
       S0 = ROTR32(a, 2) ^ ROTR32(a, 13) ^ ROTR32(a, 22)
@@ -66,7 +66,7 @@ def sha256(message):
       maj = (a & b) ^ (a & c) ^ (b & c)
       temp1 = (h + S1 + ch + k[i] + W[i]) & 0xFFFFFFFF
       temp2 = (S0 + maj) & 0xFFFFFFFF
- 
+
       h = g
       g = f
       f = e

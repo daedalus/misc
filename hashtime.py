@@ -28,8 +28,7 @@ for h in a:
         t1 = time.time()
         test(h)
         t2 = time.time()
-        dt = t2 - t1
-        return dt
+        return t2 - t1
 
     dt = measure(h)
     print "%s\t%s MB/s" % (h, round(size / dt, 2))

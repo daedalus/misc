@@ -16,16 +16,13 @@ def send2db(payload):
   url = 'http://factordb.com/report.php'
   webpage = requests.post(url ,data=data, cookies={'fdbuser': fdbuser}, headers={'User-Agent': 'Mozilla/5.0'}).text
   r = re.findall("Found [0-9]+ factors and [0-9]+ ECM",webpage)
-  print("Factodb: " + str(r))
+  print(f"Factodb: {str(r)}")
   if r == []:
     print(webpage)
   return(r != None)
 
 limit=10
-data=[]
-#fp=open(sys.argv[1])
-for line in fileinput.input():
-	data.append(line.rstrip())
+data = [line.rstrip() for line in fileinput.input()]
 
 
 def submit(data,limit):

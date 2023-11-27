@@ -63,7 +63,7 @@ def decode_dns_message(message):
     offset = DNS_QUERY_MESSAGE_HEADER.size
     questions, offset = decode_question_section(message, offset, qdcount)
 
-    result = {
+    return {
         "id": id,
         "is_response": qr,
         "opcode": opcode,
@@ -80,13 +80,10 @@ def decode_dns_message(message):
         "questions": questions,
     }
 
-    return result
-
 
 def save(data):
-    fp = open("output.txt", "a")
-    fp.write(data + "\n")
-    fp.close()
+    with open("output.txt", "a") as fp:
+        fp.write(data + "\n")
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

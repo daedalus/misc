@@ -45,7 +45,7 @@ s = []
 N = mpz(gmpy2.next_prime(2 ** bits) * gmpy2.next_prime((2 ** bits) + offset))
 # N= 1522605027922533360535618378132637429718068114961380688657908494580122963258952897654000350692006139
 
-while len(s) == 0:
+while not s:
     g = random.randint(2, 2 ** bits)
     print("N:", N, "g:", g)
     s = factor(N, g, P=max_p)
