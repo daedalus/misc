@@ -24,26 +24,24 @@ mydocuments = [
 def vectorice(documents):
     count_vect = CountVectorizer()
     X_train_counts = count_vect.fit_transform(documents)
-    # print X_train_counts
-    pdd = pd.DataFrame(X_train_counts.toarray(), columns=count_vect.get_feature_names())
-    return pdd
+    return pd.DataFrame(
+        X_train_counts.toarray(), columns=count_vect.get_feature_names()
+    )
 
 
 def TfidfVec(documents):
     vectorizer = TfidfVectorizer()
     trsfm = vectorizer.fit_transform(documents)
-    pdd = pd.DataFrame(trsfm.toarray(), columns=vectorizer.get_feature_names())
-    return pdd
+    return pd.DataFrame(trsfm.toarray(), columns=vectorizer.get_feature_names())
 
 
 def SVDred(data, n=None):
-    if n == None:
+    if n is None:
         import math
 
         n = int(round(math.sqrt(data.shape[1])))
     svd = TruncatedSVD(n_components=n, n_iter=7, random_state=42)
-    ret = svd.fit_transform(data)
-    return ret
+    return svd.fit_transform(data)
 
 
 def test(documents):

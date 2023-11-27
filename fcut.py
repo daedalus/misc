@@ -34,9 +34,5 @@ def recovery(device,offset_list,mode,fp_dump=None):
 device = open(sys.argv[1],'r')
 offset_list = open(sys.argv[2],'r')
 
-if len(sys.argv)>3:
-	fp_dump = open(sys.argv[3],'w')
-else:
-	fp_dump = None
-
+fp_dump = open(sys.argv[3],'w') if len(sys.argv)>3 else None
 recovery(device,offset_list,'fixed',fp_dump)

@@ -9,24 +9,24 @@ import sys
 def inttobin(i):
     h = hex(i).replace("0x","").replace("L","")
     if (len(h) % 2 != 0):
-        h = "0" + h
+        h = f"0{h}"
     return binascii.unhexlify(h)
 
 def bintoint(i):
 	return int(binascii.hexlify(i),16)
 
 def crypt(plaintext):
-	l = len(plaintext)
-	n=0
-	cont = True
-	while cont:
-		a = bintoint(plaintext + (" "*n))
-		b = gmpy2.isqrt(a)
-		c = b**2
-		tmp = inttobin(c)
-		n+=1
-		cont = not (tmp[0:l] == plaintext)
-	return b,n
+    l = len(plaintext)
+    n=0
+    cont = True
+    while cont:
+        a = bintoint(plaintext + (" "*n))
+        b = gmpy2.isqrt(a)
+        c = b**2
+        tmp = inttobin(c)
+        n+=1
+        cont = tmp[:l] != plaintext
+    return b,n
 
 def decrypt(cipher)
     pos = cipher.find("TRQS ")

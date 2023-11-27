@@ -10,10 +10,9 @@ CMD="/sbin/cryptsetup luksAddKey /dev/sda5 --master-key-file /tmp/master.key"
 def main():
   
   def writefile(filename, data):
-    fp = open(filename,"wb")
-    fp.write(data)
-    fp.close()
-  
+    with open(filename,"wb") as fp:
+      fp.write(data)
+
   K = [line.rstrip() for line in open(sys.argv[1])]
   for k1 in K:
     for k2 in K:

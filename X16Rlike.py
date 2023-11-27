@@ -46,7 +46,7 @@ def round(b, n, s=32):
     try:
         d = h.digest(s)
     except:
-        d = h.digest()[0 : s * 2]
+        d = h.digest()[:s * 2]
     return d
 
 

@@ -51,10 +51,7 @@ def sk_to_pk(sk, G, P, N):
     ret = None
     for i in xrange(256):
         if sk & (1 << i):
-            if ret is None:
-                ret = G
-            else:
-                ret = add(ret, G)
+            ret = G if ret is None else add(ret, G)
         G = add(G, G)
 
     return ret

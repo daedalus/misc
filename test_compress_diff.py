@@ -29,7 +29,7 @@ def sendbuffer():
 def modify(l):
     global buff0
     print("modifying %d random bytes" % l)
-    for i in range(l):
+    for _ in range(l):
         buff0[random.randint(0, len(buff0) - 1)] = random.getrandbits(8)
 
 

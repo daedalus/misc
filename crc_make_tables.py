@@ -7,7 +7,7 @@ def make_crc_table(const):
     testcrc = []
     for i in range(0, 256):
         temp = i
-        for j in range(0, 8):
+        for _ in range(0, 8):
             if temp & 1:
                 temp >>= 1
                 temp ^= const

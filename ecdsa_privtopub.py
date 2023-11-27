@@ -56,8 +56,7 @@ class Point(object):
         return Point(self.__curve, x3, y3)
 
     def negative(self):
-        negative_self = Point(self.__curve, self.__x, -self.__y, self.__order)
-        return negative_self
+        return Point(self.__curve, self.__x, -self.__y, self.__order)
 
     def __mul__(self, other):
         def leftmost_bit(x):
@@ -92,9 +91,7 @@ class Point(object):
         return self * other
 
     def __str__(self):
-        if self == INFINITY:
-            return "infinity"
-        return "(%d,%d)" % (self.__x, self.__y)
+        return "infinity" if self == INFINITY else "(%d,%d)" % (self.__x, self.__y)
 
     def double(self):
         if self == INFINITY:
@@ -147,10 +144,7 @@ def inverse_mod(a, m):
         q, c, d = divmod(d, c) + (c,)
         uc, vc, ud, vd = ud - q * uc, vd - q * vc, uc, vc
     assert d == 1
-    if ud > 0:
-        return ud
-    else:
-        return ud + m
+    return ud if ud > 0 else ud + m
 
 
 _p = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2FL
@@ -169,7 +163,7 @@ class Public_key(object):
         n = generator.order()
         if not n:
             raise RuntimeError, "Generator point must have order."
-        if not n * point == INFINITY:
+        if n * point != INFINITY:
             raise RuntimeError, "Generator point order is bad."
         if point.x() < 0 or n <= point.x() or point.y() < 0 or n <= point.y():
             raise RuntimeError, "Generator point has x or y out of range."

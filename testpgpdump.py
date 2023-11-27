@@ -26,10 +26,7 @@ from pgpdump.utils import (
 
 
 def read_gpg_key(data, base64decode=True):
-    if base64decode == True:
-        binary = base64.b64decode(data)
-    else:
-        binary = data
+    binary = base64.b64decode(data) if base64decode == True else data
     info = pgpdump.BinaryData(binary)
     info_key = {}
     info_key_id = {}
@@ -39,9 +36,7 @@ def read_gpg_key(data, base64decode=True):
     packets = list(info.packets())
     for packet in packets:
         # print(packet)
-        if isinstance(packet, PublicSubkeyPacket) or isinstance(
-            packet, PublicKeyPacket
-        ):
+        if isinstance(packet, (PublicSubkeyPacket, PublicKeyPacket)):
             info_key["key_id"] = packet.key_id
             info_key["raw_pub_algorithm"] = packet.raw_pub_algorithm
             info_key["modulus_bitlen"] = packet.modulus_bitlen

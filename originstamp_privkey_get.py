@@ -10,7 +10,7 @@ fp = open("/tmp/osget.log", "a")
 
 def get_json(fp, sha256s):
     try:
-        url = "http://www.originstamp.org/api/stamps/%s" % sha256s
+        url = f"http://www.originstamp.org/api/stamps/{sha256s}"
         request = urllib2.Request(
             url,
             headers={

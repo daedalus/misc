@@ -42,12 +42,13 @@ def init_holidays(year):
     carnaval[0] = pascua - timedelta(days=7) - timedelta(days=40)
     carnaval[1] = carnaval[0] + timedelta(days=1)
 
-    # Feriados en Uruguay
-    holidays = [  # feriados no laborables
+    return [  # feriados no laborables
         date(year=year, month=1, day=1),  # dia del transportista
         date(year=year, month=5, day=1),  # dia de los trabajadores
         date(year=year, month=7, day=18),  # dia de la independencia
-        date(year=year, month=8, day=25),  # dia de la declaratoria de la independencia
+        date(
+            year=year, month=8, day=25
+        ),  # dia de la declaratoria de la independencia
         date(year=year, month=12, day=25),  # vino papa noel y se fue...
         # semana santa
         semana_santa[0],  # lunes
@@ -71,7 +72,6 @@ def init_holidays(year):
         ),  # los espanioles descubrieron que no estaban solos
         date(year=year, month=1, day=6),  # dia mas regalos (de reyes)
     ]
-    return holidays
 
 
 def print_holidays():

@@ -9,12 +9,9 @@ def getinputs(addr_test, offset):
     )
     f = urllib2.urlopen(req)
 
-    data = ""
     addrs = []
 
-    for line in f:
-        data += line
-
+    data = "".join(f)
     json_obj = json.loads(data)
 
     for item in json_obj["txs"]:
@@ -23,8 +20,7 @@ def getinputs(addr_test, offset):
             if addr != addr_test:
                 addrs.append(addr)
 
-    addrs = sorted(set(addrs))
-    return addrs
+    return sorted(set(addrs))
 
 
 for i in range(0, 800):

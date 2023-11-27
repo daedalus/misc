@@ -25,32 +25,24 @@ def download_page(url):
         import urllib.request  # urllib library for Extracting web pages
 
         try:
-            headers = {}
-            headers[
-                "User-Agent"
-            ] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+            }
             req = urllib.request.Request(url, headers=headers)
             resp = urllib.request.urlopen(req)
-            respData = str(resp.read())
-            # print (len(respData) // 1024),"KB"
-
-            return respData
+            return str(resp.read())
         except Exception as e:
             return None
     else:  # If the Current Version of Python is 2.x
         import urllib2
 
         try:
-            headers = {}
-            headers[
-                "User-Agent"
-            ] = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"
+            headers = {
+                "User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"
+            }
             req = urllib2.Request(url, headers=headers)
             response = urllib2.urlopen(req)
-            page = response.read()
-            # print (len(page) // 1024),"KB"
-
-            return page
+            return response.read()
         except:
             return None
 
@@ -86,10 +78,9 @@ def _get_all_items(page):
         item, end_content = _get_next_item(page)
         if item == "no_links":
             break
-        else:
-            items.append(item)  # Append all the links in the list named 'Links'
-            # time.sleep(0.1)        #Timer could be used to slow down the request for image downloads
-            page = page[end_content:]
+        items.append(item)  # Append all the links in the list named 'Links'
+        # time.sleep(0.1)        #Timer could be used to slow down the request for image downloads
+        page = page[end_content:]
         if len(item) > 10000:
             break
     return items

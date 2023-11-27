@@ -55,9 +55,7 @@ def try_pw(encoded_seed, pw_cand):
 def chk_seed(seed):
     if len(seed) == 0:
         return False
-    cnt = 0
-    for c in seed:
-        cnt += 1
+    for cnt, c in enumerate(seed, start=1):
         if cnt > 32:
             return True
         i = ord(c)
@@ -122,37 +120,38 @@ elif choice == 7:
     poss += cap
     poss += low
 
-bigList = []
-for i in poss:
-    bigList.append(str(chr(i)))
-
+bigList = [chr(i) for i in poss]
 special = False
 if special:
-    bigList.append(".")
-    bigList.append(" ")
-    bigList.append("_")
-    bigList.append("-")
-    bigList.append("+")
-    bigList.append("/")
-    bigList.append("*")
-    bigList.append("!")
-    bigList.append("?")
-    bigList.append("'")
-    bigList.append('"')
-    bigList.append("#")
-    bigList.append("$")
-    bigList.append("%")
-    bigList.append("(")
-    bigList.append(")")
-    bigList.append("[")
-    bigList.append("]")
-    bigList.append("^")
-    bigList.append("{")
-    bigList.append("}")
-    bigList.append("@")
-    bigList.append(",")
-    bigList.append(";")
-    bigList.append(":")
+    bigList.extend(
+        (
+            ".",
+            " ",
+            "_",
+            "-",
+            "+",
+            "/",
+            "*",
+            "!",
+            "?",
+            "'",
+            '"',
+            "#",
+            "$",
+            "%",
+            "(",
+            ")",
+            "[",
+            "]",
+            "^",
+            "{",
+            "}",
+            "@",
+            ",",
+            ";",
+            ":",
+        )
+    )
 
 
 def test():

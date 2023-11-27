@@ -21,22 +21,19 @@ BLOCK_SIZE = 16
 pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(
     BLOCK_SIZE - len(s) % BLOCK_SIZE
 )
-unpad = lambda s: s[0 : -ord(s[-1])]
+unpad = lambda s: s[:-ord(s[-1])]
 
 # AES encryption: (plaintext -> decrypted)
 def encrypt(message, passphrase):
     # passphrase MUST be 16, 24 or 32 bytes long, how can I do that ?
     IV = Random.new().read(BLOCK_SIZE)
     aes = AES.new(passphrase, AES.MODE_CFB, IV)
-    return base64.b64encode(IV) + " " + base64.b64encode(aes.encrypt(message))
+    return f"{base64.b64encode(IV)} {base64.b64encode(aes.encrypt(message))}"
 
 
 # AES decryption (crypted -> plaintext)
 def decrypt(encrypted, passphrase, IV=None):
-    if IV == None:
-        IV = Random.new().read(BLOCK_SIZE)
-    else:
-        IV = base64.b64decode(IV)
+    IV = Random.new().read(BLOCK_SIZE) if IV is None else base64.b64decode(IV)
     aes = AES.new(passphrase, AES.MODE_CFB, IV)
     return aes.decrypt(base64.b64decode(encrypted))
 
@@ -51,8 +48,7 @@ client = base.Client(("localhost", 11211))
 # here we get a key from memcached
 def getmemcached(key):
     try:
-        s = client.get(key)
-        return s
+        return client.get(key)
     except:
         return None
 
@@ -63,12 +59,10 @@ def setmemcached(key, value):
 
 # this funcion generates a temporary key for encrypting our password
 def getkey():
-    salt = "salt"
     username = pwd.getpwuid(os.getuid()).pw_name
     host = os.uname()[1]
     date = datetime.datetime.now().strftime("%m/%d/%Y, %H")
-    key = sha256hex(salt + username + host + date)
-    return key
+    return sha256hex(f"salt{username}{host}{date}")
 
 
 # this is the main funcion were we encrypt and rencrypt our password at every iteration

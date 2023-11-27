@@ -10,16 +10,14 @@ def beep(f):
 
 
 def gettemp():
-    fp = open("/sys/class/thermal/thermal_zone0/temp", "r")
-    temp = float(fp.read()) / 1000
-    fp.close()
+    with open("/sys/class/thermal/thermal_zone0/temp", "r") as fp:
+        temp = float(fp.read()) / 1000
     return temp
 
 
 def getfan():
-    fp = open("/sys/devices/platform/asus-nb-wmi/hwmon/hwmon2/fan1_input")
-    rpm = int(fp.read())
-    fp.close()
+    with open("/sys/devices/platform/asus-nb-wmi/hwmon/hwmon2/fan1_input") as fp:
+        rpm = int(fp.read())
     return rpm
 
 

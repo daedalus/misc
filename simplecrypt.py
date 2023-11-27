@@ -16,7 +16,7 @@ def bin_sha256(tmp):
 
 def stretch_password(password):
     tmp = bin_sha256(password)
-    for i in range(MAX_STRETCH):
+    for _ in range(MAX_STRETCH):
         tmp = bin_sha256(tmp)
     return tmp
 

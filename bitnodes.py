@@ -21,8 +21,7 @@ def make_request(*args):
 
 
 def getjson(url):
-    jdata = json.loads(make_request(url))
-    return jdata
+    return json.loads(make_request(url))
 
 
 data = getjson(url)

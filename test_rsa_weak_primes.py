@@ -9,15 +9,14 @@ import gmpy2
 def primorial(r):
     p = 1
     tmp = 1
-    for i in range(0, r):
+    for _ in range(0, r):
         p = gmpy2.next_prime(p)
         tmp *= p
     return tmp
 
 
 def gen_weak_prime(a, k, M):
-    p = k * M + ((65537 ** a) % M)
-    return p
+    return k * M + ((65537 ** a) % M)
 
 
 M = primorial(47)

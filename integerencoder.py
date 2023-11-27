@@ -5,10 +5,7 @@ import struct
 
 
 def uint32tobytes(value, big_endian=True):
-    if big_endian:
-        return struct.pack(">I", value)
-    else:
-        return struct.pack("<I", value)
+    return struct.pack(">I", value) if big_endian else struct.pack("<I", value)
 
 
 def bytestouint32(value, big_endian=True):
@@ -19,10 +16,7 @@ def bytestouint32(value, big_endian=True):
 
 
 def int32tobytes(value, big_endian=True):
-    if big_endian:
-        return struct.pack(">i", value)
-    else:
-        return struct.pack("<i", value)
+    return struct.pack(">i", value) if big_endian else struct.pack("<i", value)
 
 
 def bytestoint32(value, big_endian=True):

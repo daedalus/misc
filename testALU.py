@@ -6,10 +6,8 @@ def bitrepr32(val):
     try:
         return "0b" + bin(val).replace("0b", "").zfill(32)
     except:
-        tmp = ""
-        for byte in val:
-            tmp += bin(ord(byte)).replace("0b", "")
-        return "0b" + tmp.zfill(32)
+        tmp = "".join(bin(ord(byte)).replace("0b", "") for byte in val)
+        return f"0b{tmp.zfill(32)}"
 
 
 def hexrepr32(val):
@@ -20,10 +18,7 @@ def hexrepr32(val):
 
 
 def uint32tobytes(value, big_endian=True):
-    if big_endian:
-        return struct.pack(">I", value)
-    else:
-        return struct.pack("<I", value)
+    return struct.pack(">I", value) if big_endian else struct.pack("<I", value)
 
 
 def bytestouint32(value, big_endian=True):
@@ -34,10 +29,7 @@ def bytestouint32(value, big_endian=True):
 
 
 def int32tobytes(value, big_endian=True):
-    if big_endian:
-        return struct.pack(">i", value)
-    else:
-        return struct.pack("<i", value)
+    return struct.pack(">i", value) if big_endian else struct.pack("<i", value)
 
 
 def bytestoint32(value, big_endian=True):

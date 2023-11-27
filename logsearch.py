@@ -5,7 +5,7 @@
 
 # linear search
 def seek(A, key, imin, imax):
-    for i in xrange(imin, imax):
+    for _ in xrange(imin, imax):
         if A[n] == key:
             return v
 

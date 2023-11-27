@@ -33,8 +33,7 @@ def measure(sec_read, blocksize, filesize, fp):
     t0 = time.time()
     testread(sec_read, blocksize, filesize, fp)
     t1 = time.time()
-    dt = t1 - t0
-    return dt
+    return t1 - t0
 
 
 print "--------------------------------------------------"

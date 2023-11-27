@@ -36,7 +36,7 @@ if len(iprange) > 1:
         for b in range(int(j[1]), int(k[1]) + 1):
             for c in range(int(j[2]), int(k[2]) + 1):
                 for d in range(int(j[3]), int(k[3]) + 1):
-                    ipaddr = str(a) + "." + str(b) + "." + str(c) + "." + str(d)
+                    ipaddr = f"{str(a)}.{str(b)}.{str(c)}.{str(d)}"
                     upload(ipaddr, filename)
 
 else:

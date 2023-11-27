@@ -3,7 +3,7 @@
 
 
 def split(data):
-    mid = int(len(data) / 2)
+    mid = len(data) // 2
     return data[:mid], data[mid:]
 
 

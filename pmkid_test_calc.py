@@ -6,7 +6,7 @@ def PMKID(apmac, clmac, PSK, SSID):
     pmk = PBKDF2(PSK, SSID, 4096).read(32)
     apmac = binascii.unhexlify(apmac.replace(":", ""))
     clmac = binascii.unhexlify(clmac.replace(":", ""))
-    pmkid = hmac.new(pmk, "PMK Name" + apmac + clmac, hashlib.sha1).digest()
+    pmkid = hmac.new(pmk, f"PMK Name{apmac}{clmac}", hashlib.sha1).digest()
     return pmkid, pmk
 
 
