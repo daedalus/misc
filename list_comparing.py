@@ -19,8 +19,8 @@ def list_compare1(A,B):
 def list_compare2(A,B):
     tmp = 0
     n = 0
-    lA = len(A)
+    lA=len(A)
     while tmp == 0 and n < lA:
         tmp += abs(A[n]-B[n])
         n += 1
-    return n == lA - 1
+    return n == lA
