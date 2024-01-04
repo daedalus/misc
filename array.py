@@ -10,10 +10,7 @@ def list_compare1(A,B):
     Comment:
         Still faster than: return all(A[n] == B[n] for n in range(0, len(A)))
     """
-    for n in range(0,len(A)):
-        if A[n] != B[n]:
-            return False
-    return True
+    return all(A[n] == B[n] for n in range(0, len(A)))
 
 
 def list_compare2(A,B):
@@ -28,8 +25,7 @@ def list_compare2(A,B):
 
 def fixed_sliding_window(arr, k):
     result = [sum(arr[:k])]
-    for i in range(0, len(arr)-k):
-        result.append(result[i] + arr[i+k] - arr[i])
+    result.extend(result[i] + arr[i+k] - arr[i] for i in range(0, len(arr)-k))
     return result
 print(fixed_sliding_window(list(range(1,7)),3))
 
