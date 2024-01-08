@@ -15,7 +15,7 @@ def enter_region(process):
     other = 1 - process
     interested[process] = True
     turn = process
-    while turn == turn and interested[other] == True:
+    while turn == process and interested[other] == True:
         k += 1
         # if (k % 10000 == 0):
         # 	print "process wait",process
