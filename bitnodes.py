@@ -9,7 +9,7 @@ url = "https://bitnodes.21.co/api/v1/snapshots/latest/"
 
 def make_request(*args):
     opener = urllib.request.build_opener()
-    opener.addheaders = [("User-agent", "Mozilla/5.0" + str(random.randrange(1000000)))]
+    opener.addheaders = [("User-agent", f"Mozilla/5.0{random.randrange(1000000)}")]
     try:
         return opener.open(*args).read().strip()
     except Exception as e:

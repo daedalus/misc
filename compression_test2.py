@@ -39,7 +39,7 @@ def test(msg_data):
         a, b, c = struct.unpack(">4si{0:d}s".format(msg_len), msg_data)
         print("Pack:", a, b, c.encode("hex"))
         new_data = zlib.decompress(c)
-        print("Decompressed data: " + new_data)
+        print(f"Decompressed data: {new_data}")
 
 
 test("dario")

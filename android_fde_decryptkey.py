@@ -33,10 +33,10 @@ SECTOR_OFFSET = 0
 ENCRYPT = 1
 DECRYPT = 0
 
-assert path.isfile(header_file), "Input file '%s' not found." % header_file
-assert path.isfile(encrypted_partition), (
-    "Input file '%s' not found." % encrypted_partition
-)
+assert path.isfile(header_file), f"Input file '{header_file}' not found."
+assert path.isfile(
+    encrypted_partition
+), f"Input file '{encrypted_partition}' not found."
 header = open(header_file, "rb").read()
 
 # Unpack header
@@ -52,7 +52,7 @@ header = open(header_file, "rb").read()
     fsSize2,
     failedDecrypt,
     cryptoType,
-) = struct.unpack(HEADER_FORMAT, header[0:100])
+) = struct.unpack(HEADER_FORMAT, header[:100])
 
 encrypted_key = header[ftrSize : ftrSize + keySize]
 salt = header[ftrSize + keySize + 32 : ftrSize + keySize + 32 + 16]

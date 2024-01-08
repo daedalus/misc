@@ -94,8 +94,8 @@ def main():
     nm.scan(host, sys.argv[2], arguments="--system-dns")
     ports = getports(nm, host)
     num_status, output = proc_results(nm, old_nm, host, ports)
-    json2file(".check_nmap.py." + host + ".cache", nm[host])
-    print(status[num_status] + ": " + output)
+    json2file(f".check_nmap.py.{host}.cache", nm[host])
+    print(f"{status[num_status]}: {output}")
     sys.exit(num_status)
 
 

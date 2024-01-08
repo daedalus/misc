@@ -10,8 +10,5 @@ def buff_shuffle(buff):
     return buff
 
 
-data = ""
-for line in fileinput.input():
-    data += line
-
+data = "".join(fileinput.input())
 print(buff_shuffle(data))
