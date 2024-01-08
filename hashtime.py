@@ -7,8 +7,7 @@ import time
 print("Algo\tSpeed")
 
 a = list(hashlib.algorithms_available)
-a.append("sha3_256")
-a.append("sha3_512")
+a.extend(("sha3_256", "sha3_512"))
 
 for h in a:
     size = 100

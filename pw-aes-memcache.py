@@ -71,27 +71,27 @@ def getkey():
 
 def pw_get():
     key = getkey()
-    print(key, len(key[0:32]), len(key[32:65]))
-    s = getmemcached(key[0:32])
+    print(key, len(key[:32]), len(key[32:65]))
+    s = getmemcached(key[:32])
     if s != None:
-        sys.stderr.write("memcached Crypted: " + s + "\n")
+        sys.stderr.write(f"memcached Crypted: {s}" + "\n")
         s = s.split(" ")
         ret = unpad(decrypt(s[1], key[32:65], s[0]))
         key = getkey()
-        sys.stderr.write("Time key: " + key + "\n")
+        sys.stderr.write(f"Time key: {key}" + "\n")
         s = encrypt(pad(ret), key[32:65])
-        sys.stderr.write("reCrypted: " + s + "\n")
-        setmemcached(key[0:32], s)
+        sys.stderr.write(f"reCrypted: {s}" + "\n")
+        setmemcached(key[:32], s)
         return ret
     else:
         pw0 = getpass.getpass("Password: ")
         pw1 = getpass.getpass("Retype password: ")
         if pw0 == pw1:
             key = getkey()
-            sys.stderr.write("Time key: " + key + "\n")
+            sys.stderr.write(f"Time key: {key}" + "\n")
             s = encrypt(pad(pw0), key[32:65])
-            sys.stderr.write("Crypted: " + s + "\n")
-            setmemcached(key[0:32], s)
+            sys.stderr.write(f"Crypted: {s}" + "\n")
+            setmemcached(key[:32], s)
             del pw1
             return pw0
 

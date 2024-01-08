@@ -12,11 +12,7 @@ binfile = "tmp/hash160.bin"
 outputfile = sys.argv[2]
 h = sys.argv[1]
 
-cmd = (
-    "%s -b %s -m %s -f %s -v -a -o %s -I"
-    % (binary, bloomfile, tabfile, binfile, outputfile)
-    + " %s"
-)
+cmd = f"{binary} -b {bloomfile} -m {tabfile} -f {binfile} -v -a -o {outputfile} -I %s"
 
 n = 10
 for i in range(1, n + 1):

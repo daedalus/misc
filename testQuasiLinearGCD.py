@@ -79,7 +79,7 @@ def test0(n, verbose=False):
         print("inputs:")
         print(hex(p), hex(q), hex(p * q))
     # we chose some arbitrary parameters with common factors to test.
-    k = [q * q, p * p, ((p + 1) * q), (p * (q + 1))] * n
+    k = [q**2, p**2, (p + 1) * q, p * (q + 1)] * n
     if verbose:
         print("pubs:")
     pubs = []

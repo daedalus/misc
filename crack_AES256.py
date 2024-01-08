@@ -29,16 +29,15 @@ def Hash(x):
 
 
 def pw_decode(s, password):
-    if password is not None:
-        secret = Hash(password)
-        try:
-            d = DecodeAES(secret, s)
-            # d = decrypt(s,secret)
-        except Exception as e:
-            raise Exception("Invalid password")
-        return d
-    else:
+    if password is None:
         return s
+    secret = Hash(password)
+    try:
+        d = DecodeAES(secret, s)
+        # d = decrypt(s,secret)
+    except Exception as e:
+        raise Exception("Invalid password")
+    return d
 
 
 def try_pw(encoded_seed, pw_cand):
@@ -174,7 +173,7 @@ def test():
 
             seed = try_pw(encoded_seed, pw_cand1)
             if chk_seed(seed):
-                print("pw is good: %s" % pw_cand1)
+                print(f"pw is good: {pw_cand1}")
                 print(seed)
                 cnt_good += 1
                 break

@@ -28,8 +28,7 @@ def get_json(fp, sha256s):
 
 
 for line in fileinput.input():
-    data = get_json(fp, line.replace("\n", ""))
-    if data:
+    if data := get_json(fp, line.replace("\n", "")):
         print(data["blockchain_transaction"]["private_key"])
 
 fp.close()

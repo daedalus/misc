@@ -21,4 +21,4 @@ for filepart in files:
 
 for key, value in sorted(parts):
     print(key, value)
-    system("cat %s >> %s" % (value, target))
+    system(f"cat {value} >> {target}")

@@ -18,7 +18,7 @@ def upload(ip, filename):
     if run:
         ftp = FTP(ip, USER, PASS, timeout=timeout)
         # tp.login()
-        ftp.storlines("STOR %s" % filename, open(filename, "r"))
+        ftp.storlines(f"STOR {filename}", open(filename, "r"))
 
 
 filename = sys.argv[1]

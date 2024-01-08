@@ -8,15 +8,14 @@ def split(data):
 
 
 def partition(n, data):
-    if n > 0:
-        tmp = []
-        for dataset in data:
-            a, b = split(dataset)
-            tmp += [a] + [b]
-            print(tmp)
-        return partition(n - 1, tmp)
-    else:
+    if n <= 0:
         return data
+    tmp = []
+    for dataset in data:
+        a, b = split(dataset)
+        tmp += [a] + [b]
+        print(tmp)
+    return partition(n - 1, tmp)
 
 
 data = [

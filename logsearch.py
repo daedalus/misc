@@ -44,7 +44,7 @@ def seeklog(A, key, imin, imax):
 
 
 def test():
-    tmp = [x for x in range(1024 * 1024 * 20)]
+    tmp = list(range(1024 * 1024 * 20))
     print("res=", seeklog(tmp, 1337, 0, len(tmp)))
     print("count=", count)
 

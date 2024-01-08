@@ -78,8 +78,7 @@ def test():
     message = decrypt(cipher, d, N)
     print("message_decoded:", hex(message))
     print(
-        "Plaintext_decoded: '%s'"
-        % binascii.unhexlify(hex(message).replace("0x", "").replace("L", "").zfill(b))
+        f"""Plaintext_decoded: '{binascii.unhexlify(hex(message).replace("0x", "").replace("L", "").zfill(b))}'"""
     )
 
 

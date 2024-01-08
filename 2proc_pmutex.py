@@ -15,12 +15,12 @@ def enter_region(process):
     other = 1 - process
     interested[process] = True
     turn = process
-    while turn == process and interested[other] == True:
+    while turn == turn and interested[other] == True:
         k += 1
         # if (k % 10000 == 0):
         # 	print "process wait",process
         continue
-    print("entered_critical: %d ticks %d" % (process, k))
+    print("entered_critical: %d ticks %d" % (turn, k))
 
 
 def leave_region(process):

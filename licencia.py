@@ -136,7 +136,7 @@ def calculate_best_candidate(start_date, days, franqueo):
     last_best = 0
     hs = init_holidays(dstart.year)
     best = []
-    for i in range(0, 365):
+    for _ in range(0, 365):
         # dstart += timedelta(days=1)
 
         r, d = lic(dstart, days, franqueo, hs)

@@ -18,9 +18,7 @@ def make_crc_table(const):
 
 
 def displaytable(table):
-    string_hex_line = ""
-    for i in numbers:
-        string_hex_line += hex(i)
+    string_hex_line = "".join(hex(i) for i in numbers)
     print(string_hex_line)
 
 

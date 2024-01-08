@@ -13,15 +13,6 @@ while True:
         ops = ops.split()
         for op in ops:
             stack.append(op)
-            if op == "+":
-                a = int(stack[-2])
-                b = int(stack[-3])
-                r = a + b
-                stack.pop()
-                stack.pop()
-                stack.pop()
-                stack.append(r)
-                print(r)
             if op == "*":
                 a = int(stack[-2])
                 b = int(stack[-3])
@@ -31,7 +22,16 @@ while True:
                 stack.pop()
                 stack.append(r)
                 print(r)
-            if op == "-":
+            elif op == "+":
+                a = int(stack[-2])
+                b = int(stack[-3])
+                r = a + b
+                stack.pop()
+                stack.pop()
+                stack.pop()
+                stack.append(r)
+                print(r)
+            elif op == "-":
                 a = int(stack[-2])
                 b = int(stack[-3])
                 stack.pop()
@@ -40,7 +40,7 @@ while True:
                 r = a - b
                 stack.append(r)
                 print(r)
-            if op == "/":
+            elif op == "/":
                 a = int(stack[-2])
                 b = int(stack[-3])
                 stack.pop()

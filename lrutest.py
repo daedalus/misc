@@ -44,22 +44,22 @@ def test():
     lru = LRU(4)
 
     for i in range(0, 21):
-        lru.insert("key" + str(i), str(i))
+        lru.insert(f"key{str(i)}", str(i))
 
-    for i in range(0, 1000):
+    for _ in range(0, 1000):
         lru.get("key13")
-    for i in range(0, 500):
+    for _ in range(0, 500):
         lru.get("key11")
-    for i in range(0, 250):
+    for _ in range(0, 250):
         lru.get("key7")
-    for i in range(0, 125):
+    for _ in range(0, 125):
         lru.get("key5")
         lru.get("key3")
         lru.get("key2")
         lru.get("key1")
 
     print(lru.access)
-    for i in range(0, 3):
+    for _ in range(0, 3):
         lru.purge()
     print(lru.access)
 

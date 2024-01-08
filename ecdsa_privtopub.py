@@ -63,7 +63,7 @@ class Point(object):
             assert x > 0
             result = 1
             while result <= x:
-                result = 2 * result
+                result *= 2
             return result / 2
 
         e = other

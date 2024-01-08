@@ -74,7 +74,7 @@ import fileinput
 
 for line in fileinput.input():
     addr = line.rstrip()
-    url = "https://xchain.io/api/balances/%s" % addr
+    url = f"https://xchain.io/api/balances/{addr}"
     raw_html = download_page(url)
     if raw_html != '{"error":"Address not found"}':
         print(addr, raw_html)

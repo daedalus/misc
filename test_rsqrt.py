@@ -45,17 +45,17 @@ def test():
 def benchmark():
     print("benchmark")
     t0 = time.time()
-    for i in range(0, 1000000):
+    for _ in range(0, 1000000):
         tmp = math.sqrt(n)
     t1 = time.time() - t0
     print(t1)
     t0 = time.time()
-    for i in range(0, 1000000):
+    for _ in range(0, 1000000):
         tmp = math.pow(n, -0.5)
     t1 = time.time() - t0
     print(t1)
     t0 = time.time()
-    for i in range(0, 1000000):
+    for _ in range(0, 1000000):
         tmp = Q_rsqrt(n)
     t1 = time.time() - t0
     print(t1)

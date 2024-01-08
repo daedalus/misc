@@ -64,10 +64,7 @@ def test2(payload):
     print(passphrase)
     dec = decrypt(payload, passphrase)
     # print dec
-    if binascii.hexlify(sha256(dec)) == sha256_payload_check:
-        return dec
-    else:
-        return False
+    return dec if binascii.hexlify(sha256(dec)) == sha256_payload_check else False
 
 
 def main():
