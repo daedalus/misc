@@ -10,7 +10,7 @@ interested = [False, False]
 def enter_region(process):
     global interested
     k = 0
-    print "enter_region: %d" % process
+    print("enter_region: %d" % process)
 
     other = 1 - process
     interested[process] = True
@@ -20,12 +20,12 @@ def enter_region(process):
         # if (k % 10000 == 0):
         # 	print "process wait",process
         continue
-    print "entered_critical: %d ticks %d" % (process, k)
+    print("entered_critical: %d ticks %d" % (process, k))
 
 
 def leave_region(process):
     global interested
-    print "leave_region: %d" % process
+    print("leave_region: %d" % process)
 
     interested[process] = False
 

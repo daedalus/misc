@@ -2,7 +2,7 @@
 
 memory = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1, 1]
 
-print "memory:", memory
+print("memory:", memory)
 
 program_counter = 0
 while program_counter >= 0:
@@ -10,7 +10,7 @@ while program_counter >= 0:
     b = memory[program_counter + 1]
     c = memory[program_counter + 2]
 
-    print "PC:", program_counter, ",a:", a, ",b:", b, ",c:", c
+    print("PC:", program_counter, ",a:", a, ",b:", b, ",c:", c)
 
     if a < 0 or b < 0:
         program_counter = -1
@@ -21,4 +21,4 @@ while program_counter >= 0:
         else:
             program_counter = c
 
-    print "memory:", memory
+    print("memory:", memory)

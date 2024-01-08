@@ -68,4 +68,4 @@ cipher = EVP.Cipher(alg="aes_128_cbc", key=key, iv=iv, padding=0, op=DECRYPT)
 decrypted_key = cipher.update(encrypted_key)
 decrypted_key = decrypted_key + cipher.final()
 
-print decrypted_key.encode("hex")
+print(decrypted_key.encode("hex"))

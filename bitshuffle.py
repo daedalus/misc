@@ -35,21 +35,21 @@ def bitshuffle(buff, mode):
         raise Exception("Buffer must be a multiple of 8 bytes")
     buff2 = ""
     if mode == 8:
-        for i in xrange(0, len(buff) - 1, 8):
+        for i in range(0, len(buff) - 1, 8):
             buff2 += Transpose8X8(buff[i : i + 8])
     elif mode == 16:
-        for i in xrange(0, len(buff) - 1, 16):
+        for i in range(0, len(buff) - 1, 16):
             buff2 += Transpose16X16(buff[i : i + 16])
     return buff2
 
 
 if __name__ == "__main__":
     a = "Dario Clavijo   "
-    print a, len(a)
-    print a.encode("hex")
-    print bintobit(a)
+    print(a, len(a))
+    print(a.encode("hex"))
+    print(bintobit(a))
 
     a = bitshuffle(a)
-    print a.encode("hex")
-    print bintobit(a)
-    print bitshuffle(a)
+    print(a.encode("hex"))
+    print(bintobit(a))
+    print(bitshuffle(a))

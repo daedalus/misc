@@ -21,6 +21,6 @@ result = api.search("cgminer")
 for item in result["matches"]:
     ip = item["ip_str"]
     port = item["port"]
-    print ip, port
-    print sendcommand(ip, port, "summary")
-    print sendcommand(ip, port, "version")
+    print(ip, port)
+    print(sendcommand(ip, port, "summary"))
+    print(sendcommand(ip, port, "version"))

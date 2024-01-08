@@ -9,11 +9,11 @@ q1 = gmpy2.next_prime(q0 + 110000000000)
 N0 = p * q0
 N1 = p * q1
 
-print("p:", p)
-print("q0:", q0)
-print("q1:", q1)
-print("N0:", N0)
-print("N1:", N1)
+print(("p:", p))
+print(("q0:", q0))
+print(("q1:", q1))
+print(("N0:", N0))
+print(("N1:", N1))
 
 
 def factor_related(N0, N1, epsilon=1000):
@@ -57,7 +57,7 @@ def factor_related(N0, N1, epsilon=1000):
     return result
 
 
-print(factor_related(N0, N1, epsilon=100000))
+print((factor_related(N0, N1, epsilon=100000)))
 N0 = 39578251185560508765789986436883915796407930659608281975081398825997486593363942764450954587346725410729324861726130026998308053052410610297612320083038591
 N1 = 39578251185560508765789986436883915796407930659608281975081398825997853603095770096367419621912275547461664662039085358780927515509450598370923477750251521
-print(factor_related(N0, N1))
+print((factor_related(N0, N1)))

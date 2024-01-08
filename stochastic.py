@@ -37,12 +37,16 @@ def XOR(p, q):
     return float(stochastic_average_fXOR(p, q) > 0)
 
 
-print "a\tb\tand\tor\txor"
+print("a\tb\tand\tor\txor")
 for i in range(0, 4):
-    print a[i], b[i], stochastic_average_fAND(a[i], b[i]), stochastic_average_fOR(
-        a[i], b[i]
-    ), stochastic_average_fXOR(a[i], b[i])
+    print(
+        a[i],
+        b[i],
+        stochastic_average_fAND(a[i], b[i]),
+        stochastic_average_fOR(a[i], b[i]),
+        stochastic_average_fXOR(a[i], b[i]),
+    )
 
-print "a\tb\tand\tor\txor"
+print("a\tb\tand\tor\txor")
 for i in range(0, 4):
-    print a[i], b[i], AND(a[i], b[i]), OR(a[i], b[i]), XOR(a[i], b[i])
+    print(a[i], b[i], AND(a[i], b[i]), OR(a[i], b[i]), XOR(a[i], b[i]))

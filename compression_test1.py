@@ -36,23 +36,29 @@ def testfunc(func, data, i=None):
         d = func.compress(data)
         t1 = time.time()
         dt = t1 - t0
-        print "%s compression level: %d, bytes: %d, ratio: %2.2f time: %2.8f" % (
-            fname,
-            i,
-            len(d),
-            100 - len(d) / (float(u)) * 100,
-            dt,
+        print(
+            "%s compression level: %d, bytes: %d, ratio: %2.2f time: %2.8f"
+            % (
+                fname,
+                i,
+                len(d),
+                100 - len(d) / (float(u)) * 100,
+                dt,
+            )
         )
     else:
         t0 = time.time()
         d = func.compress(data)
         t1 = time.time()
         dt = t1 - t0
-        print "%s compression level: 1, bytes: %d, ratio: %2.2f time: %2.8f" % (
-            fname,
-            len(d),
-            100 - len(d) / (float(u)) * 100,
-            dt,
+        print(
+            "%s compression level: 1, bytes: %d, ratio: %2.2f time: %2.8f"
+            % (
+                fname,
+                len(d),
+                100 - len(d) / (float(u)) * 100,
+                dt,
+            )
         )
 
 
@@ -73,10 +79,13 @@ def test2(data):
     d = chain_comp(data)
     t1 = time.time()
     dt = t1 - t0
-    print "chain compression level: 1, bytes: %d, ratio: %2.2f time: %2.8f" % (
-        len(d),
-        100 - len(d) / (float(u)) * 100,
-        dt,
+    print(
+        "chain compression level: 1, bytes: %d, ratio: %2.2f time: %2.8f"
+        % (
+            len(d),
+            100 - len(d) / (float(u)) * 100,
+            dt,
+        )
     )
 
 

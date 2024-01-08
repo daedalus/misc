@@ -43,13 +43,13 @@ def keygen():
 
 # -------------------------------------------------------------------------------------------
 def keyprint(e, p, q, N, phi, d, bits):
-    print "priv.p:", hex(p)
-    print "priv.q:", hex(q)
-    print "priv.phi:", hex(phi)
-    print "priv.d:", hex(d)
-    print "pub.N:", hex(N)
-    print "pub.e", e
-    print "pub.bits:", bits, "bytes:", int(bits / 8) + 1
+    print("priv.p:", hex(p))
+    print("priv.q:", hex(q))
+    print("priv.phi:", hex(phi))
+    print("priv.d:", hex(d))
+    print("pub.N:", hex(N))
+    print("pub.e", e)
+    print("pub.bits:", bits, "bytes:", int(bits / 8) + 1)
 
 
 # -------------------------------------------------------------------------------------------
@@ -68,17 +68,18 @@ def decrypt(cipher, decryptkey, pubkey):
 
 def test():
     plaintext = "correct horse battery staple"
-    print "Plaintext input:", plaintext
+    print("Plaintext input:", plaintext)
     e, p, q, N, phi, d, bits = keygen()
     keyprint(e, p, q, N, phi, d, bits)
     cipher = encrypt(plaintext, e, N)
     bits = math.log(cipher) / math.log(2)
     b = int(bits / 8) + 1
-    print "cipher:", hex(cipher)
+    print("cipher:", hex(cipher))
     message = decrypt(cipher, d, N)
-    print "message_decoded:", hex(message)
-    print "Plaintext_decoded: '%s'" % binascii.unhexlify(
-        hex(message).replace("0x", "").replace("L", "").zfill(b)
+    print("message_decoded:", hex(message))
+    print(
+        "Plaintext_decoded: '%s'"
+        % binascii.unhexlify(hex(message).replace("0x", "").replace("L", "").zfill(b))
     )
 
 

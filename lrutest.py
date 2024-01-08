@@ -25,7 +25,7 @@ class LRU:
                 t[self.access[k]] = [k]
         nokeep = sorted(t)
         nokeep = nokeep[: len(nokeep) - self.limit]
-        print nokeep
+        print(nokeep)
         for n in nokeep:
             for k in t[n]:
                 self.access.pop(k)
@@ -58,10 +58,10 @@ def test():
         lru.get("key2")
         lru.get("key1")
 
-    print lru.access
+    print(lru.access)
     for i in range(0, 3):
         lru.purge()
-    print lru.access
+    print(lru.access)
 
 
 test()

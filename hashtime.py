@@ -4,7 +4,7 @@ import sha3
 import hashlib
 import time
 
-print "Algo\tSpeed"
+print("Algo\tSpeed")
 
 a = list(hashlib.algorithms_available)
 a.append("sha3_256")
@@ -31,4 +31,4 @@ for h in a:
         return t2 - t1
 
     dt = measure(h)
-    print "%s\t%s MB/s" % (h, round(size / dt, 2))
+    print("%s\t%s MB/s" % (h, round(size / dt, 2)))

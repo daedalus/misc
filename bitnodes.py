@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 import sys
 import random
@@ -8,11 +8,11 @@ url = "https://bitnodes.21.co/api/v1/snapshots/latest/"
 
 
 def make_request(*args):
-    opener = urllib2.build_opener()
+    opener = urllib.request.build_opener()
     opener.addheaders = [("User-agent", "Mozilla/5.0" + str(random.randrange(1000000)))]
     try:
         return opener.open(*args).read().strip()
-    except Exception, e:
+    except Exception as e:
         try:
             p = e.read().strip()
         except:
@@ -27,4 +27,4 @@ def getjson(url):
 data = getjson(url)
 
 for node in data["nodes"]:
-    print node
+    print(node)

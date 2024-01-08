@@ -58,12 +58,12 @@ e = 65537
 phi = (p - 1) * (q - 1)
 d = gmpy2.invert(e, phi)
 
-print("N:", N)
-print("p:", p)
-print("q:", q)
-print("e:", e)
-print("phi:", phi)
-print("d:", d)
+print(("N:", N))
+print(("p:", p))
+print(("q:", q))
+print(("e:", e))
+print(("phi:", phi))
+print(("d:", d))
 
 r, txt = rsa_conspicuous_check(N, p, q, d, e)
 if r == 0:

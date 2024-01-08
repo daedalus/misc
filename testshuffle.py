@@ -22,32 +22,32 @@ def buff_unshuffle(buff):
 
 ###########################################
 def test1():
-    a = bytearray((1024 ** 3) * 1)
+    a = bytearray((1024**3) * 1)
 
     t0 = time.time()
     a = str(a).encode("zlib")
     t1 = time.time()
-    print t1 - t0, (len(a) // 1024)
+    print(t1 - t0, (len(a) // 1024))
 
 
 ###########################################
 def test2():
-    a = bytearray((1024 ** 3) * 1)
+    a = bytearray((1024**3) * 1)
 
     t0 = time.time()
     a = buff_shuffle(a).encode("zlib")
     t1 = time.time()
-    print t1 - t0, (len(a) // 1024)
+    print(t1 - t0, (len(a) // 1024))
 
 
 ###########################################
 def test3():
     a = "Dario".zfill(64)
-    print a.encode("hex")
+    print(a.encode("hex"))
     a = buff_shuffle(a)
-    print a.encode("hex")
+    print(a.encode("hex"))
     a = buff_unshuffle(a)
-    print a.encode("hex")
+    print(a.encode("hex"))
 
 
 test1()

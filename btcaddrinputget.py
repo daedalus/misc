@@ -1,13 +1,13 @@
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 import sys
 
 
 def getinputs(addr_test, offset):
-    req = urllib2.Request(
+    req = urllib.request.Request(
         "https://blockchain.info/address/%s?format=json&offset=%d" % (addr_test, offset)
     )
-    f = urllib2.urlopen(req)
+    f = urllib.request.urlopen(req)
 
     addrs = []
 
@@ -25,4 +25,4 @@ def getinputs(addr_test, offset):
 
 for i in range(0, 800):
     for addr in getinputs(sys.argv[1], i * 50):
-        print addr
+        print(addr)

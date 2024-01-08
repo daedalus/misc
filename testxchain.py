@@ -1,7 +1,7 @@
 import time  # Importing the time library to check the time of code execution
 import sys  # Importing the System Library
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import random
 import hashlib
 import os.path
@@ -34,14 +34,14 @@ def download_page(url):
         except Exception as e:
             return None
     else:  # If the Current Version of Python is 2.x
-        import urllib2
+        import urllib.request, urllib.error, urllib.parse
 
         try:
             headers = {
                 "User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"
             }
-            req = urllib2.Request(url, headers=headers)
-            response = urllib2.urlopen(req)
+            req = urllib.request.Request(url, headers=headers)
+            response = urllib.request.urlopen(req)
             return response.read()
         except:
             return None
@@ -77,4 +77,4 @@ for line in fileinput.input():
     url = "https://xchain.io/api/balances/%s" % addr
     raw_html = download_page(url)
     if raw_html != '{"error":"Address not found"}':
-        print addr, raw_html
+        print(addr, raw_html)

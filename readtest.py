@@ -36,15 +36,18 @@ def measure(sec_read, blocksize, filesize, fp):
     return t1 - t0
 
 
-print "--------------------------------------------------"
+print("--------------------------------------------------")
 fp = open("/dev/sda")
 for i in range(9, 22):
-    blocksize = 2 ** i
+    blocksize = 2**i
     sec_read = False
     dt = measure(sec_read, blocksize, READSIZE, fp)
-    print "Bs:%d bytes\t%s MB/s\t%d IOPs sec: %s" % (
-        blocksize,
-        round(((READSIZE / (1024 ** 2)) / dt), 2),
-        (READSIZE / blocksize) / dt,
-        sec_read,
+    print(
+        "Bs:%d bytes\t%s MB/s\t%d IOPs sec: %s"
+        % (
+            blocksize,
+            round(((READSIZE / (1024**2)) / dt), 2),
+            (READSIZE / blocksize) / dt,
+            sec_read,
+        )
     )

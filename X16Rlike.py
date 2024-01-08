@@ -6,7 +6,7 @@
 import binascii
 import hashlib
 
-print(hashlib.algorithms_available)
+print((hashlib.algorithms_available))
 
 algos = [
     "sha1",
@@ -46,7 +46,7 @@ def round(b, n, s=32):
     try:
         d = h.digest(s)
     except:
-        d = h.digest()[:s * 2]
+        d = h.digest()[: s * 2]
     return d
 
 
@@ -54,15 +54,15 @@ def hash(b, s=32):
     tmp = b
     for x in range(0, len(b)):
         n = b[x] & 0xF
-        print(n, algos[n])
+        print((n, algos[n]))
         tmp = round(tmp, n, s=s)
     return tmp
 
 
 x = binascii.unhexlify("0" * 63 + "1")
 x = hash(x)
-print(binascii.hexlify(x))
+print((binascii.hexlify(x)))
 x = hash(x)
-print(binascii.hexlify(x))
+print((binascii.hexlify(x)))
 x = hash(x)
-print(binascii.hexlify(x))
+print((binascii.hexlify(x)))

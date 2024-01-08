@@ -36,7 +36,7 @@ import binascii
 
 fp = open(sys.argv[1], "rb")
 data = fp.read(20)
-print "header hex:", binascii.hexlify(data)
+print("header hex:", binascii.hexlify(data))
 header_fmt = "@2s2sH5sBBBHHBB"
 _JFIFHeader = struct.unpack(header_fmt, data)
 (
@@ -54,23 +54,23 @@ _JFIFHeader = struct.unpack(header_fmt, data)
 ) = _JFIFHeader
 if SOI == "\xff\xd8":
     if APP0 == "\xff\xe0":
-        print "APP0 Lenght:", Length
-        print "Identifier:", Identifier
-        print "Version: %d.%d" % (Version_Maj, Version_Min)
-        print "Units:", Units
-        print "XYdensity: %d,%d" % (Xdensity, Ydensity)
-        print "Thumbnail: %d,%d" % (XThumbnail, YThumbnail)
+        print("APP0 Lenght:", Length)
+        print("Identifier:", Identifier)
+        print("Version: %d.%d" % (Version_Maj, Version_Min))
+        print("Units:", Units)
+        print("XYdensity: %d,%d" % (Xdensity, Ydensity))
+        print("Thumbnail: %d,%d" % (XThumbnail, YThumbnail))
     else:
-        print "Bad APP0"
+        print("Bad APP0")
 else:
-    print "Bad SOI"
+    print("Bad SOI")
 
 data = fp.read(4)
-print binascii.hexlify(data)
+print(binascii.hexlify(data))
 if data[0] == "\xff":
     # print hex(ord(data[1]))
     # & ord('\xf0')
     if (ord(data[1]) & ord("\xe0")) == ord("\xe0"):
         data = fp.read(ord("\x0f") & ord(data[1]))
-        print "Metadata:", data
-        print fp.read(ord(data[3]))
+        print("Metadata:", data)
+        print(fp.read(ord(data[3])))

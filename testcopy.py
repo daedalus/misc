@@ -22,7 +22,7 @@ def test(f1, f2):
 
     def _save(data, filename):
         with open(filename, "wb") as fp:
-            for i in xrange(0, len(data) - 1, SIZE):
+            for i in range(0, len(data) - 1, SIZE):
                 fp.write(data[i : i + SIZE])
         del fp
 

@@ -42,7 +42,7 @@ for line in data.split("\n"):
                 if len(h) > 240:
                    h = h[0:240]
                 fname = sys.argv[2] + h + "_%dbits.pem" % bits
-                print(fname,ok)
+                print((fname,ok))
                 if ok:
 		    fp = open(fname,"w")
 		    for line in cert:

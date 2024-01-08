@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 import fileinput
 
@@ -11,7 +11,7 @@ fp = open("/tmp/osget.log", "a")
 def get_json(fp, sha256s):
     try:
         url = f"http://www.originstamp.org/api/stamps/{sha256s}"
-        request = urllib2.Request(
+        request = urllib.request.Request(
             url,
             headers={
                 "Authorization": 'Token token="{API_KEY}"',
@@ -19,7 +19,7 @@ def get_json(fp, sha256s):
                 "Content-type": "application/json",
             },
         )
-        data = urllib2.urlopen(request).read()
+        data = urllib.request.urlopen(request).read()
         fp.write("%s OK\n" % sha256s)
         return json.loads(data)
     except:
@@ -30,6 +30,6 @@ def get_json(fp, sha256s):
 for line in fileinput.input():
     data = get_json(fp, line.replace("\n", ""))
     if data:
-        print data["blockchain_transaction"]["private_key"]
+        print(data["blockchain_transaction"]["private_key"])
 
 fp.close()

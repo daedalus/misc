@@ -41,7 +41,7 @@ def sk_to_pk(sk, G, P, N):
             lam = (3 * px * px) * pow(2 * py, P - 2, P)
         else:
             lam = (qy - py) * pow(qx - px, P - 2, P)
-        rx = lam ** 2 - px - qx
+        rx = lam**2 - px - qx
         ry = lam * (px - rx) - py
         return rx % P, ry % P
 
@@ -49,7 +49,7 @@ def sk_to_pk(sk, G, P, N):
     # by using the binary representation of sk this can be done in 256
     # iterations (double-and-add)
     ret = None
-    for i in xrange(256):
+    for i in range(256):
         if sk & (1 << i):
             ret = G if ret is None else add(ret, G)
         G = add(G, G)
@@ -62,22 +62,22 @@ def dhtest():
     PKA = 1
     PKB = 2
 
-    print "PKA:", hex(PKA)
-    print "PKB:", hex(PKB)
+    print("PKA:", hex(PKA))
+    print("PKB:", hex(PKB))
 
     PubA = sk_to_pk(PKA, G, P, N)
     PubB = sk_to_pk(PKB, G, P, N)
 
-    print "PubA:", hex(PubA[0]), hex(PubA[1])
-    print "PubB:", hex(PubB[0]), hex(PubB[1])
+    print("PubA:", hex(PubA[0]), hex(PubA[1]))
+    print("PubB:", hex(PubB[0]), hex(PubB[1]))
 
     Q1 = sk_to_pk(PKA, PubB, P, N)
     Q2 = sk_to_pk(PKB, PubA, P, N)
 
-    print "Shared Secret1:", hex(Q1[0]), hex(Q1[1])
-    print "Shared Secret2:", hex(Q2[0]), hex(Q2[1])
+    print("Shared Secret1:", hex(Q1[0]), hex(Q1[1]))
+    print("Shared Secret2:", hex(Q2[0]), hex(Q2[1]))
 
-    print Q1 == Q2
+    print(Q1 == Q2)
 
 
 dhtest()

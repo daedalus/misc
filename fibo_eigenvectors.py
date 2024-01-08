@@ -12,7 +12,7 @@ def fib_eig(k):
 
     lambda1 = (1 + sqrt5) / 2
     lambda2 = (1 - sqrt5) / 2
-    fk = (lambda1 ** k - lambda2 ** k) / (lambda1 - lambda2)
+    fk = (lambda1**k - lambda2**k) / (lambda1 - lambda2)
     return int(fk)
 
 
@@ -27,5 +27,5 @@ def fib_mem(k):
     return fibonacci[k]
 
 
-print fib_mem(1000)
-print fib_eig(1000)
+print(fib_mem(1000))
+print(fib_eig(1000))

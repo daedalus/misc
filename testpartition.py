@@ -13,7 +13,7 @@ def partition(n, data):
         for dataset in data:
             a, b = split(dataset)
             tmp += [a] + [b]
-            print tmp
+            print(tmp)
         return partition(n - 1, tmp)
     else:
         return data
@@ -45,7 +45,7 @@ data = [
     23,
     24,
 ]
-print data
+print(data)
 p = 3  # partitions will be 2^n
 partitions = partition(p, [data])
-print partitions
+print(partitions)

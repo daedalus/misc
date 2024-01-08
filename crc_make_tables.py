@@ -21,7 +21,7 @@ def displaytable(table):
     string_hex_line = ""
     for i in numbers:
         string_hex_line += hex(i)
-    print string_hex_line
+    print(string_hex_line)
 
 
 numbers = make_crc_table(0xEDB88320)

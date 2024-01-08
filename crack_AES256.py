@@ -23,7 +23,7 @@ def sha256(x):
 
 
 def Hash(x):
-    if type(x) is unicode:
+    if type(x) is str:
         x = x.encode("utf-8")
     return sha256(sha256(x))
 
@@ -34,7 +34,7 @@ def pw_decode(s, password):
         try:
             d = DecodeAES(secret, s)
             # d = decrypt(s,secret)
-        except Exception, e:
+        except Exception as e:
             raise Exception("Invalid password")
         return d
     else:
@@ -73,7 +73,7 @@ def xselections(items, n):
     if n == 0:
         yield []
     else:
-        for i in xrange(len(items)):
+        for i in range(len(items)):
             for ss in xselections(items, n - 1):
                 yield [items[i]] + ss
 
@@ -81,9 +81,9 @@ def xselections(items, n):
 # Numbers = 48 - 57
 # Capital = 65 - 90
 # Lower = 97 - 122
-numb = range(48, 58)
-cap = range(65, 91)
-low = range(97, 123)
+numb = list(range(48, 58))
+cap = list(range(65, 91))
+low = list(range(97, 123))
 
 choice = 0
 # while int(choice) not in range(1,8):
@@ -170,25 +170,25 @@ def test():
             pw_cand1 = t
             cnt += 1
             if cnt % 1000 == 0:
-                print "trying:", pw_cand1
+                print("trying:", pw_cand1)
 
             seed = try_pw(encoded_seed, pw_cand1)
             if chk_seed(seed):
-                print "pw is good: %s" % pw_cand1
-                print seed
+                print("pw is good: %s" % pw_cand1)
+                print(seed)
                 cnt_good += 1
                 break
 
-    print "cnt: %d" % cnt
-    print "cnt_good: %d" % cnt_good
+    print("cnt: %d" % cnt)
+    print("cnt_good: %d" % cnt_good)
 
 
 def test1():
     encoded_seed = "Ww9jsiumblVPSM5owcLS6wODqxh0YDLIg/g+mNv+nuNP+f7yyhqOomTlK9tDv8xV0kYt/nUDeTZNtUOr3Zfp2w=="
     seed = try_pw(encoded_seed, "test")
     if chk_seed(seed):
-        print "ok"
-        print seed
+        print("ok")
+        print(seed)
 
 
 test()

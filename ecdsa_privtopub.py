@@ -3,7 +3,7 @@
 
 import random
 import array
-import cPickle
+import pickle
 import struct
 
 
@@ -61,7 +61,7 @@ class Point(object):
     def __mul__(self, other):
         def leftmost_bit(x):
             assert x > 0
-            result = 1L
+            result = 1
             while result <= x:
                 result = 2 * result
             return result / 2
@@ -147,12 +147,12 @@ def inverse_mod(a, m):
     return ud if ud > 0 else ud + m
 
 
-_p = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2FL
-_r = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141L
-_b = 0x0000000000000000000000000000000000000000000000000000000000000007L
-_a = 0x0000000000000000000000000000000000000000000000000000000000000000L
-_Gx = 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798L
-_Gy = 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8L
+_p = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
+_r = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
+_b = 0x0000000000000000000000000000000000000000000000000000000000000007
+_a = 0x0000000000000000000000000000000000000000000000000000000000000000
+_Gx = 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798
+_Gy = 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8
 
 
 class Public_key(object):
@@ -162,11 +162,11 @@ class Public_key(object):
         self.point = point
         n = generator.order()
         if not n:
-            raise RuntimeError, "Generator point must have order."
+            raise RuntimeError("Generator point must have order.")
         if n * point != INFINITY:
-            raise RuntimeError, "Generator point order is bad."
+            raise RuntimeError("Generator point order is bad.")
         if point.x() < 0 or n <= point.x() or point.y() < 0 or n <= point.y():
-            raise RuntimeError, "Generator point has x or y out of range."
+            raise RuntimeError("Generator point has x or y out of range.")
 
 
 C = CurveFp(_p, _a, _b)
@@ -174,6 +174,6 @@ g = Point(C, _Gx, _Gy, _r)
 
 if __name__ == "__main__":
     modoperator = g.order()
-    priv = 0x38A4979DC004715D7204E5B2C9A1159DBC67EA7E04F1AC0FA82D4D561B9DE21EL
+    priv = 0x38A4979DC004715D7204E5B2C9A1159DBC67EA7E04F1AC0FA82D4D561B9DE21E
     pub = g * priv
-    print pub
+    print(pub)

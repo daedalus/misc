@@ -42,7 +42,7 @@ def convergents(e):
 
 
 def quadratic_solve(a, b, c):
-    disc = (b ** 2) - (4 * a * c)
+    disc = (b**2) - (4 * a * c)
     if disc > 0:
         a2 = 2 * a
         x0 = (-b + gmpy2.isqrt(disc)) // a2
@@ -79,7 +79,7 @@ def test(tests):
         x = wiener(e, N)
         if x != None:
             if N == x[0] * x[1]:
-                print("e = %d\nN = %d = %d * %d" % (e, N, x[0], x[1]))
+                print(("e = %d\nN = %d = %d * %d" % (e, N, x[0], x[1])))
 
 
 test(tests)

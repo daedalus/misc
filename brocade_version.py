@@ -24,6 +24,6 @@ for line in fileinput.input():
         ret = line, exec_ssh(line, "USER", "PASS", "version")
         for version in ret[1]:
             if re.search("Fabric", version):
-                print ret[0], version.rstrip()
+                print(ret[0], version.rstrip())
     except:
-        print line, "failed"
+        print(line, "failed")

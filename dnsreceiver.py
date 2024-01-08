@@ -35,7 +35,7 @@ def decode_labels(message, offset):
             return labels + decode_labels(message, pointer & 0x3FFF), offset
 
         if (length & 0xC0) != 0x00:
-            raise StandardError("unknown label encoding")
+            raise Exception("unknown label encoding")
 
         offset += 1
 
@@ -96,4 +96,4 @@ while True:
     ret = decode_dns_message(data)
     strlog = str({"addr": addr, "message": ret})
     save(strlog)
-    print strlog
+    print(strlog)

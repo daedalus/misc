@@ -13,4 +13,4 @@ def MDIV(N, D):
     return (C, R)
 
 
-print MDIV(10000, 3)
+print(MDIV(10000, 3))

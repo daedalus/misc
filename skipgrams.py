@@ -20,7 +20,7 @@ def skipgramP(skipgram, skigrams, unigrams):
     p1 = P(skipgram[1], unigrams)
     sP = P(skipgram, skigrams)
 
-    print p0, p1, sP
+    print(p0, p1, sP)
 
     return sP / p0 / p1
 
@@ -39,7 +39,7 @@ def tokenize(text, tokens):
 def findskipgrams(skip, text, tokens):
     text = text.replace("<p>", " ")
     words = text.split(" ")
-    for i in xrange(1, len(words) - 1):
+    for i in range(1, len(words) - 1):
         word0 = words[i - skip]
         word1 = words[i]
         word2 = words[i + skip]
@@ -70,12 +70,12 @@ for row in csvdata:
     skipgrams = findskipgrams(1, comment_text, skipgrams)
 
 
-print "unigrams:", len(unigrams)
-print "skipgrams:", len(skipgrams)
+print("unigrams:", len(unigrams))
+print("skipgrams:", len(skipgrams))
 
 # for unigram in unigrams:
 # 	print unigram,P(unigram,unigrams)
 
 
 for skipgram in skipgrams:
-    print skipgram, skipgramP(skipgram, skipgrams, unigrams)
+    print(skipgram, skipgramP(skipgram, skipgrams, unigrams))

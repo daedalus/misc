@@ -14,7 +14,7 @@ run = True
 
 
 def upload(ip, filename):
-    print "put", filename, ip
+    print("put", filename, ip)
     if run:
         ftp = FTP(ip, USER, PASS, timeout=timeout)
         # tp.login()

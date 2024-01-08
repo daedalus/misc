@@ -5,7 +5,7 @@
 
 # linear search
 def seek(A, key, imin, imax):
-    for _ in xrange(imin, imax):
+    for _ in range(imin, imax):
         if A[n] == key:
             return v
 
@@ -23,7 +23,7 @@ def search(text, pos):
         return int(accum)
 
 
-print search("123456789--0", 0)
+print(search("123456789--0", 0))
 
 
 count = 0
@@ -44,9 +44,9 @@ def seeklog(A, key, imin, imax):
 
 
 def test():
-    tmp = [x for x in xrange(1024 * 1024 * 20)]
-    print "res=", seeklog(tmp, 1337, 0, len(tmp))
-    print "count=", count
+    tmp = [x for x in range(1024 * 1024 * 20)]
+    print("res=", seeklog(tmp, 1337, 0, len(tmp)))
+    print("count=", count)
 
 
 test()

@@ -45,33 +45,33 @@ def SVDred(data, n=None):
 
 
 def test(documents):
-    print "=" * 76
-    print "Ground Truth"
-    print "-" * 76
-    print documents
-    print "=" * 76
-    print "Count Vectorize:"
-    print "" * 76
+    print("=" * 76)
+    print("Ground Truth")
+    print("-" * 76)
+    print(documents)
+    print("=" * 76)
+    print("Count Vectorize:")
+    print("" * 76)
     X = vectorice(documents)
-    print X
-    print "-" * 76
-    print "SVD recuction:"
-    print "-" * 76
+    print(X)
+    print("-" * 76)
+    print("SVD recuction:")
+    print("-" * 76)
     Y = SVDred(X)
-    print Y
-    print Y.shape
-    print "=" * 76
-    print "Tfidf Vectorize:"
-    print "-" * 76
+    print(Y)
+    print(Y.shape)
+    print("=" * 76)
+    print("Tfidf Vectorize:")
+    print("-" * 76)
     X = TfidfVec(documents)
-    print X
-    print "-" * 76
-    print "SVD recuction:"
-    print "-" * 76
+    print(X)
+    print("-" * 76)
+    print("SVD recuction:")
+    print("-" * 76)
     Y = SVDred(X)
-    print Y
-    print Y.shape
-    print "-" * 76
+    print(Y)
+    print(Y.shape)
+    print("-" * 76)
 
 
 test(mydocuments)

@@ -20,11 +20,11 @@ for line in maps_file.readlines():  # for each mapped region
         try:
             chunk = mem_file.read(iend - istart)  # read region contents
             # print chunk,  # dump contents to standard output
-            print "mapping:", start, end, "read ok"
+            print("mapping:", start, end, "read ok")
             fp = open("%s/%s-%s-%s.dump" % (outputdir, pid, start, end), "w")
             fp.write(chunk)
             fp.close()
         except:
-            print "mapping:", start, end, "read fail!"
+            print("mapping:", start, end, "read fail!")
 maps_file.close()
 mem_file.close()

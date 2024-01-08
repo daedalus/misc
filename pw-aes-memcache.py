@@ -21,7 +21,7 @@ BLOCK_SIZE = 16
 pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(
     BLOCK_SIZE - len(s) % BLOCK_SIZE
 )
-unpad = lambda s: s[:-ord(s[-1])]
+unpad = lambda s: s[: -ord(s[-1])]
 
 # AES encryption: (plaintext -> decrypted)
 def encrypt(message, passphrase):
@@ -71,7 +71,7 @@ def getkey():
 
 def pw_get():
     key = getkey()
-    print key, len(key[0:32]), len(key[32:65])
+    print(key, len(key[0:32]), len(key[32:65]))
     s = getmemcached(key[0:32])
     if s != None:
         sys.stderr.write("memcached Crypted: " + s + "\n")
@@ -96,4 +96,4 @@ def pw_get():
             return pw0
 
 
-print pw_get()
+print(pw_get())

@@ -46,9 +46,7 @@ def init_holidays(year):
         date(year=year, month=1, day=1),  # dia del transportista
         date(year=year, month=5, day=1),  # dia de los trabajadores
         date(year=year, month=7, day=18),  # dia de la independencia
-        date(
-            year=year, month=8, day=25
-        ),  # dia de la declaratoria de la independencia
+        date(year=year, month=8, day=25),  # dia de la declaratoria de la independencia
         date(year=year, month=12, day=25),  # vino papa noel y se fue...
         # semana santa
         semana_santa[0],  # lunes
@@ -76,33 +74,63 @@ def init_holidays(year):
 
 def print_holidays():
     for h in holidays:
-        print h
+        print(h)
 
 
 def display_res(dstart, days, franqueo, holydays, r, d):
-    print "+---------------------------------------------------------------------------------------------------+"
-    print "|Sin contar feriados										   |"
-    print "|Empieza:", dstart, ", Dias laborales:", days, ", Termina:", r[
-        0
-    ], " Dias Totales: ", (d[0])
-    print "|Empieza:", dstart, ", Dias laborales:", days + franqueo, ", Termina:", r[
-        1
-    ], ", Dias totales:", (d[1])
-    print "|												   |"
+    print(
+        "+---------------------------------------------------------------------------------------------------+"
+    )
+    print("|Sin contar feriados										   |")
+    print(
+        "|Empieza:",
+        dstart,
+        ", Dias laborales:",
+        days,
+        ", Termina:",
+        r[0],
+        " Dias Totales: ",
+        (d[0]),
+    )
+    print(
+        "|Empieza:",
+        dstart,
+        ", Dias laborales:",
+        days + franqueo,
+        ", Termina:",
+        r[1],
+        ", Dias totales:",
+        (d[1]),
+    )
+    print("|												   |")
 
-    print "|Contando feriados										   |"
-    print "|Empieza:", dstart, ", Dias laborales:", days, ", Termina:", r[
-        2
-    ], " Dias Totales: ", (d[2])
-    print "|Empieza:", dstart, ", Dias laborales:", days + franqueo, ", Termina:", r[
-        3
-    ], " Dias Totales: ", (d[3])
+    print("|Contando feriados										   |")
+    print(
+        "|Empieza:",
+        dstart,
+        ", Dias laborales:",
+        days,
+        ", Termina:",
+        r[2],
+        " Dias Totales: ",
+        (d[2]),
+    )
+    print(
+        "|Empieza:",
+        dstart,
+        ", Dias laborales:",
+        days + franqueo,
+        ", Termina:",
+        r[3],
+        " Dias Totales: ",
+        (d[3]),
+    )
 
 
 def calculate_best_candidate(start_date, days, franqueo):
 
     start_date = datetime.strptime(start_date, "%d-%m-%Y").date()
-    print "parametros:", start_date, days, franqueo
+    print("parametros:", start_date, days, franqueo)
     dstart = start_date
 
     last_best = 0
@@ -125,12 +153,16 @@ def calculate_best_candidate(start_date, days, franqueo):
     for dstart, r, d in best:
         # print dstart,r[3],d[3]
         display_res(dstart, days, franqueo, hs, r, d)
-    print "+---------------------------------------------------------------------------------------------------+"
+    print(
+        "+---------------------------------------------------------------------------------------------------+"
+    )
 
 
 if len(sys.argv) > 1:
     calculate_best_candidate(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
 else:
-    print "uso ./licencia.py dia_del_inicio_de_licencia dias_de_licencia horas_de_franqueo"
-    print "ejemplo: ./licencia.py '01-01-2016' 20 0"
-    print
+    print(
+        "uso ./licencia.py dia_del_inicio_de_licencia dias_de_licencia horas_de_franqueo"
+    )
+    print("ejemplo: ./licencia.py '01-01-2016' 20 0")
+    print()

@@ -6,4 +6,4 @@ import sys
 
 fp = open(sys.argv[1])
 fp.seek(int(sys.argv[2]))
-print fp.read(int(sys.argv[3]))
+print(fp.read(int(sys.argv[3])))

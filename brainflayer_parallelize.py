@@ -21,5 +21,5 @@ cmd = (
 n = 10
 for i in range(1, n + 1):
     _cmd = (cmd % h) + (" -n %d/%d" % (i, n))
-    print _cmd
+    print(_cmd)
     Popen(_cmd.split(" "))

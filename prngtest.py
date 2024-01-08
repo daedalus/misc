@@ -22,7 +22,7 @@ random.seed(t)
 def iter():
     while True:
         b = random.getrandbits(256)
-        print hexify(b)
+        print(hexify(b))
 
 
 iter()

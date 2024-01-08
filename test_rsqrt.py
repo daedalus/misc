@@ -10,7 +10,7 @@ import ctypes
 
 
 def floatToInt(x):
-    return int((x + 1.0) * (2 ** 31))
+    return int((x + 1.0) * (2**31))
 
 
 def Q_rsqrt(number):
@@ -36,29 +36,29 @@ n = 0.15625
 
 
 def test():
-    print "test"
-    print 1 / math.sqrt(n)
-    print math.pow(n, -0.5)
-    print Q_rsqrt(n)
+    print("test")
+    print(1 / math.sqrt(n))
+    print(math.pow(n, -0.5))
+    print(Q_rsqrt(n))
 
 
 def benchmark():
-    print "benchmark"
+    print("benchmark")
     t0 = time.time()
-    for i in xrange(0, 1000000):
+    for i in range(0, 1000000):
         tmp = math.sqrt(n)
     t1 = time.time() - t0
-    print t1
+    print(t1)
     t0 = time.time()
-    for i in xrange(0, 1000000):
+    for i in range(0, 1000000):
         tmp = math.pow(n, -0.5)
     t1 = time.time() - t0
-    print t1
+    print(t1)
     t0 = time.time()
-    for i in xrange(0, 1000000):
+    for i in range(0, 1000000):
         tmp = Q_rsqrt(n)
     t1 = time.time() - t0
-    print t1
+    print(t1)
 
 
 test()

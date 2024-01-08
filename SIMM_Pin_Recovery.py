@@ -29,7 +29,7 @@ class Attack:
         nd = self.nc - self.ns
         ndtd = nd / td
         htd = humanfriendly.format_timespan(td)
-        print("[+] Runtime: %s, tried pins: %d, rate: %.4f    " % (htd, nd, ndtd))
+        print(("[+] Runtime: %s, tried pins: %d, rate: %.4f    " % (htd, nd, ndtd)))
 
     def signal_handler(self, sig, frame):
         self.stoping = True
@@ -69,7 +69,7 @@ class Attack:
             except:
                 if self.stoping == False:
                     print(
-                        "[!] Connection error!, last pin checked: %d." % (self.nc - 1)
+                        ("[!] Connection error!, last pin checked: %d." % (self.nc - 1))
                     )
                     self.stoping = True
                 r = None
@@ -112,8 +112,10 @@ class Attack:
         s = "X%dd" % l
         s = s.replace("X", "%0")
         print(
-            "[+] startpin: %d, max: %d, wait: %s, reset: %s"
-            % (n, L, str(self.wait), str(self.reset))
+            (
+                "[+] startpin: %d, max: %d, wait: %s, reset: %s"
+                % (n, L, str(self.wait), str(self.reset))
+            )
         )
 
         while n <= L and self.Continue:  # keep looping if the c is set
@@ -144,7 +146,7 @@ class Attack:
                 self.stoping = True
 
             if self.Found:  # Status for successful attack
-                print("\n\n[*] The PIN is: [ %d ]!!!" % n)
+                print(("\n\n[*] The PIN is: [ %d ]!!!" % n))
                 self.stoping = True
 
             if self.wait != None:
@@ -170,7 +172,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     r = readers()
-    print("[+] Reader:", r)
+    print(("[+] Reader:", r))
     connection = r[0].createConnection()
     connection.connect()
 

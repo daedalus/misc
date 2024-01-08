@@ -42,10 +42,13 @@ def crypt(txt, password):
 
 
 def test():
-    print "crypt: ", crypt("abcd", "1234")
-    print "decrypt: ", decrypt(
-        "N2Y1ZGU1M2I0MjFkZDExMGJjMWVjYjJhZWJiMjQxYWQwNTA0NjQxNjg4YTg5YTg4ZTI0NmY4MmJjMDRjMTY0OA==",
-        "1234",
+    print("crypt: ", crypt("abcd", "1234"))
+    print(
+        "decrypt: ",
+        decrypt(
+            "N2Y1ZGU1M2I0MjFkZDExMGJjMWVjYjJhZWJiMjQxYWQwNTA0NjQxNjg4YTg5YTg4ZTI0NmY4MmJjMDRjMTY0OA==",
+            "1234",
+        ),
     )
 
 

@@ -11,7 +11,7 @@ def getFromCookieDB(filename):
     cur.execute("SELECT * FROM cookies")
     rows = cur.fetchall()
     for row in rows:
-        print row
+        print(row)
 
 
 def dump(uid):

@@ -8,7 +8,7 @@ b = 0
 
 stack = []
 while True:
-    ops = str(raw_input(">"))
+    ops = str(input(">"))
     if ops != "":
         ops = ops.split()
         for op in ops:
@@ -21,7 +21,7 @@ while True:
                 stack.pop()
                 stack.pop()
                 stack.append(r)
-                print r
+                print(r)
             if op == "*":
                 a = int(stack[-2])
                 b = int(stack[-3])
@@ -30,7 +30,7 @@ while True:
                 stack.pop()
                 stack.pop()
                 stack.append(r)
-                print r
+                print(r)
             if op == "-":
                 a = int(stack[-2])
                 b = int(stack[-3])
@@ -39,7 +39,7 @@ while True:
                 stack.pop()
                 r = a - b
                 stack.append(r)
-                print r
+                print(r)
             if op == "/":
                 a = int(stack[-2])
                 b = int(stack[-3])
@@ -48,5 +48,5 @@ while True:
                 stack.pop()
                 r = a / b
                 stack.append(r)
-                print r
-        print stack
+                print(r)
+        print(stack)

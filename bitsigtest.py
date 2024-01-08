@@ -1,7 +1,7 @@
 import time  # Importing the time library to check the time of code execution
 import sys  # Importing the System Library
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import random
 import hashlib
 import os.path
@@ -34,14 +34,14 @@ def download_page(url):
         except Exception as e:
             return None
     else:  # If the Current Version of Python is 2.x
-        import urllib2
+        import urllib.request, urllib.error, urllib.parse
 
         try:
             headers = {
                 "User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"
             }
-            req = urllib2.Request(url, headers=headers)
-            response = urllib2.urlopen(req)
+            req = urllib.request.Request(url, headers=headers)
+            response = urllib.request.urlopen(req)
             return response.read()
         except:
             return None
@@ -86,7 +86,7 @@ def _get_all_items(page):
     return items
 
 
-for i in xrange(0, 15):
+for i in range(0, 15):
     url = "https://bitsig.io/?page=%d" % i
     raw_html = download_page(url)
     items = _get_all_items(raw_html)
@@ -94,4 +94,4 @@ for i in xrange(0, 15):
     for item in items:
         item = item.replace("\n\r", "\r")
         # print item.encode('hex')
-        print sha256hex(item)
+        print(sha256hex(item))

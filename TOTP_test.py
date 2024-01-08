@@ -19,7 +19,7 @@ c = conn.cursor()
 
 for row in c.execute("select * from accounts"):
     totp = pyotp.TOTP(row[2])
-    print totp.now(), row[1]
+    print(totp.now(), row[1])
 
 os.system("shred %s -v" % tmp)
 os.system("rm %s" % tmp)

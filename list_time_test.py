@@ -29,7 +29,7 @@ avg_speed = 0
 max_l = 5000
 while True:
     c = c + 1
-    e = bytearray(random.getrandbits(8) for _ in xrange(20))
+    e = bytearray(random.getrandbits(8) for _ in range(20))
 
     d = test(e, max_l)
 
@@ -45,11 +45,14 @@ while True:
         acc = 0
         acc_speed = 0
 
-    print "count %d, iter_time: %2.6f, max_time: %2.6f, speed: %d, avg_time: %2.6f, avg_speed: %d" % (
-        c,
-        d,
-        max,
-        speed,
-        avg,
-        avg_speed,
+    print(
+        "count %d, iter_time: %2.6f, max_time: %2.6f, speed: %d, avg_time: %2.6f, avg_speed: %d"
+        % (
+            c,
+            d,
+            max,
+            speed,
+            avg,
+            avg_speed,
+        )
     )

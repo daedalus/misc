@@ -9,6 +9,6 @@ def ROT13(message):
     return "".join([r[p.find(c)] for c in message])
 
 
-if __name__ == '__main__':
-  message = "Dario Clavijo"
-  assert ROT13(ROT13(message)) == message
+if __name__ == "__main__":
+    message = "Dario Clavijo"
+    assert ROT13(ROT13(message)) == message

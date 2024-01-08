@@ -16,7 +16,7 @@ def primorial(r):
 
 
 def gen_weak_prime(a, k, M):
-    return k * M + ((65537 ** a) % M)
+    return k * M + ((65537**a) % M)
 
 
 M = primorial(47)
@@ -24,4 +24,4 @@ p = gen_weak_prime(12, 3, M)
 q = gen_weak_prime(13, 4, M)
 
 # print(p*q,p,q)
-print(p * q)
+print((p * q))

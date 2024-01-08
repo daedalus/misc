@@ -60,7 +60,7 @@ def getstate(nm, old_nm, host, port):
 
 def getports(nm, host):
     try:
-        ports = nm[host]["tcp"].keys()
+        ports = list(nm[host]["tcp"].keys())
     except:
         ports = []
     return ports
@@ -95,7 +95,7 @@ def main():
     ports = getports(nm, host)
     num_status, output = proc_results(nm, old_nm, host, ports)
     json2file(".check_nmap.py." + host + ".cache", nm[host])
-    print status[num_status] + ": " + output
+    print(status[num_status] + ": " + output)
     sys.exit(num_status)
 
 

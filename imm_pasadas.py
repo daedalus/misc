@@ -3,8 +3,8 @@
 # https://github.com/dti-montevideo/servicios-abiertos/blob/master/transporte.md
 
 import json
-import urllib
-import urllib2
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
 import sys
 
 l = len(sys.argv)
@@ -33,8 +33,13 @@ if l > 4:
 else:
     url = url_base + "pasadas/" + str(codigo_parada) + "/" + tipo_dia + "/" + hora
 
-j = json.loads(urllib2.urlopen(url).read())
+j = json.loads(urllib.request.urlopen(url).read())
 for pasada in j:
-    print "Linea:", pasada["linea"], "Hora:", str(
-        pasada["horaDesc"]
-    ), "Destino:", pasada["destino"]
+    print(
+        "Linea:",
+        pasada["linea"],
+        "Hora:",
+        str(pasada["horaDesc"]),
+        "Destino:",
+        pasada["destino"],
+    )

@@ -52,16 +52,16 @@ def test1(string):
         hex(random.getrandbits(32)).replace("0x", "").replace("L", "").zfill(16)
     )
 
-    print len(passphrase), passphrase
-    print binascii.hexlify(sha256(string)).zfill(64)
-    print binascii.hexlify(sha256(passphrase)).zfill(64)
+    print(len(passphrase), passphrase)
+    print(binascii.hexlify(sha256(string)).zfill(64))
+    print(binascii.hexlify(sha256(passphrase)).zfill(64))
 
     return encrypt(string, passphrase)
 
 
 def test2(payload):
     passphrase = getpw()
-    print passphrase
+    print(passphrase)
     dec = decrypt(payload, passphrase)
     # print dec
     if binascii.hexlify(sha256(dec)) == sha256_payload_check:
@@ -73,9 +73,9 @@ def test2(payload):
 def main():
     # u = test1(str_payload)
     u = "N8WjTJKAcE4Z3fI6Ozx6sI97ZGvWF5e7R2jjg7Nw90s="
-    print u
+    print(u)
     d = test2(u)
-    print d
+    print(d)
 
 
 main()

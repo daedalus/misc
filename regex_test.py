@@ -14,4 +14,4 @@ for line in fileinput.input():
 ext = re.findall(pattern, data)
 
 for t in ext:
-    print t.replace("____SEPARATOR____", "\n")
+    print(t.replace("____SEPARATOR____", "\n"))

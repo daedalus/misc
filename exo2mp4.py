@@ -20,5 +20,5 @@ for filepart in files:
         parts.append((int(offset), filepart))
 
 for key, value in sorted(parts):
-    print key, value
+    print(key, value)
     system("cat %s >> %s" % (value, target))

@@ -29,10 +29,10 @@ def bitrepr32(val):
 
 
 def test(a, n):
-    print "BIT:", bitrepr32(a)
-    print "SRA:", bitrepr32(SRA(a, n)), n
-    print "SRL:", bitrepr32(SRL(a, n)), n
-    print "SLL:", bitrepr32(SLL(a, n)), n
+    print("BIT:", bitrepr32(a))
+    print("SRA:", bitrepr32(SRA(a, n)), n)
+    print("SRL:", bitrepr32(SRL(a, n)), n)
+    print("SLL:", bitrepr32(SLL(a, n)), n)
 
 
 n = 5

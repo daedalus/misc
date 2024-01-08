@@ -120,10 +120,10 @@ ciphertext = arr_to_bin(encrypted_fvek)
 nonce = arr_to_bin(nonce)
 mac = arr_to_bin(mac)
 
-print("vmk:", binascii.hexlify(key))
-print("encrypted_fvek:", binascii.hexlify(ciphertext))
-print("nonce:", binascii.hexlify(nonce))
-print("mac:", binascii.hexlify(mac))
+print(("vmk:", binascii.hexlify(key)))
+print(("encrypted_fvek:", binascii.hexlify(ciphertext)))
+print(("nonce:", binascii.hexlify(nonce)))
+print(("mac:", binascii.hexlify(mac)))
 
 cipher = AES.new(key, AES.MODE_CCM, nonce)
 # cipher.update(hdr)
@@ -133,6 +133,6 @@ try:
     cipher.verify(mac)
     # print ("The message is authentic: hdr=%s, pt=%s" % (hdr, plaintext))
     print("Description OK")
-    print("plaintext fvek:", binascii.hexlify(plaintext))
+    print(("plaintext fvek:", binascii.hexlify(plaintext)))
 except ValueError:
     print("Key incorrect or message corrupted")

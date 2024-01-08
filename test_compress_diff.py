@@ -22,25 +22,25 @@ def sendbuffer():
     for x in range(len(buff0)):
         tmp[x] = buff1[x] ^ buff0[x]
         buff1[x] = buff0[x]
-    print("tmp", binascii.hexlify(tmp))
+    print(("tmp", binascii.hexlify(tmp)))
     return zlib.compress(tmp)
 
 
 def modify(l):
     global buff0
-    print("modifying %d random bytes" % l)
+    print(("modifying %d random bytes" % l))
     for _ in range(l):
         buff0[random.randint(0, len(buff0) - 1)] = random.getrandbits(8)
 
 
 # state 0 send
 tmp = sendbuffer()
-print("len compressed tmp:", len(tmp))
-print("compressed:", binascii.hexlify(tmp))
+print(("len compressed tmp:", len(tmp)))
+print(("compressed:", binascii.hexlify(tmp)))
 
 # modify main buffer and send
 for i in range(10, 0, -1):
-    modify(2 ** i)
+    modify(2**i)
     tmp = sendbuffer()
-    print("len compressed tmp:", len(tmp))
-    print("compressed:", binascii.hexlify(tmp))
+    print(("len compressed tmp:", len(tmp)))
+    print(("compressed:", binascii.hexlify(tmp)))

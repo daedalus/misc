@@ -30,21 +30,21 @@ def makeIV():
 
 
 def test():
-    print "password = a"
+    print("password = a")
     input_str = "0123456789ABCDEF0123456789ABCDEF"
-    print "input message =", input_str
+    print("input message =", input_str)
 
     key = makekey("a")
-    print "key = double hashed password =", key.encode("hex")
+    print("key = double hashed password =", key.encode("hex"))
 
     mode = AES.MODE_CBC
-    print "MODE = ", mode
+    print("MODE = ", mode)
 
     IV, enc = encrypt(input_str, key, mode, IV)
-    print "IV =", IV, ",encrypted message =", enc
+    print("IV =", IV, ",encrypted message =", enc)
 
     dec = decrypt(enc, key, mode, IV)
-    print "decrypted message = ", dec
+    print("decrypted message = ", dec)
 
 
 test()

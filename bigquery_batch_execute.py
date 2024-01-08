@@ -22,7 +22,7 @@ def query(SQL, table_dest):
         SQL, location="US", job_config=job_config
     )  # ,useLegacySql=False)
     rows = list(query_job)
-    print("rows affected: %d" % len(rows))
+    print(("rows affected: %d" % len(rows)))
 
 
 fp = open(sys.argv[1])
