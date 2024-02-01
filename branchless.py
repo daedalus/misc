@@ -19,6 +19,13 @@ Lower2 = lambda s: "".join(chr(ord(s[i]) + 32 * (s[i] >= 'A' and s[i] <= 'Z' )) 
 clamp = lambda x, min_,max_: min(max(x, min_), max_)
 
 
+def stringcompare(a,b):
+  tmp = 0
+  for i in range(0, len(a)):
+    tmp += a[i] != b[i]
+  return tmp == 0
+
+
 def test():
   assert(IsOdd(3) == True)
   assert(IsOdd(2) == False)
@@ -40,6 +47,11 @@ def test():
   assert(Upper2("dario"))
   assert(Lower("DARIO"))
   assert(Lower2("DARIO"))
+  assert(stringcompare("dario","dario") == True)
+  assert(stringcompare("dario","dariO") == False)
+  assert(clamp(4,10,15) == 10)
+  assert(clamp(14,10,15) == 14)
+  assert(clamp(24,10,15) == 15)
 
 
 test()
