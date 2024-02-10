@@ -29,23 +29,22 @@ print(search("123456789--0", 0))
 count = 0
 
 # logarithm search
-def seeklog(A, key, imin, imax):
+def binary_search(A, key, low, high):
     global count
     count += 1
-
     if len(A) > 0:
-        imid = (imax + imin) / 2
-        if A[imid] > key:
-            return seeklog(A, key, imin, imid - 1)
-        elif A[imid] < key:
-            return seeklog(A, key, imid + 1, imax)
+        mid = low + ((high - low) >> 1);
+        if A[mid] > key:
+            return binary_search(A, key, low, mid - 1)
+        elif A[mid] < key:
+            return binary_search(A, key, mid + 1, high)
         else:
-            return imid
+            return mid
 
 
 def test():
     tmp = list(range(1024 * 1024 * 20))
-    print("res=", seeklog(tmp, 1337, 0, len(tmp)))
+    print("res=", binary_search(tmp, 1337, 0, len(tmp)))
     print("count=", count)
 
 
