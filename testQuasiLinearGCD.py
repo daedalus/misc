@@ -64,10 +64,11 @@ def batchGCDcompute(k, verbose=False):
 
     factors = []
     for i in range(0, len(j)):
-        if i % 2 != 0:
-            factor = GCD(k[i], r[(i + 1) / 2] * k[i + 1])
-        else:
-            factor = GCD(k[i], r[i / 2] * k[i - 1])
+        #if i & 1 == 1:
+        #    factor = GCD(k[i], r[(i + 1) >> 1] * k[i + 1])
+        #else:
+        #    factor = GCD(k[i], r[i >> 1] * k[i - 1])
+        factor = GCD(k[i], r[(i + (i & 1)) >> 1] * k[i + (-1) ** ((i + 1) & 1)])
         factors.append(factor)
     return factors
 
