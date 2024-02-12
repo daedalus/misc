@@ -11,10 +11,9 @@ print(multiplicand, "*", multiplier)
 
 product = 0
 for i in range(0, bits):
-    if (multiplier & 1) == 1:
-        product = product + multiplicand
-    multiplicand = multiplicand << 1
-    multiplier = multiplier >> 1
+    product += multiplicand * (multiplier & 1)
+    multiplicand <<= 1
+    multiplier >>= 1
     print(i, multiplicand, multiplier, product)
 
 print("Result: ", product)
