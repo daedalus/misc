@@ -26,6 +26,26 @@ def stringcompare(a,b):
   return tmp == 0
 
 
+def lowerbound(x, t):
+  #base = t
+  #l = len(t)
+  #while(l > 1):
+  #  half = l >> 1
+  #  base += (base[half -1] < x) * half
+  #  l -= half
+  #return base
+  k = 1
+  l = len(t)
+  while k <= l:
+    #print(t[k])
+    k = (k << 1) + (t[k] < x)
+  #return k.bit_count(),k
+  #k >>= k.bit_count()
+  #print(bin(k))
+  #return t[k]
+  #return k.bit_count()
+  return k
+
 def test():
   assert(IsOdd(3) == True)
   assert(IsOdd(2) == False)
@@ -55,3 +75,10 @@ def test():
 
 
 test()
+
+for i in range(0, 10):
+  k = lowerbound(i,[0,1,2,3,4,5,6,7,8,9])
+  print(i, k, k.bit_count())
+
+print(lowerbound(5,[6, 3, 7, 1, 5, 8, 9, 0, 2, 4]))
+

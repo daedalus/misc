@@ -9,7 +9,7 @@ def heaps(k, A):
     yield A
   else:
     for i  in range(0,  k):
-      yield from heap(k-1, A)
+      yield from heaps(k-1, A)
       if k & 1 == 0:
         A[i],A[k-1] = A[k-1],A[i]
       else:
@@ -31,5 +31,24 @@ def heaps_count_swaps(k, A):
   return c
 
 
-A038156 = lambda n: heaps_count_swaps(n, list(range(0,n)))
+#A038156 = lambda n: heaps_count_swaps(n, list(range(0,n)))
+
+def a(n):
+  m=0
+  L = list(range(0,n))
+  for p in heaps(len(L),L):
+    m = max(m,Permutation(p).rank())
+  return m
+
+
+def a(n):
+  m=0
+  L = list(range(0,n))
+  for p in heaps(len(L),L):
+    m = Permutation(p).rank()
+  return m
+
+
+
+print([a(n) for n in range(0,10)])
 
