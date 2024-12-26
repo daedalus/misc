@@ -21,17 +21,17 @@ def NOT(a):
 
 def OR(a, b):
     print("OR", a, b)
-    return abs(a - b) + (a * b)
+    return XOR(a, b) + AND(a, b)
 
 
 def NOR(a, b):
     print("NOR", a, b)
-    return 1 - (abs(a - b) + (a * b))
+    return NOT(OR(a, b))
 
 
 def NAND(a, b):
     print("NAND", a, b)
-    return 1 - (a * b)
+    return NOT(AND(a, b))
 
 
 print("----------")
