@@ -1,0 +1,57 @@
+# Third-party dependencies used across scripts in this repository.
+# Install with: pip install -r requirements.txt
+# Note: some packages (e.g. lzo, bitshuffle) may require system libraries.
+
+# Cryptography
+pycryptodome          # Crypto.Cipher, Crypto.Random (crack_AES256.py, pw-aes-memcache.py, testAES256.py)
+cryptography          # cryptography.fernet, PBKDF2HMAC (convert_luks_argon2id.py)
+M2Crypto              # android_fde_decryptkey.py
+gmpy2                 # classic_shor.py, rsa_*.py, test_timing.py
+pyotp                 # TOTP_test.py, TOTP_test2.py
+pbkdf2                # pmkid_test_calc.py
+sha3                  # hashtime.py (pysha3 / Python 3.6+ has it in hashlib)
+qrcode                # TOTP_test2.py
+
+# Bitcoin / blockchain
+# bip_utils           # testxchain.py (optional)
+
+# Security / networking
+paramiko              # brocade_version.py, cisco_paramiko_ssh.py
+shodan                # shodanMinerSearch.py, shodan_jsonfile_decoder_ssl_to_pem.py
+python-nmap           # check_nmap.py
+passbolt-python-api   # passbolt_api_hibp_test.py
+pwnedpasswords        # passbolt_api_hibp_test.py
+graphviz              # SANMAP.py
+humanfriendly         # SIMM_Pin_Recovery.py
+pyping                # msfhelper.py
+
+# System / data
+docker                # docker-get-swarm-nodes-ips.py
+libkeepass            # testkdbx.py
+hexdump               # mmapread.py
+
+# Data processing / ML
+numpy                 # bitshuffle.py, shuffledata.py, testshuffle.py, test_revealercc.py
+Pillow                # test_revealercc.py
+matplotlib            # test_revealercc.py
+scikit-learn          # test_sklearn_vectorizers.py
+pandas                # test_sklearn_vectorizers.py
+
+# Compression
+lz4                   # compression_test1.py, testshuffle.py, test_compress_diff.py
+brotli                # compression_test1.py
+# lzo                 # compression_test1.py, testshuffle.py (requires liblzo2-dev)
+# bitshuffle          # testshuffle.py (requires numpy C extension)
+
+# Utilities
+oeispy                # binet_oeis_crawl.py
+sympy                 # heaps.py
+simplejson            # CVE-2017-7679.py
+bencode               # test_bencode.py
+pgpdump               # testpgpdump.py
+tqdm                  # passbolt_api_hibp_test.py
+holidays              # licencia.py
+workdays              # licencia.py
+beautifulsoup4        # dinacia-scraper.py
+google-cloud-bigquery # bigquery_batch_execute.py
+smartcard             # (pyscard) convert_luks_argon2id.py

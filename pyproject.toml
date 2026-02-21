@@ -1,0 +1,24 @@
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "E402",  # module level import not at top of file
+    "F401",  # imported but unused (many scripts are standalone)
+    "F841",  # local variable assigned but never used
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/*.py" = ["E302", "E303"]
+
+[tool.flake8]
+max-line-length = 88
+max-complexity = 10
+extend-ignore = "E501,E402"
