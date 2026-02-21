@@ -1,6 +1,6 @@
 # misc
 
-A collection of miscellaneous scripts, tools, and experiments by [Dario Clavijo](https://github.com/daedalus).
+A collection of miscellaneous scripts, tools, and experiments.
 
 Topics covered include cryptography, Bitcoin/blockchain tooling, security research, networking utilities, system administration, mathematics, and general utilities.
 
