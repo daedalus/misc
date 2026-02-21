@@ -1,0 +1,8 @@
+_codeql_detected_source_root
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
