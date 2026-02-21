@@ -13,7 +13,7 @@ EF=/tmp/encryption_footer
 OFFSET=$(strings -t d $DEV | grep -e aes-cbc-essiv:sha256 | awk '{ print $1 }')
 dd bs=1 skip=$(($OFFSET-36)) count=16384 if=$DEV of=$EF
 
-curl https://raw.githubusercontent.com/daedalus/misc/master/android_fde_decryptkey.py > android_fde_decryptkey.py
+curl https://raw.githubusercontent.com/daedalus/misc/master/security/android_fde_decryptkey.py > android_fde_decryptkey.py
 
 python android_fde_decryptkey.py $EF $DEV $PW | xxd -r -ps > $KEYFILE
 
