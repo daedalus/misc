@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# scripts/lint — run linters on shell scripts (and pre-commit if configured).
+#
+# Usage: scripts/lint
+#   or:  make lint
+#
+# Priority:
+#   1. pre-commit run --all-files  (if pre-commit and config are present)
+#   2. shellcheck on scripts/* and bin/*
+#   3. shfmt -d (diff / dry-run) on scripts/* and bin/*
+# If none of the above tools are present, the script exits 0 with a notice.
+
+set -uo pipefail
+# Note: -e is intentionally omitted so all lint tools run and report before exiting.
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$REPO_ROOT" || exit 1
+
+# ── helpers ──────────────────────────────────────────────────────────────────
+info() { printf '\033[1;34m==> %s\033[0m\n' "$*"; }
+ok()   { printf '\033[1;32m ✓  %s\033[0m\n' "$*"; }
+warn() { printf '\033[1;33mwarn: %s\033[0m\n' "$*"; }
+
+FAIL=0
+
+# ── collect shell scripts ─────────────────────────────────────────────────────
+shell_scripts=()
+for dir in scripts bin; do
+    if [ -d "$dir" ]; then
+        while IFS= read -r -d '' f; do
+            shell_scripts+=("$f")
+        done < <(find "$dir" -type f ! -name "*.*" -print0 2>/dev/null)
+    fi
+done
+
+# ── 1. pre-commit ─────────────────────────────────────────────────────────────
+if command -v pre-commit >/dev/null 2>&1 && [ -f ".pre-commit-config.yaml" ]; then
+    info "Running pre-commit run --all-files…"
+    if pre-commit run --all-files; then
+        ok "pre-commit passed"
+    else
+        FAIL=1
+    fi
+    exit "$FAIL"
+fi
+
+# ── 2. shellcheck ─────────────────────────────────────────────────────────────
+if command -v shellcheck >/dev/null 2>&1; then
+    if [ "${#shell_scripts[@]}" -gt 0 ]; then
+        info "Running shellcheck on shell scripts…"
+        if shellcheck "${shell_scripts[@]}"; then
+            ok "shellcheck passed"
+        else
+            FAIL=1
+        fi
+    else
+        warn "No shell scripts found to check with shellcheck."
+    fi
+else
+    warn "shellcheck not found — skipping. Install with: sudo apt-get install shellcheck"
+fi
+
+# ── 3. shfmt (check mode) ─────────────────────────────────────────────────────
+if command -v shfmt >/dev/null 2>&1; then
+    if [ "${#shell_scripts[@]}" -gt 0 ]; then
+        info "Running shfmt -d (diff check) on shell scripts…"
+        if shfmt -d "${shell_scripts[@]}"; then
+            ok "shfmt: no formatting issues"
+        else
+            FAIL=1
+            warn "shfmt found formatting issues. Run 'make format' to fix them."
+        fi
+    else
+        warn "No shell scripts found to check with shfmt."
+    fi
+else
+    warn "shfmt not found — skipping. See https://github.com/mvdan/sh for install instructions."
+fi
+
+if [ "$FAIL" -eq 0 ] && ! command -v shellcheck >/dev/null 2>&1 && ! command -v shfmt >/dev/null 2>&1; then
+    warn "No lint tools found (pre-commit, shellcheck, shfmt). Install at least one to enable linting."
+fi
+
+exit "$FAIL"

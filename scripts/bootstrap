@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# scripts/bootstrap — first-time setup for this repository.
+#
+# Usage: scripts/bootstrap
+#   or:  make bootstrap
+#
+# What it does:
+#   1. Verifies required tools are present (git).
+#   2. Ensures all scripts in scripts/ and bin/ are executable.
+#   3. Creates .env from .env.example if .env does not already exist.
+#   4. Optionally installs / checks pre-commit if Python is available.
+
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$REPO_ROOT"
+
+# ── helpers ──────────────────────────────────────────────────────────────────
+info()  { printf '\033[1;34m==> %s\033[0m\n' "$*"; }
+ok()    { printf '\033[1;32m ✓  %s\033[0m\n' "$*"; }
+warn()  { printf '\033[1;33mwarn: %s\033[0m\n' "$*"; }
+die()   { printf '\033[1;31merror: %s\033[0m\n' "$*" >&2; exit 1; }
+
+# ── 1. required tools ─────────────────────────────────────────────────────────
+info "Checking required tools…"
+command -v git >/dev/null 2>&1 || die "git is required but not found. Install git and re-run."
+ok "git found: $(git --version)"
+
+# ── 2. make scripts executable ───────────────────────────────────────────────
+info "Ensuring scripts are executable…"
+for dir in scripts bin; do
+    if [ -d "$dir" ]; then
+        find "$dir" -type f ! -name "*.*" -exec chmod +x {} \;
+        ok "$dir/ scripts marked executable"
+    fi
+done
+
+# ── 3. create .env if missing ─────────────────────────────────────────────────
+if [ -f ".env.example" ] && [ ! -f ".env" ]; then
+    info "Creating .env from .env.example…"
+    cp ".env.example" ".env"
+    ok ".env created (review and customise as needed)"
+elif [ -f ".env" ]; then
+    ok ".env already exists"
+fi
+
+# ── 4. pre-commit (optional) ──────────────────────────────────────────────────
+if command -v python3 >/dev/null 2>&1; then
+    info "Python found — checking pre-commit…"
+    if ! command -v pre-commit >/dev/null 2>&1; then
+        warn "pre-commit not found. Install it with:  pip install pre-commit"
+        warn "Then run:  pre-commit install"
+    else
+        ok "pre-commit found: $(pre-commit --version)"
+        if [ -f ".pre-commit-config.yaml" ]; then
+            info "Installing pre-commit hooks…"
+            pre-commit install
+            ok "pre-commit hooks installed"
+        else
+            warn "No .pre-commit-config.yaml found — skipping hook install."
+        fi
+    fi
+else
+    warn "python3 not found — skipping pre-commit setup."
+    warn "Install Python 3 and run:  pip install pre-commit && pre-commit install"
+fi
+
+info "Bootstrap complete."

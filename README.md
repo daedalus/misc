@@ -4,10 +4,25 @@ A collection of miscellaneous scripts, tools, and experiments.
 
 Topics covered include cryptography, Bitcoin/blockchain tooling, security research, networking utilities, system administration, mathematics, and general utilities.
 
+## Quickstart
+
+```bash
+# First-time setup (checks tools, makes scripts executable, creates .env)
+make bootstrap
+
+# Check your environment
+make doctor
+
+# Run linters
+make lint
+```
+
 ## Directory Layout
 
 ```
 misc/
+├── bin/            User-facing commands (added to PATH)
+├── scripts/        Internal helper scripts (bootstrap, doctor, lint, format)
 ├── crypto/         Cryptographic algorithms, primitives, and tests
 │                   (AES, RSA, ECDSA, DH, TOTP, PRNG, hashes, encoding)
 ├── bitcoin/        Bitcoin and blockchain tools
@@ -25,7 +40,27 @@ misc/
 └── examples/       Example images used in demonstrations
 ```
 
-## Usage
+### Conventions
+
+| Directory  | Purpose |
+|------------|---------|
+| `bin/`     | User-facing commands intended to be on `PATH` |
+| `scripts/` | Internal repo helpers (bootstrap, doctor, lint, format) |
+
+## Tooling
+
+All common tasks are driven by the `Makefile`. The scripts live in `scripts/`.
+
+| Target            | Description |
+|-------------------|-------------|
+| `make bootstrap`  | Verify required tools, make scripts executable, create `.env` |
+| `make doctor`     | Print versions and warn about missing tools |
+| `make lint`       | Run shellcheck / shfmt (or pre-commit if configured) |
+| `make format`     | Auto-format shell scripts with shfmt (or pre-commit) |
+| `make test`       | Run tests (placeholder — add commands as repo grows) |
+| `make ci`         | Alias for `make lint` — used in CI |
+
+## Running Scripts
 
 Most scripts are standalone and can be run directly:
 
