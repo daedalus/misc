@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: ${{ hashFiles('.pre-commit-config.yaml') != '' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install pre-commit
+        if: ${{ hashFiles('.pre-commit-config.yaml') != '' }}
+        run: pip install pre-commit
+
+      - name: Install shellcheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Make scripts executable
+        run: chmod +x scripts/* bin/* 2>/dev/null || true
+
+      - name: Run lint
+        run: make lint
