@@ -9,8 +9,10 @@ from ``n.bit_length()``.
 
 The mapping is invertible: ranking each permutation recovers its original
 limb, and concatenating the limbs (in reverse order, ``SPLIT`` bits at a
-time) recovers ``n``, which the assert at the bottom of ``main()``
-verifies.
+time) recovers ``n``. Decoding works from the permuted card sequences
+alone: each shuffled deck is turned back into a permutation relative to
+the reference deck order, ranked into a limb, and the limbs are joined
+into the whole integer. ``main()`` verifies this round-trip.
 
 Usage:
     python split_int_to_perms.py <int>     # decimal or 0x-prefixed
@@ -59,6 +61,17 @@ def rank_to_perm(rank: int) -> Permutation:
     assert 0 <= rank < factorial(PERM_SIZE), f"rank {rank} out of range for S_{PERM_SIZE}"
     return Permutation.unrank_lex(PERM_SIZE, rank)
 
+def decode_deck(deck: list[int], cards: list[int]) -> Permutation:
+    """Recover the permutation that produced ``deck`` from the reference ``cards``."""
+    assert sorted(deck) == sorted(cards), "deck is not a permutation of the reference cards"
+    index = {c: i for i, c in enumerate(cards)}
+    return Permutation([index[c] for c in deck])
+
+def decode_decks(decks: list[list[int]], cards: list[int]) -> int:
+    """Decode permuted card sequences back into the whole integer."""
+    limbs = [Permutation.rank(decode_deck(d, cards)) for d in decks]
+    return join_limbs(limbs)
+
 def pc(p):
     for i in range(4):
         for j in range(13):
@@ -90,8 +103,15 @@ def main() -> None:
     pc(cards)
 
     for i, p in enumerate(perms[:2]):
-        print(f"deck permuted by perm[{i}]:")
+        #print(f"deck permuted by perm[{i}]:")
         pc(p(cards))
+
+    # Decode: recover n from the permuted card sequences alone.
+    decks = [p(cards) for p in perms]
+    decoded = decode_decks(decks, cards)
+    print("decoded from cards:", hex(decoded))
+    assert decoded == n
+    print("card round-trip verified")
 
 
 if __name__ == "__main__":
