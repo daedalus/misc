@@ -14,6 +14,7 @@ Usage:
 Requires: sympy
 """
 
+import sys
 import random
 
 from sympy.combinatorics import Permutation
@@ -39,6 +40,14 @@ def rank_to_perm(rank: int) -> Permutation:
     return Permutation.unrank_lex(PERM_SIZE, rank)
 
 
+
+
+def pc(p):
+    for i in range(4):
+        for j in range(13):
+            print(chr(p[13*i + j]) + " ", end="")
+        print()
+
 def main() -> None:
     # Example value; replace with random.getrandbits(TOTAL_BITS) for random inputs.
     #n = 0xC4BBCB1FBEC99D65BF59D85C8CB62EE2DB963F0FE106F483D9AFA73BD4E39A8A
@@ -57,6 +66,18 @@ def main() -> None:
 
     assert s1 == n1 and s2 == n2 and n == (s1 << (TOTAL_BITS - SPLIT)) + s2
     print("round-trip verified")
+
+    spades = list(range(0x1F0A1, 0x1F0AF))
+    spades.remove(0x1F0AC) # take out the knight
+    cards = [s + 16*i for s in spades for i in range(4)]
+
+    pc(cards)
+    
+    p1 = a1(cards)
+    p2 = a2(cards)
+
+    pc(p1)
+    pc(p2)
 
 
 if __name__ == "__main__":
