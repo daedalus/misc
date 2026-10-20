@@ -12,6 +12,10 @@ Usage:
     python split_int_to_perms.py
 
 Requires: sympy
+
+Reference: 
+    https://www.johndcook.com/blog/2026/07/27/hiding-data-in-permutations/
+
 """
 
 import sys
