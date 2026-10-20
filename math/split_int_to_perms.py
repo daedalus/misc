@@ -1,15 +1,19 @@
-"""Map a 256-bit integer onto a pair of 52-element permutations.
+"""Map an arbitrary-size integer onto a sequence of 52-element permutations.
 
-The 256-bit value ``n`` is split into a high part ``n1`` (``split`` bits)
-and a low part ``n2`` (``256 - split`` bits). Both parts are small enough
-to serve as lexicographic ranks in the symmetric group S_52 (52! ~ 2^225.7),
-so each is converted into a permutation via ``Permutation.unrank_lex``.
+The integer ``n`` is extracted into limbs of ``SPLIT`` bits each (least
+significant first). Since ``SPLIT = floor(log2(52!))`` = 225, every limb
+is small enough to serve as a lexicographic rank in the symmetric group
+S_52 (52! ~ 2^225.7), so each limb is converted into a permutation via
+``Permutation.unrank_lex``. The number of limbs is derived automatically
+from ``n.bit_length()``.
 
 The mapping is invertible: ranking each permutation recovers its original
-bit chunk, which the assert at the bottom of ``main()`` verifies.
+limb, and concatenating the limbs (in reverse order, ``SPLIT`` bits at a
+time) recovers ``n``, which the assert at the bottom of ``main()``
+verifies.
 
 Usage:
-    python split_int_to_perms.py
+    python split_int_to_perms.py <int>     # decimal or 0x-prefixed
 
 Requires: sympy
 
@@ -19,32 +23,41 @@ Reference:
 """
 
 import sys
-import random
 
 from sympy.combinatorics import Permutation
+from sympy import log, factorial
 
 # Number of elements in each permutation (S_52 ranks go up to ~2^225.7).
 PERM_SIZE = 52
 
-# Total bit-width of the input and how many of those bits go to the high half.
-TOTAL_BITS = 256
-SPLIT = 225  # high half: SPLIT bits; low half: TOTAL_BITS - SPLIT = 31 bits
+# Bits per limb: the largest rank S_52 can represent.
+SPLIT = int(log(factorial(PERM_SIZE), 2))
 
+print(f"For {PERM_SIZE} cards we get limbs of {SPLIT} bits...")
 
-def split_bits(n: int, split: int = SPLIT, total: int = TOTAL_BITS) -> tuple[int, int]:
-    """Split integer ``n`` into a high ``split``-bit part and the remaining low part."""
-    low_mask = (1 << (total - split)) - 1
-    n1 = (n & ~low_mask) >> (total - split)
-    n2 = n & low_mask
-    return n1, n2
+def split_limbs(n: int, limb_bits: int = SPLIT) -> list[int]:
+    """Split integer ``n`` into limbs of ``limb_bits`` bits, least significant first."""
+    if n < 0:
+        raise ValueError("n must be non-negative")
+    mask = (1 << limb_bits) - 1
+    limbs = []
+    while n:
+        limbs.append(n & mask)
+        n >>= limb_bits
+    return limbs or [0]
 
+def join_limbs(limbs: list[int], limb_bits: int = SPLIT) -> int:
+    """Reassemble limbs (least significant first) back into an integer."""
+    n = 0
+    for i, limb in reversed(list(enumerate(limbs))):
+        assert 0 <= limb < (1 << limb_bits), f"limb {i} does not fit in {limb_bits} bits"
+        n = (n << limb_bits) | limb
+    return n
 
 def rank_to_perm(rank: int) -> Permutation:
     """Convert a lexicographic rank into a permutation of ``PERM_SIZE`` elements."""
+    assert 0 <= rank < factorial(PERM_SIZE), f"rank {rank} out of range for S_{PERM_SIZE}"
     return Permutation.unrank_lex(PERM_SIZE, rank)
-
-
-
 
 def pc(p):
     for i in range(4):
@@ -53,22 +66,21 @@ def pc(p):
         print()
 
 def main() -> None:
-    # Example value; replace with random.getrandbits(TOTAL_BITS) for random inputs.
-    #n = 0xC4BBCB1FBEC99D65BF59D85C8CB62EE2DB963F0FE106F483D9AFA73BD4E39A8A
-    n = int(sys.argv[1])
- 
-    n1, n2 = split_bits(n)
-    print(n1, n2)
+    # Example value:
+    #   0xC4BBCB1FBEC99D65BF59D85C8CB62EE2DB963F0FE106F483D9AFA73BD4E39A8A
+    n = int(sys.argv[1], 0) if len(sys.argv) > 1 else 0xC4BBCB1FBEC99D65BF59D85C8CB62EE2DB963F0FE106F483D9AFA73BD4E39A8A
 
-    a1 = rank_to_perm(n1)
-    a2 = rank_to_perm(n2)
-    print("a1:", a1)
-    print("a2:", a2)
+    limbs = split_limbs(n)
+    total_bits = max(n.bit_length(), 1)
+    print(f"{total_bits} bits -> {len(limbs)} limb(s) of {SPLIT} bits")
+    print("limbs:", limbs)
 
-    s1 = Permutation.rank(a1)
-    s2 = Permutation.rank(a2)
+    perms = [rank_to_perm(limb) for limb in limbs]
+    for i, p in enumerate(perms):
+        print(f"perm[{i}]:", p)
 
-    assert s1 == n1 and s2 == n2 and n == (s1 << (TOTAL_BITS - SPLIT)) + s2
+    ranks = [Permutation.rank(p) for p in perms]
+    assert ranks == limbs and join_limbs(ranks) == n
     print("round-trip verified")
 
     spades = list(range(0x1F0A1, 0x1F0AF))
@@ -76,12 +88,10 @@ def main() -> None:
     cards = [s + 16*i for s in spades for i in range(4)]
 
     pc(cards)
-    
-    p1 = a1(cards)
-    p2 = a2(cards)
 
-    pc(p1)
-    pc(p2)
+    for i, p in enumerate(perms[:2]):
+        print(f"deck permuted by perm[{i}]:")
+        pc(p(cards))
 
 
 if __name__ == "__main__":
